@@ -9,7 +9,8 @@ export type Path =
   | `/mypage`
   | `/pronunciation`
   | `/quiz`
-  | `/shadowing`;
+  | `/shadowing`
+  | `/translate`;
 
 export type Params = {};
 
