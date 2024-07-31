@@ -31,7 +31,7 @@ const Nav = () => {
   const location = useLocation();
 
   return (
-    <nav className="flex items-center justify-between px-[88px] py-3.5">
+    <nav className="flex items-center justify-between px-[88px] py-3.5 shadow-md">
       <Link to="/home">
         <Logo />
       </Link>
