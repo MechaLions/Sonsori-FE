@@ -17,8 +17,8 @@ const NavItem = (props: NavItemProps) => {
     <Link to={link} className="text-xl font-bold">
       <p
         className={cn(
-          "hover:text-blue-300",
-          isActive ? "text-blue-500" : "text-black",
+          "hover:text-brandHover",
+          isActive ? "text-brand" : "text-black",
         )}
       >
         {title}
