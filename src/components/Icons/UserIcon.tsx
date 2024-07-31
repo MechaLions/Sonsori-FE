@@ -1,10 +1,17 @@
 import UserImage from "@/assets/UserImage.png";
+import UserActiveImage from "@/assets/UserActiveImage.png";
 
-const UserIcon = () => {
+interface UserIconProps {
+  isActive: boolean;
+}
+
+const UserIcon = (props: UserIconProps) => {
+  const { isActive } = props;
+
   return (
     <div className="flex items-center justify-center">
       <img
-        src={UserImage}
+        src={isActive ? UserActiveImage : UserImage}
         className="h-auto w-[50px]"
         loading="lazy"
         alt="UserIcon"

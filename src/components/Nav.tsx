@@ -11,8 +11,6 @@ interface NavItemProps {
 
 const NavItem = (props: NavItemProps) => {
   const { link, title } = props;
-  const location = useLocation();
-
   const isActive = location.pathname === link;
 
   return (
@@ -30,6 +28,8 @@ const NavItem = (props: NavItemProps) => {
 };
 
 const Nav = () => {
+  const location = useLocation();
+
   return (
     <nav className="flex items-center justify-between px-[88px] py-3.5">
       <Link to="/home">
@@ -40,7 +40,7 @@ const Nav = () => {
       <NavItem title="퀴즈" link="/quiz" />
       <NavItem title="발음 교정" link="/pronunciation" />
       <Link to="/mypage">
-        <UserIcon />
+        <UserIcon isActive={location.pathname === "/mypage"} />
       </Link>
     </nav>
   );
