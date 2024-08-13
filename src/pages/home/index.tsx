@@ -1,9 +1,11 @@
-import MainSection from "@/pages/home/_components/MainSection";
+import MainSection from "./_components/MainSection";
+import ExplainSection from "./_components/ExplainSection";
 
 const Home = () => {
   return (
-    <main className="flex h-full w-full flex-col">
+    <main className="flex w-full flex-col">
       <MainSection />
+      <ExplainSection />
     </main>
   );
 };
