@@ -14,7 +14,9 @@ const LinkComponent: React.FC<LinkComponentProps> = ({
       className="flex max-w-fit cursor-pointer flex-col gap-[30px]"
       onClick={onClick}
     >
-      {childrenIcon}
+      <div className="transform transition-transform duration-300 hover:scale-[1.15]">
+        {childrenIcon}
+      </div>
       <div className="text-center text-xl font-bold leading-tight text-white">
         {ment}
       </div>
