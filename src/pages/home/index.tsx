@@ -6,6 +6,8 @@ import QuizSection from "./_components/QuizSection";
 import MainSection from "./_components/MainSection";
 import ExplainSection from "./_components/ExplainSection";
 
+import PronunciationSection from "@/pages/home/_components/PronunciationSection";
+
 export type SectionName = "Translate" | "Shadowing" | "Quiz" | "Pronunciation";
 
 const Home = () => {
@@ -36,6 +38,7 @@ const Home = () => {
       <TranslateSection ref={translateRef} />
       <ShadowingSection ref={shadowingRef} />
       <QuizSection ref={quizRef} />
+      <PronunciationSection ref={pronunciationRef} />
     </main>
   );
 };
