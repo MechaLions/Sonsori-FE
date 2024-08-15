@@ -5,7 +5,13 @@ import PronunciationIcon from "@/components/Icons/PronunciationIcon";
 
 import LinkComponent from "./LinkComponent";
 
-const MainSection = () => {
+interface MainSectionProps {
+  handleScrollToTranslate: () => void;
+}
+
+const MainSection = (props: MainSectionProps) => {
+  const { handleScrollToTranslate } = props;
+
   return (
     <main
       className="brand-container flex w-full flex-col justify-around"
@@ -25,6 +31,7 @@ const MainSection = () => {
               번역해주는 서비스
             </>
           }
+          onClick={handleScrollToTranslate}
         />
         <LinkComponent
           childrenIcon={<ShadowingIcon />}
