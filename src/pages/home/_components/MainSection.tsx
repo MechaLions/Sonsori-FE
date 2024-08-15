@@ -5,12 +5,14 @@ import PronunciationIcon from "@/components/Icons/PronunciationIcon";
 
 import LinkComponent from "./LinkComponent";
 
+import { SectionName } from "@/pages/home";
+
 interface MainSectionProps {
-  handleScrollToTranslate: () => void;
+  onScrollToSection: (section: SectionName) => void;
 }
 
 const MainSection = (props: MainSectionProps) => {
-  const { handleScrollToTranslate } = props;
+  const { onScrollToSection } = props;
 
   return (
     <main
@@ -31,7 +33,7 @@ const MainSection = (props: MainSectionProps) => {
               번역해주는 서비스
             </>
           }
-          onClick={handleScrollToTranslate}
+          onClick={() => onScrollToSection("Translate")}
         />
         <LinkComponent
           childrenIcon={<ShadowingIcon />}
@@ -42,6 +44,7 @@ const MainSection = (props: MainSectionProps) => {
               쉐도잉 서비스
             </>
           }
+          onClick={() => onScrollToSection("Shadowing")}
         />
         <LinkComponent
           childrenIcon={<QuizIcon />}
@@ -52,10 +55,12 @@ const MainSection = (props: MainSectionProps) => {
               복습할 수 있는 퀴즈
             </>
           }
+          onClick={() => onScrollToSection("Quiz")}
         />
         <LinkComponent
           childrenIcon={<PronunciationIcon />}
           ment={<>한국어 발음 교정</>}
+          onClick={() => onScrollToSection("Pronunciation")}
         />
       </section>
     </main>
