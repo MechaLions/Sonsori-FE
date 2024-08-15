@@ -12,7 +12,7 @@ const ShadowingSection = forwardRef<HTMLDivElement>(
         ref={ref}
         className="gap- flex flex-col items-center justify-center gap-20 bg-[#F5F5F5] px-40 py-36"
       >
-        <section className="flex w-full flex-col gap-14">
+        <section className="mb-10 flex w-full flex-col gap-14">
           <h1 className="text-[40px] font-bold text-brand">수어 쉐도잉</h1>
           <h1 className="text-center text-[50px] font-bold leading-tight">
             <p>아직도 책으로 수어를 공부하나요?</p>
@@ -57,7 +57,7 @@ const ShadowingSection = forwardRef<HTMLDivElement>(
           </div>
         </section>
 
-        <Link to={"/translate"}>
+        <Link to={"/shadowing"}>
           <Button variant="brand" className="mt-10">
             수어 쉐도잉 바로가기
           </Button>

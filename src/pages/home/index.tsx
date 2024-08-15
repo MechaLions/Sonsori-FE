@@ -2,6 +2,7 @@ import { useRef } from "react";
 
 import TranslateSection from "./_components/TranslateSection";
 import ShadowingSection from "./_components/ShadowingSection";
+import QuizSection from "./_components/QuizSection";
 import MainSection from "./_components/MainSection";
 import ExplainSection from "./_components/ExplainSection";
 
@@ -34,6 +35,7 @@ const Home = () => {
       <ExplainSection />
       <TranslateSection ref={translateRef} />
       <ShadowingSection ref={shadowingRef} />
+      <QuizSection ref={quizRef} />
     </main>
   );
 };
