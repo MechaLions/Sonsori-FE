@@ -3,10 +3,10 @@ import { useRef } from "react";
 import TranslateSection from "./_components/TranslateSection";
 import ShadowingSection from "./_components/ShadowingSection";
 import QuizSection from "./_components/QuizSection";
+import PronunciationSection from "./_components/PronunciationSection";
 import MainSection from "./_components/MainSection";
+import Footer from "./_components/Footer";
 import ExplainSection from "./_components/ExplainSection";
-
-import PronunciationSection from "@/pages/home/_components/PronunciationSection";
 
 export type SectionName = "Translate" | "Shadowing" | "Quiz" | "Pronunciation";
 
@@ -39,6 +39,7 @@ const Home = () => {
       <ShadowingSection ref={shadowingRef} />
       <QuizSection ref={quizRef} />
       <PronunciationSection ref={pronunciationRef} />
+      <Footer />
     </main>
   );
 };
