@@ -5,9 +5,20 @@ import PronunciationIcon from "@/components/Icons/PronunciationIcon";
 
 import LinkComponent from "./LinkComponent";
 
-const MainSection = () => {
+import { SectionName } from "@/pages/home";
+
+interface MainSectionProps {
+  onScrollToSection: (section: SectionName) => void;
+}
+
+const MainSection = (props: MainSectionProps) => {
+  const { onScrollToSection } = props;
+
   return (
-    <main className="brand-container flex h-full w-full flex-col justify-around">
+    <main
+      className="brand-container flex w-full flex-col justify-around"
+      style={{ height: "calc(100vh - 88px)" }}
+    >
       <section className="flex w-full flex-col items-center justify-center text-center text-[55px] font-bold leading-tight">
         손끝에서 글로, <br />
         소리에서 마음으로.
@@ -22,6 +33,7 @@ const MainSection = () => {
               번역해주는 서비스
             </>
           }
+          onClick={() => onScrollToSection("Translate")}
         />
         <LinkComponent
           childrenIcon={<ShadowingIcon />}
@@ -32,6 +44,7 @@ const MainSection = () => {
               쉐도잉 서비스
             </>
           }
+          onClick={() => onScrollToSection("Shadowing")}
         />
         <LinkComponent
           childrenIcon={<QuizIcon />}
@@ -42,10 +55,12 @@ const MainSection = () => {
               복습할 수 있는 퀴즈
             </>
           }
+          onClick={() => onScrollToSection("Quiz")}
         />
         <LinkComponent
           childrenIcon={<PronunciationIcon />}
           ment={<>한국어 발음 교정</>}
+          onClick={() => onScrollToSection("Pronunciation")}
         />
       </section>
     </main>
