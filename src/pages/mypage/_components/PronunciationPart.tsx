@@ -7,7 +7,7 @@ import { Link } from "@/router";
 //TODO: 정확도 & 카테고리명 api 연결
 const PronunciationPart = () => {
   return (
-    <div className="shadow-shadowBrand flex h-2/3 w-[29%] flex-col items-center justify-between rounded-[30px] px-24 py-10 text-center leading-tight">
+    <div className="shadow-shadowBrand flex h-3/5 w-[29%] flex-col items-center justify-between rounded-[30px] bg-white px-24 py-10 text-center leading-tight">
       <h1 className="text-3xl font-bold">발음 교정</h1>
       <div className="text-2xl font-semibold">
         <p className="inline-block text-brand">병원&nbsp;</p>
@@ -21,7 +21,7 @@ const PronunciationPart = () => {
           <p className="text-brand">72%</p>
         </div>
       </div>
-      <Link to={"/pronunciation"}>
+      <Link to={"/pronunciation"} className="mt-3">
         <Button variant="brand">발음 교정 바로가기 →</Button>
       </Link>
     </div>
