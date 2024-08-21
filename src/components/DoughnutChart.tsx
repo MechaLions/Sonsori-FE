@@ -8,7 +8,7 @@ interface DoughnutChartProps {
 
 const DoughnutChart: React.FC<DoughnutChartProps> = ({
   percent,
-  size = "44px",
+  size = "120px",
 }: DoughnutChartProps) => {
   const radius = 63;
 
