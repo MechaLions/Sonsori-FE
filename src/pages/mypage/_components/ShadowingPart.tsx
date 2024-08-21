@@ -7,7 +7,7 @@ import { Link } from "@/router";
 //TODO: 정확도 & 카테고리명 api 연결
 const ShadowingPart = () => {
   return (
-    <div className="shadow-shadowBrand flex h-3/5 w-[29%] flex-col items-center justify-between rounded-[30px] bg-white px-24 py-10 text-center leading-tight">
+    <div className="shadow-shadowBrand flex w-[29%] flex-col items-center justify-between gap-3 rounded-[30px] bg-white px-24 py-10 text-center leading-tight">
       <h1 className="text-3xl font-bold">수어 쉐도잉</h1>
       <div className="text-2xl font-semibold">
         <p className="inline-block text-brand">병원&nbsp;</p>
