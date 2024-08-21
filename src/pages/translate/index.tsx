@@ -1,5 +1,10 @@
-const TranslatePage = () => {
-  return <main className="flex h-full flex-col">지금 TranslatePage 화면</main>;
-};
+import TranslatePage from "./_components/TranslatePage";
+   const Translate = () => {
+    return (
+      <main className="flex w-full ">
+        <TranslatePage />
+      </main>
+    );
+  };
 
-export default TranslatePage;
+export default Translate;

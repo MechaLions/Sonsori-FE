@@ -76,7 +76,8 @@ module.exports = {
       },
       backgroundImage: {
         "brand-image": "url('@/assets/MainBrandImage.png')",
-      },
+        "translateBackground-image": "url('@/assets/TranslateBackground.png')",
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],
