@@ -20,6 +20,8 @@ module.exports = {
     extend: {
       colors: {
         brand: "#0169F4",
+        brandGreen: "#4CC764",
+        brandRed: "#F7595D",
         brandHover: "rgba(1, 105, 244, 0.8)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
