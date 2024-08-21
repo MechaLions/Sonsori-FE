@@ -1,23 +1,25 @@
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import UserImage from "@/assets/UserImage.png";
 import UserHoverImage from "@/assets/UserHoverImage.png";
 import UserActiveImage from "@/assets/UserActiveImage.png";
 
-interface UserIconProps {
-  isActive: boolean;
-}
-
-const UserIcon = (props: UserIconProps) => {
-  const { isActive } = props;
+const UserIcon = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [ImageSrc, setImageSrc] = useState(UserImage);
+  const [imageSrc, setImageSrc] = useState(UserImage);
+
+  const location = useLocation();
 
   useEffect(() => {
-    if (isHovered) setImageSrc(UserHoverImage);
-    if (isActive) setImageSrc(UserActiveImage);
-    if (!isActive && !isHovered) setImageSrc(UserImage);
-  }, [isHovered, isActive]);
+    if (isHovered) {
+      setImageSrc(UserHoverImage);
+    } else if (location.pathname === "/mypage") {
+      setImageSrc(UserActiveImage);
+    } else {
+      setImageSrc(UserImage);
+    }
+  }, [isHovered, location.pathname]);
 
   return (
     <div
@@ -26,7 +28,7 @@ const UserIcon = (props: UserIconProps) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <img
-        src={ImageSrc}
+        src={imageSrc}
         className="h-auto w-[50px]"
         loading="lazy"
         alt="UserIcon"

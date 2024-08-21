@@ -28,8 +28,6 @@ const NavItem = (props: NavItemProps) => {
 };
 
 const Nav = () => {
-  const location = useLocation();
-
   return (
     <nav className="flex items-center justify-between px-[88px] py-3.5 shadow-md">
       <Link to="/home">
@@ -40,7 +38,7 @@ const Nav = () => {
       <NavItem title="퀴즈" link="/quiz" />
       <NavItem title="발음 교정" link="/pronunciation" />
       <Link to="/mypage">
-        <UserIcon isActive={location.pathname === "/mypage"} />
+        <UserIcon />
       </Link>
     </nav>
   );
