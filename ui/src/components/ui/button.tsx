@@ -19,6 +19,10 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         brand:
           "text-white font-semibold text-base rounded-[20px]  bg-brand shadow-[0px_4px_4px_rgba(0,0,0,0.25)]",
+        white:
+          "text-black font-semibold text-base rounded-[20px] bg-white shadow-[0px_4px_4px_rgba(0,0,0,0.25)]",
+        grey: "text-white font-semibold text-base rounded-[20px] bg-grey shadow-[0px_4px_4px_rgba(0,0,0,0.25)]",
+        red: "text-white font-semibold text-base rounded-[20px] bg-red shadow-[0px_4px_4px_rgba(0,0,0,0.25)]",
       },
       size: {
         default: "w-fit py-[15px] px-[38px]",

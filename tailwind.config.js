@@ -20,6 +20,8 @@ module.exports = {
     extend: {
       colors: {
         brand: "#0169F4",
+        grey: "#9B9B9B",
+        red: "#F7595D",
         brandHover: "rgba(1, 105, 244, 0.8)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -77,7 +79,7 @@ module.exports = {
       backgroundImage: {
         "brand-image": "url('@/assets/MainBrandImage.png')",
         "translateBackground-image": "url('@/assets/TranslateBackground.png')",
-      }
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

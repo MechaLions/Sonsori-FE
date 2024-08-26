@@ -1,5 +1,6 @@
 import TranslatePage from "./_components/TranslatePage";
-   const Translate = () => {
+   
+const Translate = () => {
     return (
       <main className="flex w-full ">
         <TranslatePage />
