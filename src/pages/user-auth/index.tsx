@@ -24,11 +24,11 @@ const AuthPage = () => {
       <AnimatePresence>
         <motion.section
           key={activeSection}
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
+          exit={{ opacity: 0, scale: 0.8 }}
           transition={{ duration: 0.3 }}
-          className="absolute top-[160px] flex w-[900px] flex-col items-center gap-6 rounded-[30px] bg-white px-[220px] pb-16 pt-8 shadow-shadowBrand"
+          className="absolute m-auto flex w-[900px] flex-col items-center gap-6 rounded-[30px] bg-white px-[220px] pb-16 pt-8 shadow-shadowBrand"
         >
           <div className="flex items-center justify-center gap-1">
             <Logo />
