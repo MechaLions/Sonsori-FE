@@ -1,17 +1,34 @@
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import UserImage from "@/assets/UserImage.png";
+import UserHoverImage from "@/assets/UserHoverImage.png";
 import UserActiveImage from "@/assets/UserActiveImage.png";
 
-interface UserIconProps {
-  isActive: boolean;
-}
+const UserIcon = () => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [imageSrc, setImageSrc] = useState(UserImage);
 
-const UserIcon = (props: UserIconProps) => {
-  const { isActive } = props;
+  const location = useLocation();
+
+  useEffect(() => {
+    if (isHovered) {
+      setImageSrc(UserHoverImage);
+    } else if (location.pathname === "/mypage") {
+      setImageSrc(UserActiveImage);
+    } else {
+      setImageSrc(UserImage);
+    }
+  }, [isHovered, location.pathname]);
 
   return (
-    <div className="flex items-center justify-center">
+    <div
+      className="flex items-center justify-center"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <img
-        src={isActive ? UserActiveImage : UserImage}
+        src={imageSrc}
         className="h-auto w-[50px]"
         loading="lazy"
         alt="UserIcon"
