@@ -23,6 +23,7 @@ module.exports = {
         brandGreen: "#4CC764",
         brandRed: "#F7595D",
         brandHover: "rgba(1, 105, 244, 0.8)",
+        brandGray: "#e4e4e4",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
