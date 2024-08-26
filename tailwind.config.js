@@ -20,6 +20,8 @@ module.exports = {
     extend: {
       colors: {
         brand: "#0169F4",
+        brandGreen: "#4CC764",
+        brandRed: "#F7595D",
         grey: "#9B9B9B",
         red: "#F7595D",
         brandHover: "rgba(1, 105, 244, 0.8)",
@@ -79,6 +81,12 @@ module.exports = {
       backgroundImage: {
         "brand-image": "url('@/assets/MainBrandImage.png')",
         "translateBackground-image": "url('@/assets/TranslateBackground.png')",
+      },
+      boxShadow: {
+        shadowBrand: "0 4px 4px 0 rgba(0,0,0,0.25)",
+      },
+      boxShadow: {
+        shadowBrand: "0 4px 4px 0 rgba(0,0,0,0.25)",
       },
     },
   },
