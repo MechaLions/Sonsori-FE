@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@ui/components/ui/button";
 
+import StartQuoteIcon from "@/components/Icons/StartQuoteIcon";
+import EndQuoteIcon from "@/components/Icons/EndQuoteIcon";
+
 const TranslatePage = () => {
   // 보여지는 버튼 set 제어
   const [showMainButtons, setShowMainButtons] = useState(true);
@@ -133,12 +136,12 @@ const TranslatePage = () => {
 
       {/* 텍스트 박스 */}
       <div className="group mt-[57px] flex h-[115px] w-[766px] items-center justify-center rounded-2xl border-[2px] border-brand bg-white p-4 text-center">
-        {/* 텍스트 양옆 작은 네모 */}
-        <div className="left-[-100px] h-4 w-4 rounded bg-blue-600"></div>
+        {/* 텍스트 양옆 quotation icons */}
+        <StartQuoteIcon className="absolute left-[294px] mt-[-100px]" />
         <p className="text-[20px] text-brand">
           시작하기 버튼을 누르면 번역을 위한 촬영이 시작됩니다.
         </p>
-        <div className="right-[-30px] h-4 w-4 rounded bg-blue-600"></div>
+        <EndQuoteIcon className="absolute right-[294px] mt-[-100px]" />
       </div>
     </main>
   );
