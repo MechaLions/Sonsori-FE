@@ -10,7 +10,8 @@ export type Path =
   | `/pronunciation`
   | `/quiz`
   | `/shadowing`
-  | `/translate`;
+  | `/translate`
+  | `/user-auth`;
 
 export type Params = {};
 

@@ -113,9 +113,9 @@ const TranslatePage = () => {
       <div className="group relative mt-[30px] flex h-[510px] w-[766px] items-center justify-center rounded-2xl bg-white shadow-lg">
         {/* 작은 점 세개 */}
         <div className="absolute top-[15px] flex space-x-1">
-          <span className="h-2 w-2 rounded-full bg-gray-300"></span>
-          <span className="h-2 w-2 rounded-full bg-gray-300"></span>
-          <span className="h-2 w-2 rounded-full bg-gray-300"></span>
+          <span className="h-2 w-2 rounded-full bg-grey"></span>
+          <span className="h-2 w-2 rounded-full bg-grey"></span>
+          <span className="h-2 w-2 rounded-full bg-grey"></span>
         </div>
 
         {/* 카메라 영상 */}
