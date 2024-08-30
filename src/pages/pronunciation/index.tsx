@@ -1,20 +1,13 @@
-import ExplainSection from "./_components/ExplainSection";
-import CategorySection from "./_components/CategorySection";
+import { Suspense } from "react";
 
-// TODO: 배경 바꾸기
+import { Stack } from "@/utils/pronunciationflow";
+
 const PronunciationPage = () => {
   return (
-    <main
-      className="h-full"
-      style={{
-        background:
-          "linear-gradient(123deg, #7CABE9 54%, #0169F4 79%, #055ED6 99%)",
-      }}
-    >
-      <main className="flex h-full w-full flex-col items-center gap-[74px] bg-white/[.42] py-[100px]">
-        <ExplainSection />
-        <CategorySection />
-      </main>
+    <main className="h-full w-full">
+      <Suspense fallback={<div className="text-3xl font-bold">Loading...</div>}>
+        <Stack />
+      </Suspense>
     </main>
   );
 };
