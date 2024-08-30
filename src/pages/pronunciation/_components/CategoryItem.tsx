@@ -1,18 +1,20 @@
+import FrontCardView from "./FrontCardView";
+import BackCardView from "./BackCardView";
+
 interface CategoryItemProps {
   title: string;
+  description: string;
 }
 
 const CategoryItem = (props: CategoryItemProps) => {
-  const { title } = props;
+  const { title, description } = props;
   return (
-    <section className="shadow-categoryShadow flex h-[300px] w-[380px] flex-col rounded-[15px] bg-white">
-      <div className="flex flex-1 items-center justify-center text-3xl font-bold text-brand">
-        이미지
-      </div>
-      <div className="flex h-[130px] items-center justify-center rounded-b-[15px] bg-brand text-3xl font-bold text-white">
-        {title}
-      </div>
-    </section>
+    <main className="card-static-size group">
+      <section className="group-hover:rotate-y-180 relative h-full w-full duration-500 [transform-style:preserve-3d]">
+        <FrontCardView title={title} />
+        <BackCardView description={description} />
+      </section>
+    </main>
   );
 };
 
