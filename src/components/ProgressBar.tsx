@@ -9,8 +9,8 @@ interface ProgressBarProps {
 
 const ProgressBar: React.FC<ProgressBarProps> = ({
   percent,
-  width = "60%",
-  height = "25px",
+  width = "52%",
+  height = "20px",
 }) => {
   const fillWidth = `${percent * 100}%`; // 0~1 범위의 percent를 백분율로 변환
   const backgroundColor = "#E1E1E1";
@@ -18,7 +18,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
 
   return (
     <div className="flex items-center justify-center gap-9">
-      <p className="text-xl font-semibold text-brand">해결한 문제수</p>
+      <p className="text-lg font-semibold text-brand">해결한 문제수</p>
       <ProgressContainer
         $width={width}
         $height={height}

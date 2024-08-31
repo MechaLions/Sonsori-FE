@@ -5,7 +5,7 @@ const MikeIcon = () => {
     <div className="flex items-center justify-center">
       <img
         src={MikeImage}
-        className="h-auto w-20"
+        className="h-auto w-[75px]"
         loading="lazy"
         alt="MikeIcon"
       />
