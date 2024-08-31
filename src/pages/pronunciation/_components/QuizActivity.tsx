@@ -10,7 +10,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
 
   return (
     <AppScreen>
-      <main className="h-full w-full">
+      <main className="pronunciation-container h-full w-full pt-[170px]">
         <h1 className="flex h-full w-full items-center justify-center text-[100px] font-bold">
           <p className="text-brandRed">{step}</p>
           <p>QuizActivity</p>

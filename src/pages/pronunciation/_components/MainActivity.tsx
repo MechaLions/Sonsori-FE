@@ -6,16 +6,7 @@ import CategorySection from "./CategorySection";
 
 const MainActivity: ActivityComponentType = () => {
   return (
-    <AppScreen
-      appBar={{
-        border: false,
-        backButton: {
-          renderIcon: () => <div className="hidden"></div>,
-          onClick: e => e.preventDefault(),
-        },
-        height: "88px",
-      }}
-    >
+    <AppScreen>
       <main
         className="w-full grow"
         style={{
@@ -23,7 +14,7 @@ const MainActivity: ActivityComponentType = () => {
             "linear-gradient(123deg, #7CABE9 54%, #0169F4 79%, #055ED6 99%)",
         }}
       >
-        <main className="flex w-full grow flex-col items-center gap-[74px] bg-white/[.84] py-[100px]">
+        <main className="flex w-full grow flex-col items-center gap-[74px] bg-white/[.84] pb-[100px] pt-[170px]">
           <ExplainSection />
           <CategorySection />
         </main>
