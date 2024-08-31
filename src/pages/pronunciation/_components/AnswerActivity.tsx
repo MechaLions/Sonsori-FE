@@ -16,7 +16,7 @@ const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
       <Activity>
         <ActivityContent>
           <ActivityHeader step={step}></ActivityHeader>
-          <AnswerSection isLastNumber={step === 10 ? true : false} />
+          <AnswerSection step={step} />
         </ActivityContent>
       </Activity>
     </AppScreen>

@@ -14,9 +14,13 @@ const CategoryItem = (props: CategoryItemProps) => {
   const { push } = usePronunciationFlow();
 
   const handleClick = () => {
-    push("QuizActivity", {
-      step: 1,
-    });
+    push(
+      "QuizActivity",
+      {
+        step: 1,
+      },
+      { animate: false },
+    );
   };
 
   return (

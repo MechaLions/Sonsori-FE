@@ -17,12 +17,16 @@ type QuizParams = {
 const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const { step } = params;
 
-  const { push } = usePronunciationFlow();
+  const { replace } = usePronunciationFlow();
 
   const handleClick = () => {
-    push("AnswerActivity", {
-      step: 1,
-    });
+    replace(
+      "AnswerActivity",
+      {
+        step: step,
+      },
+      { animate: false },
+    );
   };
 
   return (
