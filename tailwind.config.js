@@ -22,7 +22,7 @@ module.exports = {
         brand: "#0169F4",
         brandGreen: "#4CC764",
         brandRed: "#F7595D",
-        grey: "#9B9B9B",
+        buttonGray: "#9B9B9B",
         brandHover: "rgba(1, 105, 244, 0.8)",
         brandGray: "#e4e4e4",
         border: "hsl(var(--border))",

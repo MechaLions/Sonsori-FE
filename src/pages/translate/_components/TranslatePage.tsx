@@ -91,7 +91,11 @@ const TranslatePage = () => {
               </div>
             </div>
             <div className="group relative">
-              <Button variant="white" size="default">
+              <Button
+                variant="brand"
+                size="default"
+                className="bg-white text-black"
+              >
                 단어 삭제
               </Button>
               <div className="duration-10 absolute bottom-full left-1/2 mb-2 w-max -translate-x-1/2 transform rounded bg-gray-800 px-2 py-1 text-sm text-white opacity-0 transition-opacity group-hover:opacity-80">
@@ -102,12 +106,20 @@ const TranslatePage = () => {
         ) : (
           <div className="flex h-[100px] items-center justify-center gap-[60px]">
             <div className="group relative">
-              <Button variant="grey" size="default">
+              <Button
+                variant="brand"
+                size="default"
+                className="bg-buttonGray text-white"
+              >
                 번역 촬영중
               </Button>
             </div>
             <div className="group relative">
-              <Button variant="white" size="default">
+              <Button
+                variant="brand"
+                size="default"
+                className="bg-white text-black"
+              >
                 단어 삭제
               </Button>
               <div className="duration-10 absolute bottom-full left-1/2 mb-2 w-max -translate-x-1/2 transform rounded bg-gray-800 px-2 py-1 text-sm text-white opacity-0 transition-opacity group-hover:opacity-80">
@@ -116,8 +128,9 @@ const TranslatePage = () => {
             </div>
             <div className="group relative">
               <Button
-                variant="red"
+                variant="brand"
                 size="default"
+                className="bg-brandRed text-white"
                 onClick={() => {
                   setShowMainButtons(true);
                   stopCamera();
