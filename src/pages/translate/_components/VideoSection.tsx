@@ -29,6 +29,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({
             height: "428px",
             objectFit: "cover",
           }}
+          mirrored={true} // 좌우반전 제거
         />
       ) : (
         <div className="my-50 flex-center mt-10 flex h-[428px] w-[698px] justify-center rounded-2xl bg-[#434242]">
