@@ -3,11 +3,11 @@ import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
 import ProgressBar from "@/components/ProgressBar";
-import MikeIcon from "@/components/Icons/MikeIcon";
 
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 
 import PropmptSection from "./PromptSection";
+import MikeDialog from "./MikeDialog";
 import { Activity, ActivityHeader, ActivityContent } from "./Activity";
 
 type QuizParams = {
@@ -39,7 +39,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
           <PropmptSection />
           <div className="relative mb-8 flex h-20 w-[70%] items-center justify-between">
             <div className="absolute left-1/2 -translate-x-1/2 transform">
-              <MikeIcon />
+              <MikeDialog />
             </div>
             <Button
               variant="brand"
