@@ -80,11 +80,15 @@
 }
 
 @layer components {
+  /* 배경 이미지 */
   .brand-container {
     @apply bg-brand-image bg-cover bg-center bg-no-repeat;
   }
   .auth-container {
     @apply bg-auth-image bg-cover bg-center bg-no-repeat;
+  }
+  .pronunciation-container {
+    @apply bg-pronunciation-image bg-cover bg-center bg-no-repeat;
   }
 
   /* 카테고리 flip */

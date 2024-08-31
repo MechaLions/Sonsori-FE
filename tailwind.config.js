@@ -80,6 +80,7 @@ module.exports = {
       backgroundImage: {
         "brand-image": "url('@/assets/MainBrandImage.png')",
         "auth-image": "url('@/assets/AuthBackground.png')",
+        "pronunciation-image": "url('@/assets/PronunciationBackground.png')",
       },
       boxShadow: {
         shadowBrand: "0 4px 4px 0 rgba(0,0,0,0.25)",
