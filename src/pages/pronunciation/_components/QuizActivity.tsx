@@ -5,6 +5,8 @@ import { AppScreen } from "@stackflow/plugin-basic-ui";
 import ProgressBar from "@/components/ProgressBar";
 import MikeIcon from "@/components/Icons/MikeIcon";
 
+import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
+
 import PropmptSection from "./PromptSection";
 import { Activity, ActivityHeader, ActivityContent } from "./Activity";
 
@@ -14,6 +16,14 @@ type QuizParams = {
 
 const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const { step } = params;
+
+  const { push } = usePronunciationFlow();
+
+  const handleClick = () => {
+    push("AnswerActivity", {
+      step: 1,
+    });
+  };
 
   return (
     <AppScreen>
@@ -27,7 +37,11 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
             <div className="absolute left-1/2 -translate-x-1/2 transform">
               <MikeIcon />
             </div>
-            <Button variant="brand" className="absolute right-0">
+            <Button
+              variant="brand"
+              className="absolute right-0"
+              onClick={handleClick}
+            >
               결과 확인
             </Button>
           </div>
