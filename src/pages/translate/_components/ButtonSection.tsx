@@ -47,7 +47,7 @@ const ButtonSection: React.FC<ButtonSectionProps> = ({
           </div>
         </>
       ) : (
-        <div className="flex h-[100px] items-center justify-center gap-[60px]">
+        <>
           <div className="group relative">
             <Button
               variant="brand"
@@ -82,7 +82,7 @@ const ButtonSection: React.FC<ButtonSectionProps> = ({
               종료하기
             </Button>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
