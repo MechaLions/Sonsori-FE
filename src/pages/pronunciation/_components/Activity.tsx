@@ -1,21 +1,28 @@
 import React from "react";
 import { cn } from "@ui/lib/utils";
 
-const ActivityHeader = ({
+interface ActivityHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+  step?: number;
+}
+
+const ActivityHeader: React.FC<ActivityHeaderProps> = ({
   className,
+  children,
+  step,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+}) => {
   return (
     <header
-      className={cn(
-        "flex w-full flex-col justify-center gap-8 pt-[60px]",
-        className,
-      )}
+      className={cn("flex w-full flex-col justify-center gap-4", className)}
       {...props}
-    />
+    >
+      <h1 className="text-center text-[80px] font-bold [text-shadow:_0px_4px_4px_rgba(0,0,0,0.25)]">
+        {step}
+      </h1>
+      {children}
+    </header>
   );
 };
-ActivityHeader.displayName = "ActivityHeader";
 
 const ActivityContent = ({
   className,
@@ -23,9 +30,12 @@ const ActivityContent = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
-    <main className="flex h-full grow flex-col items-center">
+    <main className="pronunciation-container h-full w-full pt-[88px]">
       <section
-        className={cn("flex w-full grow flex-col justify-center", className)}
+        className={cn(
+          "flex h-full w-full flex-col items-center justify-around",
+          className,
+        )}
         {...props}
       >
         {children}
