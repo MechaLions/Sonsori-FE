@@ -6,7 +6,16 @@ import CategorySection from "./CategorySection";
 
 const MainActivity: ActivityComponentType = () => {
   return (
-    <AppScreen>
+    <AppScreen
+      appBar={{
+        border: false,
+        backButton: {
+          renderIcon: () => <div className="hidden"></div>,
+          onClick: e => e.preventDefault(),
+        },
+        height: "88px",
+      }}
+    >
       <main
         className="w-full grow"
         style={{

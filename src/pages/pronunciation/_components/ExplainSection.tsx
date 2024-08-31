@@ -1,6 +1,6 @@
 const ExplainSection = () => {
   return (
-    <section className="mt-16 flex flex-col gap-4 text-center">
+    <section className="flex flex-col gap-4 text-center">
       <h1 className="text-[40px] font-bold leading-tight">
         표준 발음 텍스트를 보고 녹음하며,
         <br />
