@@ -21,7 +21,7 @@ const App = () => {
     <section className="relative flex h-dvh w-screen flex-col">
       {/* 나중에 toaster 넣을거면 넣고 */}
       {!["/user-auth"].includes(location.pathname) && (
-        <header className="sticky left-0 top-0 z-10 bg-white">
+        <header className="sticky left-0 top-0 z-50 bg-white">
           <Nav />
         </header>
       )}
