@@ -4,7 +4,6 @@ import { AppScreen } from "@stackflow/plugin-basic-ui";
 import ExplainSection from "./ExplainSection";
 import CategorySection from "./CategorySection";
 
-//TODO: 배경 바꾸기
 const MainActivity: ActivityComponentType = () => {
   return (
     <AppScreen>
