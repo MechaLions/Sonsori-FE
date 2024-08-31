@@ -33,7 +33,7 @@ const ActivityContent = ({
     <main className="pronunciation-container h-full w-full pt-[88px]">
       <section
         className={cn(
-          "flex h-full w-full flex-col items-center justify-around bg-white/[.42]",
+          "flex h-full w-full flex-col items-center justify-between bg-white/[.42] pb-[110px] pt-[50px]",
           className,
         )}
         {...props}

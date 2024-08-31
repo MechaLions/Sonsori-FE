@@ -6,7 +6,7 @@ const PropmptSection = () => {
         <p className="text-4xl">밥 먹었어?</p>
       </div>
       <div className="flex w-full flex-col gap-[10px]">
-        <p className="text-xl text-[#686868]">올바른 문장</p>
+        <p className="text-xl text-[#686868]">올바른 발음</p>
         <p className="text-4xl font-bold">"밤 머거써?"</p>
       </div>
     </section>
