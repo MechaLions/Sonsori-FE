@@ -37,7 +37,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
             <ProgressBar percent={step / 10} />
           </ActivityHeader>
           <PropmptSection />
-          <div className="relative mb-8 flex h-20 w-[70%] items-center justify-between">
+          <div className="relative mb-8 flex h-20 w-[70%] items-center">
             <div className="absolute left-1/2 -translate-x-1/2 transform">
               <MikeDialog />
             </div>
