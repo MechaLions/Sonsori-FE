@@ -15,7 +15,7 @@ const ButtonSection: React.FC<ButtonSectionProps> = ({
   setShowMainButtons,
 }) => {
   return (
-    <div className="mt-[70px] flex h-[100px] items-center justify-center justify-between gap-[60px]">
+    <div className="flex h-[100px] items-center justify-center justify-between gap-[60px]">
       {showMainButtons ? (
         <>
           <div className="group relative">

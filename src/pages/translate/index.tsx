@@ -64,7 +64,7 @@ const TranslatePage: React.FC = () => {
 
   return (
     <main
-      className="translate-background flex w-full flex-col items-center justify-center justify-between"
+      className="translate-background flex w-full flex-col items-center justify-evenly"
       style={{ height: "calc(100vh - 88px)" }}
     >
       <ButtonSection

@@ -11,7 +11,7 @@ const VideoSection: React.FC<VideoSectionProps> = ({
   videoConstraints,
 }) => {
   return (
-    <div className="group relative mt-[30px] flex h-[510px] w-[766px] items-center justify-center rounded-2xl bg-white px-[34px] pb-10 shadow-lg">
+    <div className="group relative flex h-[500px] w-[766px] items-center justify-center rounded-2xl bg-white px-[34px] pb-10 shadow-lg">
       <div className="absolute top-[15px] flex space-x-1">
         <span className="bg-buttonGray h-2 w-2 rounded-full"></span>
         <span className="bg-buttonGray h-2 w-2 rounded-full"></span>
