@@ -7,7 +7,7 @@ import ProgressBar from "@/components/ProgressBar";
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 
 import PropmptSection from "./PromptSection";
-import MikeDialog from "./MikeDialog";
+import MicDialog from "./MicDialog";
 import { Activity, ActivityHeader, ActivityContent } from "./Activity";
 
 type QuizParams = {
@@ -39,7 +39,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
           <PropmptSection />
           <div className="relative mb-8 flex h-20 w-[70%] items-center">
             <div className="absolute left-1/2 -translate-x-1/2 transform">
-              <MikeDialog />
+              <MicDialog />
             </div>
             <Button
               variant="brand"

@@ -1,10 +1,10 @@
-import MikeImage from "@/assets/mikeImage.png";
+import MicImage from "@/assets/micImage.png";
 
-const MikeIcon = () => {
+const MicIcon = () => {
   return (
     <div className="flex items-center justify-center">
       <img
-        src={MikeImage}
+        src={MicImage}
         className="h-auto w-[75px]"
         loading="lazy"
         alt="MikeIcon"
@@ -13,4 +13,4 @@ const MikeIcon = () => {
   );
 };
 
-export default MikeIcon;
+export default MicIcon;

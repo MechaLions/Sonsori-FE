@@ -7,13 +7,13 @@ import {
   AlertDialogTitle,
 } from "@ui/components/ui/alert-dialog";
 
-import MikeIcon from "@/components/Icons/MikeIcon";
+import MicIcon from "@/components/Icons/MicIcon";
 
-const MikeDialog = () => {
+const MicDialog = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <MikeIcon />
+        <MicIcon />
       </AlertDialogTrigger>
       <AlertDialogContent className="flex flex-col items-center justify-center bg-brandLightBlue">
         <AlertDialogTitle className="text-[30px] font-bold">
@@ -34,4 +34,4 @@ const MikeDialog = () => {
   );
 };
 
-export default MikeDialog;
+export default MicDialog;
