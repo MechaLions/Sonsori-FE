@@ -84,6 +84,9 @@
   .brand-container {
     @apply bg-brand-image bg-cover bg-center bg-no-repeat;
   }
+  .translate-background {
+    @apply bg-translateBackground-image bg-cover bg-center bg-no-repeat;
+  }
   .auth-container {
     @apply bg-auth-image bg-cover bg-center bg-no-repeat;
   }

@@ -22,6 +22,7 @@ module.exports = {
         brand: "#0169F4",
         brandGreen: "#4CC764",
         brandRed: "#F7595D",
+        buttonGray: "#9B9B9B",
         brandHover: "rgba(1, 105, 244, 0.8)",
         brandGray: "#e4e4e4",
         brandMediumGray: "#686868",
@@ -82,6 +83,7 @@ module.exports = {
       },
       backgroundImage: {
         "brand-image": "url('@/assets/MainBrandImage.png')",
+        "translateBackground-image": "url('@/assets/TranslateBackground.png')",
         "auth-image": "url('@/assets/AuthBackground.png')",
         "pronunciation-image": "url('@/assets/PronunciationBackground.png')",
       },
