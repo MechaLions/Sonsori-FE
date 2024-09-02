@@ -69,15 +69,15 @@ const AnswerSection = (props: AnswerSectionProps) => {
         >
           그만할래요
         </Button>
-        <Button
-          variant="brand"
-          className="bg-brandLightBlue text-brandDarkGray"
-          onClick={handleOnMore}
-        >
+        <Button variant="brand" onClick={handleOnMore}>
           한번 더 해볼래요
         </Button>
         {step !== 10 && (
-          <Button variant="brand" onClick={handleNext}>
+          <Button
+            variant="brand"
+            className="h-[52px] border-2 border-brand bg-white text-brand"
+            onClick={handleNext}
+          >
             다음 문제
           </Button>
         )}
