@@ -80,6 +80,7 @@
 }
 
 @layer components {
+  /* 배경 이미지 */
   .brand-container {
     @apply bg-brand-image bg-cover bg-center bg-no-repeat;
   }
@@ -88,5 +89,29 @@
   }
   .auth-container {
     @apply bg-auth-image bg-cover bg-center bg-no-repeat;
+  }
+  .pronunciation-container {
+    @apply bg-pronunciation-image bg-cover bg-center bg-no-repeat;
+  }
+
+  /* 카테고리 flip */
+  .card-static-size {
+    @apply h-[300px] w-[380px];
+  }
+
+  .card-dynamic-size {
+    @apply absolute left-0 top-0 h-full w-full;
+  }
+
+  .card-front-back {
+    @apply shadow-categoryShadow z-10 flex flex-col items-center justify-center rounded-[15px] bg-white;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+@layer utilities {
+  .rotate-y-180 {
+    transform: rotateY(180deg);
   }
 }

@@ -18,7 +18,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         brand:
-          "text-white font-semibold text-base rounded-[20px]  bg-brand shadow-[0px_4px_4px_rgba(0,0,0,0.25)]",
+          "text-white font-semibold text-base rounded-[20px]  bg-brand shadow-shadowBrand",
       },
       size: {
         default: "w-fit py-[15px] px-[38px]",
