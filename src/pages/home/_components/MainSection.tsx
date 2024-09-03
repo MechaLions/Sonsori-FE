@@ -17,7 +17,7 @@ const MainSection = (props: MainSectionProps) => {
   return (
     <main
       className="brand-container flex w-full flex-col justify-around"
-      style={{ height: "calc(100vh - 88px)" }}
+      style={{ height: "calc(100vh - 78px)" }}
     >
       <section className="flex w-full flex-col items-center justify-center text-center text-[55px] font-bold leading-tight">
         손끝에서 글로, <br />
