@@ -27,6 +27,7 @@ module.exports = {
         brandGray: "#e4e4e4",
         brandMediumGray: "#686868",
         brandDarkGray: "#434242",
+        textboxGray: "#F3F3F3",
         brandLightBlue: "#D1E4FD",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -86,6 +87,7 @@ module.exports = {
         "translateBackground-image": "url('@/assets/TranslateBackground.png')",
         "auth-image": "url('@/assets/AuthBackground.png')",
         "pronunciation-image": "url('@/assets/PronunciationBackground.png')",
+        "shadowing-image": "url('@/assets/ShadowingBackground.png')",
       },
       boxShadow: {
         shadowBrand: "0 4px 4px 0 rgba(0,0,0,0.25)",
