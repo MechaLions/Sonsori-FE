@@ -93,6 +93,9 @@
   .pronunciation-container {
     @apply bg-pronunciation-image bg-cover bg-center bg-no-repeat;
   }
+  .shadowing-container {
+    @apply bg-shadowing-image bg-cover bg-center bg-no-repeat;
+  }
 
   /* 카테고리 flip */
   .card-static-size {
@@ -104,7 +107,7 @@
   }
 
   .card-front-back {
-    @apply shadow-categoryShadow z-10 flex flex-col items-center justify-center rounded-[15px] bg-white;
+    @apply z-10 flex flex-col items-center justify-center rounded-[15px] bg-white shadow-categoryShadow;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
