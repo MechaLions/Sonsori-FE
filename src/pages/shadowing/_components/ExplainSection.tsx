@@ -6,7 +6,7 @@ const ExplainSection = () => {
         <br />
         실행활에 유용한 수어를 학습해보세요!
       </h1>
-      <p className="flex justify-center gap-20 text-2xl font-semibold text-brand">
+      <p className="flex justify-center gap-10 text-2xl font-semibold text-brand">
         <span>따라하기를 통한 반복 학습</span>
         <span>실시간 정확도 측정</span>
       </p>
