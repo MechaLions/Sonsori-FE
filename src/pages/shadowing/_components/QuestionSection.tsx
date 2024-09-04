@@ -6,7 +6,11 @@ const QuestionSection = () => {
   return (
     <div className="flex w-[450px] flex-col items-center">
       {/* 이미지 placeholder */}
-      <div className="h-[280px] w-[450px] rounded-lg bg-gray-200"></div>
+      <div className="bg-textboxGray flex h-[280px] w-[450px] items-center justify-center rounded-lg">
+        <p className="text-center text-[30px] font-semibold text-brand">
+          문제 수어 영상
+        </p>
+      </div>
       {/* 다시하기 아이콘 placeholder */}
       <div className="mt-2 flex gap-[30px] space-x-2">
         <ReplayIcon />

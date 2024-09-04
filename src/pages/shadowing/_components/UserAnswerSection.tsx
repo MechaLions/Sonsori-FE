@@ -60,7 +60,11 @@ const UserAnswerSection: React.FC<VideoSectionProps> = ({
       </div>
 
       {/* 텍스트 박스 */}
-      <div className="bg-textboxGray mt-4 h-[160px] w-[450px] rounded-lg"></div>
+      <div className="bg-textboxGray mt-4 flex h-[160px] w-[450px] items-center justify-center rounded-lg">
+        <p className="text-center text-[15px] font-semibold text-brandDarkGray">
+          촬영하는 수어 영상의 의미가 출력됩니다.
+        </p>
+      </div>
     </div>
   );
 };
