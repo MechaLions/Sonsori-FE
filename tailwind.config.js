@@ -27,6 +27,7 @@ module.exports = {
         brandGray: "#e4e4e4",
         brandMediumGray: "#686868",
         brandDarkGray: "#434242",
+        textboxGray: "#F3F3F3",
         brandLightBlue: "#D1E4FD",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
