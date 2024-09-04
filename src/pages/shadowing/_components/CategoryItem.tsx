@@ -1,4 +1,4 @@
-import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
+import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
 
 import FrontCardView from "./FrontCardView";
 import BackCardView from "./BackCardView";
@@ -11,7 +11,7 @@ interface CategoryItemProps {
 const CategoryItem = (props: CategoryItemProps) => {
   const { title, description } = props;
 
-  const { push } = usePronunciationFlow();
+  const { push } = useShadowingFlow();
 
   const handleClick = () => {
     push(

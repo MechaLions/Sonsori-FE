@@ -4,7 +4,7 @@ import { useStack } from "@stackflow/react";
 
 import DoughnutChart from "@/components/DoughnutChart";
 
-import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
+import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
 
 import AnswerCompareSection from "./AnswerCompareSection";
 
@@ -15,7 +15,7 @@ interface AnswerSectionProps {
 const AnswerSection = (props: AnswerSectionProps) => {
   const { step } = props;
 
-  const { pop, replace } = usePronunciationFlow();
+  const { pop, replace } = useShadowingFlow();
 
   const stack = useStack();
   let popCounts = stack.activities.length;

@@ -4,7 +4,7 @@ import { AppScreen } from "@stackflow/plugin-basic-ui";
 
 import ProgressBar from "@/components/ProgressBar";
 
-import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
+import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
 
 import PropmptSection from "./PromptSection";
 import { Activity, ActivityHeader, ActivityContent } from "./Activity";
@@ -16,7 +16,7 @@ type QuizParams = {
 const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const { step } = params;
 
-  const { replace } = usePronunciationFlow();
+  const { replace } = useShadowingFlow();
 
   const handleClick = () => {
     replace(
