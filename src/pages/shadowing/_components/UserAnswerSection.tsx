@@ -49,7 +49,7 @@ const UserAnswerSection: React.FC<VideoSectionProps> = ({
       </div>
 
       {/* 아이콘 버튼 */}
-      <div className="mt-2 flex gap-[30px]">
+      <div className="mt-5 flex gap-[30px]">
         <button onClick={startCamera}>
           <PlayIcon />
         </button>
@@ -60,7 +60,7 @@ const UserAnswerSection: React.FC<VideoSectionProps> = ({
       </div>
 
       {/* 텍스트 박스 */}
-      <div className="bg-textboxGray mt-4 flex h-[160px] w-[450px] items-center justify-center rounded-lg">
+      <div className="mt-4 flex h-[160px] w-[450px] items-center justify-center rounded-lg bg-textboxGray">
         <p className="text-center text-[15px] font-semibold text-brandDarkGray">
           촬영하는 수어 영상의 의미가 출력됩니다.
         </p>
