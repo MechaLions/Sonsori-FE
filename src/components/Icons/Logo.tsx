@@ -5,7 +5,7 @@ const Logo = () => {
     <div className="flex items-center justify-center">
       <img
         src={LogoImage}
-        className="h-auto w-[60px]"
+        className="h-auto w-[38px]"
         loading="lazy"
         alt="Logo"
       />

@@ -10,7 +10,7 @@ const TranslateSection = forwardRef<HTMLDivElement>(
     return (
       <main
         ref={ref}
-        className="gap- flex flex-col items-center justify-center gap-20 px-40 py-36"
+        className="flex flex-col items-center justify-center gap-20 px-40 py-36"
       >
         <section className="flex w-full justify-between">
           <div className="flex flex-col gap-14">
