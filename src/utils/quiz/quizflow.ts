@@ -4,9 +4,8 @@ import { basicUIPlugin } from "@stackflow/plugin-basic-ui";
 
 import "@stackflow/plugin-basic-ui/index.css";
 
-import VideoCamQuizActivity from "@/pages/quiz/_components/VideoCamQuizActivity";
-import TextSelectQuizActivity from "@/pages/quiz/_components/TextSelectQuizActivity";
 import ResultActivity from "@/pages/quiz/_components/ResultActivity";
+import QuizActivity from "@/pages/quiz/_components/QuizActivity";
 import MainActivity from "@/pages/quiz/_components/MainActivity";
 
 export const { Stack, activities } = stackflow({
@@ -19,9 +18,8 @@ export const { Stack, activities } = stackflow({
   ],
   activities: {
     MainActivity,
-    VideoCamQuizActivity,
-    TextSelectQuizActivity,
     ResultActivity,
+    QuizActivity,
   },
   initialActivity: () => "MainActivity",
 });
