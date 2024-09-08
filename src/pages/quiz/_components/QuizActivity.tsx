@@ -40,6 +40,14 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
         popCounts--;
       }
     });
+
+    replace(
+      "ResultActivity",
+      {
+        step: step,
+      },
+      { animate: false },
+    );
   };
 
   return (
