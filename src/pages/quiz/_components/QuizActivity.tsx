@@ -50,21 +50,13 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
             <ProgressBar percent={step / 10} />
           </ActivityHeader>
           <PropmptSection step={step} />
-          <div className="relative mb-8 flex h-20 w-[70%] items-center">
+          <div className="items-center pt-7">
             {step === 10 ? (
-              <Button
-                variant="brand"
-                className="absolute right-0"
-                onClick={handleStop}
-              >
+              <Button variant="brand" onClick={handleStop}>
                 결과 확인
               </Button>
             ) : (
-              <Button
-                variant="brand"
-                className="absolute right-0"
-                onClick={handleNext}
-              >
+              <Button variant="brand" onClick={handleNext}>
                 다음 문제
               </Button>
             )}
