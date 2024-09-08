@@ -1,7 +1,7 @@
 import Webcam from "react-webcam";
 import React, { useState } from "react";
 
-import UndoIcon from "@/components/Icons/ReplayIcon";
+import UndoIcon from "@/components/Icons/UndoIcon";
 import PlayIcon from "@/components/Icons/PlayIcon";
 import PauseIcon from "@/components/Icons/PauseIcon";
 
