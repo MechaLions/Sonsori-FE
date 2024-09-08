@@ -41,8 +41,8 @@ const PromptSection = (props: PromptSectionProps) => {
             <TextQuestionSection />
           </div>
           {/* Divider 선 */}
-          <div className="h-[300px] w-[1px] bg-gray-500"></div>
-          <div className="flex flex-1 items-center justify-center">
+          <div className="h-[350px] w-[1px] bg-gray-500"></div>
+          <div className="flex h-[450px] flex-1 items-center justify-center">
             <VideoAnswerSection videoConstraints={videoConstraints} />
           </div>
         </div>
@@ -52,8 +52,8 @@ const PromptSection = (props: PromptSectionProps) => {
             <VideoQuestionSection />
           </div>
           {/* Divider 선 */}
-          <div className="h-[450px] w-[1px] bg-gray-500"></div>
-          <div className="flex flex-1 items-center justify-center">
+          <div className="h-[350px] w-[1px] bg-gray-500"></div>
+          <div className="flex h-[450px] flex-1 items-center justify-center">
             <TextAnswerSection />
           </div>
         </div>
