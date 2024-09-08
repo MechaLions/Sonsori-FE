@@ -96,6 +96,9 @@
   .shadowing-container {
     @apply bg-shadowing-image bg-cover bg-center bg-no-repeat;
   }
+  .quiz-container {
+    @apply bg-quiz-image bg-cover bg-center bg-no-repeat;
+  }
 
   /* 카테고리 flip */
   .card-static-size {
