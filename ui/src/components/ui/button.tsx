@@ -19,12 +19,14 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         brand:
           "text-white font-semibold text-base rounded-[20px]  bg-brand shadow-shadowBrand",
+        quiz: "text-black font-medium text-base rounded-[15px]  bg-white border-[2px] border-brand",
       },
       size: {
         default: "w-fit py-[15px] px-[38px]",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",
         icon: "h-10 w-10",
+        quizOption: "w-[444px] h-[65px]",
       },
     },
     defaultVariants: {
