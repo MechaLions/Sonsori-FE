@@ -8,7 +8,7 @@ import ProgressBar from "@/components/ProgressBar";
 
 import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
 
-import PropmptSection from "./PromptSection";
+import PromptSection from "./PromptSection";
 import { Activity, ActivityHeader, ActivityContent } from "./Activity";
 
 type QuizParams = {
@@ -19,8 +19,9 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const { step } = params;
 
   const { pop, replace } = useQuizFlow();
-  const [completed, setCompleted] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+
+  const isDisabled = selectedAnswer === null;
 
   const stack = useStack();
   let popCounts = stack.activities.length;
@@ -56,10 +57,6 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     setSelectedAnswer(answer);
   };
 
-  const handleComplete = () => {
-    setCompleted(true);
-  };
-
   return (
     <AppScreen>
       <Activity>
@@ -68,33 +65,26 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
             <ProgressBar percent={step / 10} />
           </ActivityHeader>
 
-          {/* PromptSection에 TextAnswerSection 렌더링됨 */}
-          <PropmptSection step={step} onAnswerSelect={handleAnswerSelect} />
+          <PromptSection step={step} onAnswerSelect={handleAnswerSelect} />
 
           <div className="flex items-center justify-center gap-4 pt-7">
-            {/* 선택 완료 버튼 */}
-            {step < 6 && (
+            {/* 결과 확인 or 다음 문제 버튼 */}
+            {step < 6 ? (
               <Button
                 variant="brand"
+                onClick={handleNext}
+                disabled={isDisabled} // 답 선택 전 버튼 비활성화
                 className={`${
-                  selectedAnswer
-                    ? "bg-brand text-white"
-                    : "bg-gray-400 text-black"
+                  isDisabled
+                    ? "bg-buttonGray text-white"
+                    : "bg-brand text-white"
                 }`}
-                onClick={handleComplete}
-                disabled={completed}
+                style={{
+                  opacity: isDisabled ? 1 : undefined, // 흐림 효과를 없애기 위한 스타일 설정
+                }}
               >
-                선택 완료
+                다음 문제
               </Button>
-            )}
-
-            {/* 결과 확인/다음 문제 버튼 */}
-            {step < 6 ? (
-              completed && (
-                <Button variant="brand" onClick={handleNext}>
-                  다음 문제
-                </Button>
-              )
             ) : step === 10 ? (
               <Button variant="brand" onClick={handleStop}>
                 결과 확인
