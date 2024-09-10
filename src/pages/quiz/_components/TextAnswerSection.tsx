@@ -16,6 +16,8 @@ const TextAnswerSection: React.FC<TextAnswerSectionProps> = ({
     [key: string]: "correct" | "incorrect" | null;
   }>({});
 
+  const isDisabled = selectedAnswer !== null;
+
   const handleAnswerClick = (answer: string) => {
     if (selectedAnswer === null) {
       setSelectedAnswer(answer);
@@ -48,22 +50,25 @@ const TextAnswerSection: React.FC<TextAnswerSectionProps> = ({
             key={answer}
             variant="quiz"
             size="quizOption"
-            className={`flex items-center gap-2 border ${
+            className={`flex items-center justify-between border px-4 ${
               answerStatus[answer] === "correct"
-                ? "border-green-500"
+                ? "border-brandGreen"
                 : answerStatus[answer] === "incorrect"
-                  ? "border-red-500"
+                  ? "border-brandRed"
                   : "border-brandGray"
             }`}
             onClick={() => handleAnswerClick(answer)}
-            disabled={selectedAnswer !== null} // 답 선택 후 버튼 비활성화
+            disabled={isDisabled} // 답 선택 후 버튼 비활성화
+            style={{
+              opacity: isDisabled ? 1 : undefined, // 흐림 효과를 없애기 위한 스타일 설정
+            }}
           >
-            {answer}
+            <span className="justify-center text-center">{answer}</span>
             {answerStatus[answer] === "correct" && (
-              <span className="text-green-500">O</span>
+              <span className="text-brandGreen">O</span>
             )}
             {answerStatus[answer] === "incorrect" && (
-              <span className="text-red-500">X</span>
+              <span className="text-brandRed">X</span>
             )}
           </Button>
         ))}
