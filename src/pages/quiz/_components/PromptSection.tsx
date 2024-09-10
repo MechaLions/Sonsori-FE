@@ -21,11 +21,10 @@ const videoConstraints: MediaTrackConstraints = {
 
 interface PromptSectionProps {
   step: number;
+  onAnswerSelect: (answer: string) => void; // answer 선택 핸들러 전달
 }
 
-const PromptSection = (props: PromptSectionProps) => {
-  const { step } = props;
-
+const PromptSection = ({ step, onAnswerSelect }: PromptSectionProps) => {
   return (
     <div className="relative mt-10 flex w-[1032px] items-center justify-between rounded-2xl bg-white p-1 pb-5 pt-7 shadow-lg">
       {/* 점 세개 */}
@@ -54,7 +53,8 @@ const PromptSection = (props: PromptSectionProps) => {
           {/* Divider 선 */}
           <div className="h-[350px] w-[1px] bg-gray-500"></div>
           <div className="flex h-[450px] flex-1 items-center justify-center">
-            <TextAnswerSection />
+            {/* TextAnswerSection이 PromptSection 내에 있음 */}
+            <TextAnswerSection onAnswerSelect={onAnswerSelect} />
           </div>
         </div>
       )}

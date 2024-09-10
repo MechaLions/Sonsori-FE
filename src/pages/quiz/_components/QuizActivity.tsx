@@ -1,4 +1,4 @@
-import { startTransition } from "react";
+import { useState, startTransition } from "react";
 import { Button } from "@ui/components/ui/button";
 import { useStack } from "@stackflow/react";
 import { ActivityComponentType } from "@stackflow/react";
@@ -19,6 +19,8 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const { step } = params;
 
   const { pop, replace } = useQuizFlow();
+  const [completed, setCompleted] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
   const stack = useStack();
   let popCounts = stack.activities.length;
@@ -50,6 +52,14 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     );
   };
 
+  const handleAnswerSelect = (answer: string) => {
+    setSelectedAnswer(answer);
+  };
+
+  const handleComplete = () => {
+    setCompleted(true);
+  };
+
   return (
     <AppScreen>
       <Activity>
@@ -57,9 +67,35 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
           <ActivityHeader step={step}>
             <ProgressBar percent={step / 10} />
           </ActivityHeader>
-          <PropmptSection step={step} />
-          <div className="items-center pt-7">
-            {step === 10 ? (
+
+          {/* PromptSection에 TextAnswerSection 렌더링됨 */}
+          <PropmptSection step={step} onAnswerSelect={handleAnswerSelect} />
+
+          <div className="flex items-center justify-center gap-4 pt-7">
+            {/* 선택 완료 버튼 */}
+            {step < 6 && (
+              <Button
+                variant="brand"
+                className={`${
+                  selectedAnswer
+                    ? "bg-brand text-white"
+                    : "bg-gray-400 text-black"
+                }`}
+                onClick={handleComplete}
+                disabled={completed}
+              >
+                선택 완료
+              </Button>
+            )}
+
+            {/* 결과 확인/다음 문제 버튼 */}
+            {step < 6 ? (
+              completed && (
+                <Button variant="brand" onClick={handleNext}>
+                  다음 문제
+                </Button>
+              )
+            ) : step === 10 ? (
               <Button variant="brand" onClick={handleStop}>
                 결과 확인
               </Button>
