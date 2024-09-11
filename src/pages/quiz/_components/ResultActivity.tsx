@@ -8,13 +8,7 @@ import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
 
 import { Activity, ActivityContent } from "./Activity";
 
-type QuizParams = {
-  step: number;
-};
-
-const ResultActivity: ActivityComponentType<QuizParams> = ({ params }) => {
-  const { step } = params;
-
+const ResultActivity: ActivityComponentType = () => {
   const { pop, replace } = useQuizFlow();
 
   const stack = useStack();
@@ -28,13 +22,7 @@ const ResultActivity: ActivityComponentType<QuizParams> = ({ params }) => {
       }
     });
 
-    replace(
-      "MainActivity",
-      {
-        step: step,
-      },
-      { animate: false },
-    );
+    replace("MainActivity", { animate: false });
   };
   const handleOneMore = () => {
     replace(
