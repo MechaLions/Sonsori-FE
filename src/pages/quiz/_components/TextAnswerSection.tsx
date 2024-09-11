@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@ui/components/ui/button";
 
 interface TextAnswerSectionProps {
   onAnswerSelect: (selected: string) => void;
 }
 
-const TextAnswerSection: React.FC<TextAnswerSectionProps> = ({
-  onAnswerSelect,
-}) => {
+const TextAnswerSection = (props: TextAnswerSectionProps) => {
+  const { onAnswerSelect } = props;
+
   const answers = ["감사합니다", "배고파요", "어쩌라고요", "안녕하세요"];
   const correctAnswer = "안녕하세요"; // 정답
 
