@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { cn } from "@ui/lib/utils";
 import { Button } from "@ui/components/ui/button";
 
 interface TextAnswerSectionProps {
@@ -50,13 +51,14 @@ const TextAnswerSection = (props: TextAnswerSectionProps) => {
             key={answer}
             variant="quiz"
             size="quizOption"
-            className={`flex items-center justify-between border px-4 ${
+            className={cn(
+              "flex items-center justify-between border px-4",
               answerStatus[answer] === "correct"
                 ? "border-brandGreen"
                 : answerStatus[answer] === "incorrect"
                   ? "border-brandRed"
-                  : "border-brandGray"
-            }`}
+                  : "border-brandGray",
+            )}
             onClick={() => handleAnswerClick(answer)}
             disabled={isDisabled} // 답 선택 후 버튼 비활성화
             style={{
