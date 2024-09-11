@@ -78,7 +78,8 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     setShowVideoAnswerSection(true);
     setTextQuestionChanged(true);
   };
-
+  const buttonText = step === 10 ? "결과 확인" : "다음 문제";
+  const handleClick = step === 10 ? handleStop : handleNext;
   return (
     <AppScreen>
       <Activity>
@@ -97,40 +98,19 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
           />
 
           <div className="flex items-center justify-center gap-4 pt-7">
-            {/* 결과 확인 or 다음 문제 버튼 */}
-            {step === 10 ? (
-              <Button
-                variant="brand"
-                onClick={handleStop}
-                disabled={isDisabled} // 답 선택 전 또는 카메라 pause 전까지 비활성화
-                className={`${
-                  isDisabled
-                    ? "bg-buttonGray text-white"
-                    : "bg-brand text-white"
-                }`}
-                style={{
-                  opacity: isDisabled ? 1 : undefined, // 흐림 효과를 없애기 위한 스타일 설정
-                }}
-              >
-                결과 확인
-              </Button>
-            ) : (
-              <Button
-                variant="brand"
-                onClick={handleNext}
-                disabled={isDisabled} // 답 선택 전 또는 카메라 pause 전까지 비활성화
-                className={`${
-                  isDisabled
-                    ? "bg-buttonGray text-white"
-                    : "bg-brand text-white"
-                }`}
-                style={{
-                  opacity: isDisabled ? 1 : undefined, // 흐림 효과를 없애기 위한 스타일 설정
-                }}
-              >
-                다음 문제
-              </Button>
-            )}
+            <Button
+              variant="brand"
+              onClick={handleClick}
+              disabled={isDisabled}
+              className={`${
+                isDisabled ? "bg-buttonGray text-white" : "bg-brand text-white"
+              }`}
+              style={{
+                opacity: isDisabled ? 1 : undefined,
+              }}
+            >
+              {buttonText}
+            </Button>
           </div>
         </ActivityContent>
       </Activity>
