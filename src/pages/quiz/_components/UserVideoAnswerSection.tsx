@@ -3,14 +3,16 @@ import React, { useState } from "react";
 
 import UndoIcon from "@/components/Icons/UndoIcon";
 import PlayIcon from "@/components/Icons/PlayIcon";
-import PauseIcon from "@/components/Icons/PauseIcon";
+import CheckIcon from "@/components/Icons/CheckIcon";
 
 interface VideoSectionProps {
   videoConstraints: MediaTrackConstraints;
+  setIsChecked: (value: boolean) => void; // Check 상태 전달
 }
 
-const UserAnswerSection: React.FC<VideoSectionProps> = ({
+const UserVideoAnswerSection: React.FC<VideoSectionProps> = ({
   videoConstraints,
+  setIsChecked,
 }) => {
   const [isCameraOn, setIsCameraOn] = useState(false);
 
@@ -20,6 +22,7 @@ const UserAnswerSection: React.FC<VideoSectionProps> = ({
 
   const stopCamera = () => {
     setIsCameraOn(false);
+    setIsChecked(true);
   };
 
   return (
@@ -55,18 +58,11 @@ const UserAnswerSection: React.FC<VideoSectionProps> = ({
         </button>
         <UndoIcon />
         <button onClick={stopCamera}>
-          <PauseIcon />
+          <CheckIcon />
         </button>
-      </div>
-
-      {/* 텍스트 박스 */}
-      <div className="mt-4 flex h-[160px] w-[450px] items-center justify-center rounded-lg bg-textboxGray">
-        <p className="text-center text-[15px] font-semibold text-brandDarkGray">
-          촬영하는 수어 영상의 의미가 출력됩니다.
-        </p>
       </div>
     </div>
   );
 };
 
-export default UserAnswerSection;
+export default UserVideoAnswerSection;

@@ -1,5 +1,15 @@
+import { Suspense } from "react";
+
+import { Stack } from "@/utils/quiz/quizflow";
+
 const QuizPage = () => {
-  return <main className="flex h-full flex-col">지금 QuizPage 화면</main>;
+  return (
+    <main className="h-full w-full">
+      <Suspense fallback={<div className="text-3xl font-bold">Loading...</div>}>
+        <Stack />
+      </Suspense>
+    </main>
+  );
 };
 
 export default QuizPage;
