@@ -7,13 +7,13 @@ const MainActivity: ActivityComponentType = () => {
   return (
     <AppScreen>
       <main
-        className="flex h-screen w-full flex-col"
+        className="h-full w-full grow"
         style={{
           background:
             "linear-gradient(123deg, #7CABE9 54%, #0169F4 79%, #055ED6 99%)",
         }}
       >
-        <main className="flex w-full flex-grow flex-col items-center bg-white/[.84] pt-[200px]">
+        <main className="flex h-full w-full flex-col items-center justify-center bg-white/[.84] pt-[88px]">
           <ExplainSection />
         </main>
       </main>
