@@ -1,7 +1,7 @@
-import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
+import FrontCardView from "@/components/FrontCardView";
+import BackCardView from "@/components/BackCardView";
 
-import FrontCardView from "./FrontCardView";
-import BackCardView from "./BackCardView";
+import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 
 interface CategoryItemProps {
   title: string;

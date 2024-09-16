@@ -1,7 +1,7 @@
-import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
+import FrontCardView from "@/components/FrontCardView";
+import BackCardView from "@/components/BackCardView";
 
-import FrontCardView from "./FrontCardView";
-import BackCardView from "./BackCardView";
+import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
 
 interface CategoryItemProps {
   title: string;
