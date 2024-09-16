@@ -16,7 +16,7 @@ const ActivityHeader: React.FC<ActivityHeaderProps> = ({
       className={cn("flex w-full flex-col justify-center gap-2", className)}
       {...props}
     >
-      <h1 className="text-center text-[70px] font-bold [text-shadow:_0px_4px_4px_rgba(0,0,0,0.25)]">
+      <h1 className="text-center text-[70px] font-bold leading-tight [text-shadow:_0px_4px_4px_rgba(0,0,0,0.25)]">
         {step}
       </h1>
       {children}
