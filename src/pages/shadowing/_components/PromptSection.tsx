@@ -19,7 +19,7 @@ const videoConstraints: MediaTrackConstraints = {
 
 const PromptSection = () => {
   return (
-    <div className="relative mt-8 flex w-[1032px] items-center justify-between rounded-2xl bg-white p-1 pb-10 pt-10 shadow-lg">
+    <div className="relative flex w-[1032px] items-center justify-between rounded-2xl bg-white p-1 pb-10 pt-10 shadow-lg">
       {/* 점 세개 */}
       <div className="absolute left-1/2 top-3 flex -translate-x-1/2 transform space-x-1">
         <div className="h-2 w-2 rounded-full bg-gray-400"></div>

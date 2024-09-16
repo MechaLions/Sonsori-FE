@@ -58,7 +58,7 @@ const ActivityMain = ({
   return (
     <section
       className={cn(
-        "flex w-full flex-col items-center justify-center gap-14",
+        "flex w-full flex-1 flex-col items-center justify-center gap-14",
         className,
       )}
       {...props}
