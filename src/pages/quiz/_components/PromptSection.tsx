@@ -21,6 +21,27 @@ const PromptSection = ({
   showVideoAnswerSection,
   textQuestionChanged,
 }: PromptSectionProps) => {
+  const leftSection =
+    step > 5 ? (
+      <TextQuestionSection textQuestionChanged={textQuestionChanged} />
+    ) : (
+      <VideoQuestionSection />
+    );
+
+  const rightSection =
+    step > 5 ? (
+      showVideoAnswerSection ? (
+        <VideoAnswerSection />
+      ) : (
+        <UserVideoAnswerSection
+          videoConstraints={videoConstraints}
+          setIsChecked={setIsChecked}
+        />
+      )
+    ) : (
+      <TextAnswerSection onAnswerSelect={onAnswerSelect} />
+    );
+
   return (
     <div className="relative mt-8 flex w-[1032px] items-center justify-between rounded-2xl bg-white p-1 pb-5 pt-7 shadow-lg">
       {/* 점 세개 */}
@@ -30,36 +51,16 @@ const PromptSection = ({
         <div className="h-2 w-2 rounded-full bg-gray-400"></div>
       </div>
 
-      {step > 5 ? (
-        <div className="flex h-full w-full items-center">
-          <div className="flex flex-1 items-center justify-center">
-            <TextQuestionSection textQuestionChanged={textQuestionChanged} />
-          </div>
-          {/* Divider 선 */}
-          <div className="h-[350px] w-[1px] bg-gray-500"></div>
-          <div className="flex h-[450px] flex-1 items-center justify-center">
-            {showVideoAnswerSection ? (
-              <VideoAnswerSection />
-            ) : (
-              <UserVideoAnswerSection
-                videoConstraints={videoConstraints}
-                setIsChecked={setIsChecked}
-              />
-            )}
-          </div>
+      <div className="flex h-full w-full items-center">
+        <div className="flex flex-1 items-center justify-center">
+          {leftSection}
         </div>
-      ) : (
-        <div className="flex h-full w-full items-center">
-          <div className="flex flex-1 items-center justify-center">
-            <VideoQuestionSection />
-          </div>
-          {/* Divider 선 */}
-          <div className="h-[350px] w-[1px] bg-gray-500"></div>
-          <div className="flex h-[450px] flex-1 items-center justify-center">
-            <TextAnswerSection onAnswerSelect={onAnswerSelect} />
-          </div>
+        {/* Divider 선 */}
+        <div className="h-[350px] w-[1px] bg-gray-500"></div>
+        <div className="flex h-[450px] flex-1 items-center justify-center">
+          {rightSection}
         </div>
-      )}
+      </div>
     </div>
   );
 };
