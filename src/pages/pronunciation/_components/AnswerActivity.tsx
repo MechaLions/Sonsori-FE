@@ -1,9 +1,14 @@
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
-import AnswerSection from "./AnswerSection";
-import { Activity, ActivityHeader, ActivityContent } from "./Activity";
+import {
+  Activity,
+  ActivityHeader,
+  ActivityContent,
+  ActivityMain,
+} from "@/components/Activity";
 
+import AnswerSection from "./AnswerSection";
 type AnswerParams = {
   step: number;
 };
@@ -14,9 +19,11 @@ const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
   return (
     <AppScreen>
       <Activity>
-        <ActivityContent>
+        <ActivityContent container="pronunciation">
           <ActivityHeader step={step}></ActivityHeader>
-          <AnswerSection step={step} />
+          <ActivityMain>
+            <AnswerSection step={step} />
+          </ActivityMain>
         </ActivityContent>
       </Activity>
     </AppScreen>
