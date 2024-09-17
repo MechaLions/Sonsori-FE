@@ -4,9 +4,9 @@ import { useStack } from "@stackflow/react";
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
-import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
+import { Activity, ActivityContent } from "@/components/Activity";
 
-import { Activity, ActivityContent } from "./Activity";
+import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
 
 const ResultActivity: ActivityComponentType = () => {
   const { pop, replace } = useQuizFlow();
@@ -37,7 +37,10 @@ const ResultActivity: ActivityComponentType = () => {
   return (
     <AppScreen>
       <Activity>
-        <ActivityContent className="flex items-center justify-center pb-10">
+        <ActivityContent
+          container="quiz"
+          className="flex items-center justify-center pb-10"
+        >
           <div className="relative flex h-[630px] w-[1032px] flex-col items-center justify-center rounded-2xl bg-white shadow-lg">
             <p className="absolute right-[80px] top-[50px] text-[80px] font-semibold">
               🎉

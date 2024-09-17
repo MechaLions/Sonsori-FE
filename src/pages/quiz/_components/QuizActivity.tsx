@@ -5,12 +5,16 @@ import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
 import ProgressBar from "@/components/ProgressBar";
+import {
+  Activity,
+  ActivityHeader,
+  ActivityMain,
+  ActivityContent,
+} from "@/components/Activity";
 
 import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
 
 import PromptSection from "./PromptSection";
-import { Activity, ActivityHeader, ActivityContent } from "./Activity";
-
 type QuizParams = {
   step: number;
 };
@@ -83,35 +87,33 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   return (
     <AppScreen>
       <Activity>
-        <ActivityContent>
-          <ActivityHeader step={step}>
+        <ActivityContent container="quiz">
+          <ActivityHeader step={step} className="relative">
             <ProgressBar percent={step / 10} />
-          </ActivityHeader>
-
-          <PromptSection
-            step={step}
-            onAnswerSelect={handleAnswerSelect}
-            setIsChecked={handleCheck} // VideoAnswerSection에서 상태 변경
-            videoConstraints={videoConstraints}
-            showVideoAnswerSection={showVideoAnswerSection}
-            textQuestionChanged={textQuestionChanged}
-          />
-
-          <div className="flex items-center justify-center gap-4 pt-7">
             <Button
               variant="brand"
               onClick={handleClick}
               disabled={isDisabled}
               className={`${
                 isDisabled ? "bg-buttonGray text-white" : "bg-brand text-white"
-              }`}
+              } absolute bottom-[50px] right-[20%]`}
               style={{
                 opacity: isDisabled ? 1 : undefined,
               }}
             >
               {buttonText}
             </Button>
-          </div>
+          </ActivityHeader>
+          <ActivityMain className="gap-5">
+            <PromptSection
+              step={step}
+              onAnswerSelect={handleAnswerSelect}
+              setIsChecked={handleCheck} // VideoAnswerSection에서 상태 변경
+              videoConstraints={videoConstraints}
+              showVideoAnswerSection={showVideoAnswerSection}
+              textQuestionChanged={textQuestionChanged}
+            />
+          </ActivityMain>
         </ActivityContent>
       </Activity>
     </AppScreen>

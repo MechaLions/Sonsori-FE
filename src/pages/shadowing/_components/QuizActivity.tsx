@@ -3,12 +3,16 @@ import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
 import ProgressBar from "@/components/ProgressBar";
+import {
+  Activity,
+  ActivityHeader,
+  ActivityMain,
+  ActivityContent,
+} from "@/components/Activity";
 
 import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
 
 import PropmptSection from "./PromptSection";
-import { Activity, ActivityHeader, ActivityContent } from "./Activity";
-
 type QuizParams = {
   step: number;
 };
@@ -31,22 +35,20 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   return (
     <AppScreen>
       <Activity>
-        <ActivityContent>
-          <ActivityHeader step={step}>
+        <ActivityContent container="shadowing">
+          <ActivityHeader step={step} className="relative">
             <ProgressBar percent={step / 10} />
-            <div className="relative flex h-20 w-[70%] items-center">
-              <Button
-                variant="brand"
-                className="absolute right-[-150px] mb-[250px]"
-                onClick={handleClick}
-              >
-                결과 확인
-              </Button>
-            </div>
+            <Button
+              variant="brand"
+              className="absolute bottom-[50px] right-[20%]"
+              onClick={handleClick}
+            >
+              결과 확인
+            </Button>
           </ActivityHeader>
-          <div className="mt-[-50px] justify-evenly">
+          <ActivityMain>
             <PropmptSection />
-          </div>
+          </ActivityMain>
         </ActivityContent>
       </Activity>
     </AppScreen>

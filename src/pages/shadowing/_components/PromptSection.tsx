@@ -1,5 +1,3 @@
-import React from "react";
-
 import UserAnswerSection from "./UserAnswerSection";
 import QuestionSection from "./QuestionSection";
 

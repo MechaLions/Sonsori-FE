@@ -50,7 +50,7 @@ const AnswerSection = (props: AnswerSectionProps) => {
   };
 
   return (
-    <section className="flex w-[70%] flex-col items-center justify-center gap-20 rounded-[20px] bg-white py-[50px] shadow-shadowBrand">
+    <section className="mb-10 flex w-[70%] flex-col items-center justify-center gap-[70px] rounded-[20px] bg-white py-10 shadow-shadowBrand">
       <h1 className="mt-4 text-4xl font-bold">정확도 100%를 도전해보세요!</h1>
       <section className="flex w-full items-center justify-center gap-[100px]">
         <div className="flex flex-col items-center gap-5">
