@@ -2,8 +2,7 @@ import { Button } from "@ui/components/ui/button";
 
 import { useSignUp } from "@/hooks/useSignUp";
 
-import InputItem from "@/pages/user-auth/_components/InputItem";
-
+import InputItem from "./InputItem";
 const SignupSection = () => {
   const {
     name,
