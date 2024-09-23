@@ -28,7 +28,7 @@ export const register = async ({
   return data;
 };
 
-export const checkID = async ({ user_login_id }: LoginRequestParams) => {
+export const checkID = async (user_login_id: string) => {
   const { data } = await instance.get(`/checkIdDuplicate/${user_login_id}`);
 
   return data;

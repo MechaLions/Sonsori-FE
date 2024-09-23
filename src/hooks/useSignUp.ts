@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 
+import { useMutationCheckID } from "@/hooks/mutation/useMutationCheckID";
 import { useMutationSignUp } from "@/hooks/mutation/useMutatinSignUp";
 
 export const useSignUp = () => {
   const signupMutation = useMutationSignUp();
+  const checkIdMutation = useMutationCheckID();
 
   const nameRegex = /^[a-zA-Z가-힣]+$/; // 1글자 이상, 공백 없이 영/한 상관 없음
   const idRegex = /^[a-zA-Z0-9!@#$%^&*()_+]{2,10}$/; //영어, 숫자, 특수문자 합쳐서 1글자 이상 10글자 이내
@@ -33,15 +35,15 @@ export const useSignUp = () => {
   }>({ name: "", id: "", pw: "" });
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+    const nameValue = event.target.value;
+    setName(nameValue);
 
-    if (!nameRegex.test(event.target.value)) {
+    if (!nameRegex.test(nameValue)) {
       setErrorMent(prev => ({
         ...prev,
         name: "이름은 공백 없이 한 글자 이상이어야 합니다.",
       }));
       setIsNamePass(false);
-      return;
     } else {
       setErrorMent(prev => ({
         ...prev,
@@ -52,9 +54,10 @@ export const useSignUp = () => {
   };
 
   const handleIDChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setID(event.target.value);
+    const idValue = event.target.value;
+    setID(idValue);
 
-    if (!idRegex.test(event.target.value)) {
+    if (!idRegex.test(idValue)) {
       setErrorMent(prev => ({
         ...prev,
         id: "아이디는 영어, 숫자, 특수문자를 포함할 수 있으며, 2~10자여야 합니다.",
@@ -62,18 +65,32 @@ export const useSignUp = () => {
       setIsIDPass(false);
       return;
     } else {
-      setErrorMent(prev => ({
-        ...prev,
-        id: "",
-      }));
-      setIsIDPass(true);
+      checkIdMutation.mutate(idValue, {
+        onSuccess: response => {
+          if (response && response.message === "사용 가능한 아이디입니다.") {
+            setErrorMent(prev => ({
+              ...prev,
+              id: response.message,
+            }));
+            setIsIDPass(true);
+          }
+        },
+        onError: () => {
+          setErrorMent(prev => ({
+            ...prev,
+            id: "이미 존재하는 아이디입니다.",
+          }));
+          setIsIDPass(false);
+        },
+      });
     }
   };
 
   const handlePWChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPW(event.target.value);
+    const pwValue = event.target.value;
+    setPW(pwValue);
 
-    if (!pwRegex.test(event.target.value)) {
+    if (!pwRegex.test(pwValue)) {
       setErrorMent(prev => ({
         ...prev,
         pw: "비밀번호는 영어, 숫자, 특수기호를 포함하여 6~15자여야 합니다.",
@@ -90,9 +107,10 @@ export const useSignUp = () => {
   };
 
   const handleCheckPWChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckPW(event.target.value);
+    const checkPWValue = event.target.value;
+    setCheckPW(checkPWValue);
 
-    if (pw === event.target.value && event.target.value !== "" && pw !== "") {
+    if (pw === checkPWValue && checkPWValue !== "" && pw !== "") {
       setErrorMent(prev => ({
         ...prev,
         pw: "비밀번호가 일치합니다.",
