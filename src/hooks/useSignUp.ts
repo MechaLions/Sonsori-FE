@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
+import { useMutationSignUp } from "@/hooks/mutation/useMutatinSignUp";
+
 export const useSignUp = () => {
+  const signupMutation = useMutationSignUp();
+
   const nameRegex = /^[a-zA-Z가-힣]+$/; // 1글자 이상, 공백 없이 영/한 상관 없음
   const idRegex = /^[a-zA-Z0-9!@#$%^&*()_+]{2,10}$/; //영어, 숫자, 특수문자 합쳐서 1글자 이상 10글자 이내
   const pwRegex =
@@ -104,6 +108,22 @@ export const useSignUp = () => {
     }
   };
 
+  const handleSignup = () => {
+    signupMutation.mutate(
+      {
+        user_login_id: id,
+        user_login_password: pw,
+        name: name,
+      },
+      {
+        onSuccess: () => {
+          setErrorMent({ name: "", id: "", pw: "" });
+          return;
+        },
+      },
+    );
+  };
+
   return {
     name,
     id,
@@ -119,5 +139,6 @@ export const useSignUp = () => {
     handleIDChange,
     handlePWChange,
     handleCheckPWChange,
+    handleSignup,
   };
 };

@@ -2,12 +2,9 @@ import { Button } from "@ui/components/ui/button";
 
 import { useSignUp } from "@/hooks/useSignUp";
 
-import { useNavigate } from "@/router";
 import InputItem from "@/pages/user-auth/_components/InputItem";
 
 const SignupSection = () => {
-  const navigate = useNavigate();
-
   const {
     name,
     id,
@@ -23,6 +20,7 @@ const SignupSection = () => {
     handleIDChange,
     handlePWChange,
     handleCheckPWChange,
+    handleSignup,
   } = useSignUp();
 
   return (
@@ -56,11 +54,7 @@ const SignupSection = () => {
           onChange2={handleCheckPWChange}
         />
       </section>
-      <Button
-        variant="brand"
-        onClick={() => navigate("/home")}
-        disabled={!AllPass}
-      >
+      <Button variant="brand" onClick={handleSignup} disabled={!AllPass}>
         회원가입
       </Button>
     </main>
