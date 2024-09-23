@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Toaster } from "@ui/components/ui/toaster";
 
 import Nav from "@/components/Nav";
 
@@ -19,7 +20,8 @@ const App = () => {
 
   return (
     <section className="relative flex h-dvh w-screen flex-col">
-      {/* 나중에 toaster 넣을거면 넣고 */}
+      <Toaster className="top-5" isDestructive />
+
       {!["/user-auth"].includes(location.pathname) && (
         <header className="sticky left-0 top-0 z-50 bg-white">
           <Nav />
