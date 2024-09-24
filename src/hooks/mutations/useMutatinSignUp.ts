@@ -2,6 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 
 import { AuthResponse, SignupRequestParams } from "@/types/authType";
 
+import { setID } from "@/utils/handleID";
+
 import { useNavigate } from "@/router";
 import { register } from "@/api/auth";
 
@@ -16,7 +18,7 @@ export const useMutationSignUp = () => {
     }: SignupRequestParams) =>
       register({ user_login_id, user_login_password, name }),
     onSuccess: (response: AuthResponse) => {
-      localStorage.setItem("userID", response.user_id.toString());
+      setID(response.user_id.toString());
       navigate("/home", { replace: true });
       return;
     },

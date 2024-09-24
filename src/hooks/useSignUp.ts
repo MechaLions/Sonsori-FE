@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useMutationCheckID } from "@/hooks/mutation/useMutationCheckID";
+import { useMutationCheckID } from "@/hooks/mutations/useMutationCheckID";
 import { useMutationSignUp } from "@/hooks/mutation/useMutatinSignUp";
 
 export const useSignUp = () => {

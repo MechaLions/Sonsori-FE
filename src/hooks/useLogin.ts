@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useToast } from "@ui/hooks/use-toast";
 
-import { useMutationLogin } from "@/hooks/mutation/useMutationLogin";
+import { useMutationLogin } from "@/hooks/mutations/useMutationLogin";
 
 export const useLogin = () => {
   const loginMutation = useMutationLogin();
