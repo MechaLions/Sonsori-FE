@@ -8,6 +8,11 @@ module.exports = {
     "./src/**/*.{ts,tsx}",
     "./ui/src/**/*.{ts,tsx}",
   ],
+  safelist: [
+    "pronunciation-container",
+    "shadowing-container",
+    "quiz-container",
+  ],
   prefix: "",
   theme: {
     container: {
