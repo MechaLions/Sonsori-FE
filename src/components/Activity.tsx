@@ -34,8 +34,9 @@ const ActivityContent: React.FC<ActivityContentProps> = ({
   container,
   ...props
 }) => {
+  console.log(container);
   return (
-    <main className={`${container}-container h-full w-full pt-[88px]`}>
+    <main className={cn(`${container}-container`, "h-full w-full pt-[88px]")}>
       <section
         className={cn(
           "flex h-full w-full flex-col items-center justify-start gap-2 bg-white/[.42] pt-[40px]",
