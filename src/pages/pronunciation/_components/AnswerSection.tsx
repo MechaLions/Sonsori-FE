@@ -4,16 +4,19 @@ import { useStack } from "@stackflow/react";
 
 import DoughnutChart from "@/components/DoughnutChart";
 
+import { PronunQuizItem } from "@/types/pronunciationType";
+
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 
 import AnswerCompareSection from "./AnswerCompareSection";
 
 interface AnswerSectionProps {
   step: number;
+  quizList: PronunQuizItem[];
 }
 
 const AnswerSection = (props: AnswerSectionProps) => {
-  const { step } = props;
+  const { step, quizList } = props;
 
   const { pop, replace } = usePronunciationFlow();
 
@@ -34,6 +37,7 @@ const AnswerSection = (props: AnswerSectionProps) => {
       "QuizActivity",
       {
         step: step + 1,
+        quizList: quizList,
       },
       { animate: false },
     );
@@ -44,6 +48,7 @@ const AnswerSection = (props: AnswerSectionProps) => {
       "QuizActivity",
       {
         step: step,
+        quizList: quizList,
       },
       { animate: false },
     );

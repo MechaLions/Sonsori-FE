@@ -11,6 +11,8 @@ import {
   ActivityContent,
 } from "@/components/Activity";
 
+import { PronunQuizItem } from "@/types/pronunciationType";
+
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 
 import PropmptSection from "./PromptSection";
@@ -18,10 +20,11 @@ import MicDialog from "./MicDialog";
 
 type QuizParams = {
   step: number;
+  quizList: PronunQuizItem[];
 };
 
 const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
-  const { step } = params;
+  const { step, quizList } = params;
 
   const { replace } = usePronunciationFlow();
 
@@ -32,6 +35,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
       "AnswerActivity",
       {
         step: step,
+        quizList: quizList,
       },
       { animate: false },
     );
@@ -45,7 +49,10 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
             <ProgressBar percent={step / 10} />
           </ActivityHeader>
           <ActivityMain>
-            <PropmptSection />
+            <PropmptSection
+              voice_text={quizList[step].answer_voice}
+              origin_text={quizList[step].word_text}
+            />
             {audioURL && (
               <audio controls className="mt-4">
                 <source src={audioURL} type="audio/mp3" />
