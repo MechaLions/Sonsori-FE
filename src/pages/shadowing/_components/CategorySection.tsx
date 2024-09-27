@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 
 import CategoryItem from "./CategoryItem"; // 카테고리 아이템 컴포넌트
 
@@ -23,8 +23,12 @@ const CategorySection = () => {
         if (response.status === 200) {
           setCategories(response.data.categories);
         }
-      } catch (error: AxiosError | any) {
-        if (error.response && error.response.status === 404) {
+      } catch (error: unknown) {
+        if (
+          error instanceof AxiosError &&
+          error.response &&
+          error.response.status === 404
+        ) {
           setError("카테고리가 없습니다.");
         } else {
           setError("카테고리를 가져오는 중 오류가 발생했습니다.");
