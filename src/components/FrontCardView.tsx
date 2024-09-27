@@ -1,5 +1,6 @@
 interface FrontCardViewProps {
   title: string;
+  imageUrl: string;
 }
 
 const FrontCardView = (props: FrontCardViewProps) => {
