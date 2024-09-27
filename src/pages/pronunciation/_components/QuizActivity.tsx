@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@ui/components/ui/button";
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
@@ -24,6 +25,8 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
 
   const { replace } = usePronunciationFlow();
 
+  const [audioURL, setAudioURL] = useState("");
+
   const handleClick = () => {
     replace(
       "AnswerActivity",
@@ -43,9 +46,15 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
           </ActivityHeader>
           <ActivityMain>
             <PropmptSection />
+            {audioURL && (
+              <audio controls className="mt-4">
+                <source src={audioURL} type="audio/mp3" />
+                Your browser does not support the audio tag.
+              </audio>
+            )}
             <div className="relative flex h-20 w-[70%] items-center">
               <div className="absolute left-1/2 -translate-x-1/2 transform">
-                <MicDialog />
+                <MicDialog setAudioURL={setAudioURL} />
               </div>
               <Button
                 variant="brand"
