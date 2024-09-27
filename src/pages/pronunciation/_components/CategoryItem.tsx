@@ -6,6 +6,8 @@ import { useQueryPronunQuizList } from "@/hooks/queries/useQueryPronunQuizList";
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 import { setPronunciationId } from "@/utils/handleCategoryID";
 
+import { usePronunQuizStore } from "@/store/usePronunQuizStore";
+
 interface CategoryItemProps {
   id: number;
   title: string;
@@ -18,17 +20,20 @@ const CategoryItem = (props: CategoryItemProps) => {
 
   const { push } = usePronunciationFlow();
   const { refetch } = useQueryPronunQuizList(id);
+  const setPronunQuizList = usePronunQuizStore(
+    state => state.setPronunQuizList,
+  );
 
   const handleClick = async () => {
     setPronunciationId(id.toString());
 
     const { data: quizList } = await refetch();
     if (quizList) {
+      setPronunQuizList(quizList);
       push(
         "QuizActivity",
         {
           step: 1,
-          quizList: quizList,
         },
         { animate: false },
       );

@@ -11,31 +11,30 @@ import {
   ActivityContent,
 } from "@/components/Activity";
 
-import { PronunQuizItem } from "@/types/pronunciationType";
-
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 
 import PropmptSection from "./PromptSection";
 import MicDialog from "./MicDialog";
 
+import { usePronunQuizStore } from "@/store/usePronunQuizStore";
+
 type QuizParams = {
   step: number;
-  quizList: PronunQuizItem[];
 };
 
 const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
-  const { step, quizList } = params;
+  const { step } = params;
 
   const { replace } = usePronunciationFlow();
 
   const [audioURL, setAudioURL] = useState("");
+  const quiz = usePronunQuizStore(state => state.getPronunQuiz(step));
 
   const handleClick = () => {
     replace(
       "AnswerActivity",
       {
         step: step,
-        quizList: quizList,
       },
       { animate: false },
     );
@@ -50,8 +49,8 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
           </ActivityHeader>
           <ActivityMain>
             <PropmptSection
-              voice_text={quizList[step].answer_voice}
-              origin_text={quizList[step].word_text}
+              voice_text={quiz!.answer_voice}
+              origin_text={quiz!.word_text}
             />
             {audioURL && (
               <audio controls className="mt-4">

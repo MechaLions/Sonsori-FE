@@ -8,16 +8,13 @@ import {
   ActivityMain,
 } from "@/components/Activity";
 
-import { PronunQuizItem } from "@/types/pronunciationType";
-
 import AnswerSection from "./AnswerSection";
 type AnswerParams = {
   step: number;
-  quizList: PronunQuizItem[];
 };
 
 const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
-  const { step, quizList } = params;
+  const { step } = params;
 
   return (
     <AppScreen>
@@ -25,7 +22,7 @@ const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
         <ActivityContent container="pronunciation">
           <ActivityHeader step={step}></ActivityHeader>
           <ActivityMain>
-            <AnswerSection step={step} quizList={quizList} />
+            <AnswerSection step={step} />
           </ActivityMain>
         </ActivityContent>
       </Activity>
