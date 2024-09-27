@@ -8,21 +8,13 @@ import UndoIcon from "@/components/Icons/UndoIcon";
 import PlayIcon from "@/components/Icons/PlayIcon";
 import PauseIcon from "@/components/Icons/PauseIcon";
 
-interface VideoSectionProps {
-  translateText: string;
-  videoRef: React.RefObject<HTMLVideoElement>;
-  isCameraOn: boolean;
-  startVideo: () => Promise<void>;
-  stopVideo: () => void;
-}
-
-const UserAnswerSection = (props: VideoSectionProps) => {
-  const { translateText: initialTranslateText } = props; // 초기 번역 텍스트
+const UserAnswerSection = () => {
   const [isCameraOn, setIsCameraOn] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [translateText, setTranslateText] =
-    useState<string>(initialTranslateText);
+  const [translateText, setTranslateText] = useState<string>(
+    "번역되는 내용이 여기에 표시됩니다.",
+  ); // 기본값 설정
   const [count, setCount] = useState(0);
   const [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null);
 
@@ -148,7 +140,7 @@ const UserAnswerSection = (props: VideoSectionProps) => {
       {/* 텍스트 박스 */}
       <div className="mt-4 flex h-[160px] w-[450px] items-center justify-center rounded-lg bg-textboxGray">
         <p className="text-center text-[15px] font-semibold text-brandDarkGray">
-          {translateText || "번역되는 내용이 여기에 표시됩니다."}
+          {translateText}
         </p>
       </div>
     </div>
