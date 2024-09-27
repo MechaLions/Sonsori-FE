@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import TextBoxSection from "./_components/TextBoxSection";
 import ButtonSection from "./_components/ButtonSection";
 
+import VideoSection from "@/pages/translate/_components/VideoSection";
+
 const socket = io("http://3.39.217.112:8080");
 
 const TranslatePage = () => {
@@ -24,7 +26,12 @@ const TranslatePage = () => {
 
     socket.on("result", (data: string) => {
       console.log("Final Translated Sentence:", data);
-      setTranslateText(data);
+      const cleanedData = data
+        .replace(/^\[|\]$/g, "")
+        .replace(/^'|'$/g, "")
+        .trim();
+
+      setTranslateText(cleanedData);
     });
 
     socket.on("response_back", (data: string) => {
@@ -121,124 +128,14 @@ const TranslatePage = () => {
         stopCamera={stopVideo}
         deleteLastWord={deleteLastWord}
       />
-      <div className="group relative flex h-[500px] w-[766px] items-center justify-center rounded-2xl bg-white px-[34px] pb-10 shadow-lg">
-        <div className="absolute top-[15px] flex space-x-1">
-          <span className="h-2 w-2 rounded-full bg-buttonGray"></span>
-          <span className="h-2 w-2 rounded-full bg-buttonGray"></span>
-          <span className="h-2 w-2 rounded-full bg-buttonGray"></span>
-        </div>
-
-        {isCameraOn ? (
-          <div>
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              className="scale-x-[-1]"
-            ></video>
-            <canvas ref={canvasRef} width={640} height={480}></canvas>
-          </div>
-        ) : (
-          <div className="my-50 flex-center mt-10 flex h-[428px] w-[698px] justify-center rounded-2xl bg-[#434242]">
-            <h1 className="mt-[197px] text-center text-[28px] font-semibold text-[#D9D9D9]">
-              시작하기를 누르면 번역을 위한 촬영이 시작됩니다.
-            </h1>
-          </div>
-        )}
-      </div>
+      <VideoSection
+        isCameraOn={isCameraOn}
+        videoRef={videoRef}
+        canvasRef={canvasRef}
+      />
       <TextBoxSection translateText={translateText} />
     </main>
   );
 };
 
 export default TranslatePage;
-
-//--------------------------------------------------------
-
-// import React, { useState, useEffect, useRef } from "react";
-
-// import VideoSection from "./_components/VideoSection";
-// import TextBoxSection from "./_components/TextBoxSection";
-// import ButtonSection from "./_components/ButtonSection";
-
-// const FACING_MODE_ENVIRONMENT = "environment";
-
-// const videoConstraints: MediaTrackConstraints = {
-//   facingMode: FACING_MODE_ENVIRONMENT,
-//   advanced: [
-//     { width: { exact: 2560 }, height: { exact: 1440 } },
-//     { width: { exact: 1920 }, height: { exact: 1080 } },
-//     { width: { exact: 1280 }, height: { exact: 720 } },
-//     { width: { exact: 1024 }, height: { exact: 576 } },
-//     { width: { exact: 900 }, height: { exact: 506 } },
-//     { width: { exact: 800 }, height: { exact: 450 } },
-//     { width: { exact: 640 }, height: { exact: 360 } },
-//     { width: { exact: 320 }, height: { exact: 180 } },
-//   ],
-// };
-
-// const TranslatePage: React.FC = () => {
-//   const [showMainButtons, setShowMainButtons] = useState(true);
-//   const [isCameraOn, setIsCameraOn] = useState(false);
-//   const videoRef = useRef<HTMLVideoElement | null>(null);
-
-//   const startCamera = () => setIsCameraOn(true);
-//   const stopCamera = () => setIsCameraOn(false);
-
-//   useEffect(() => {
-//     const initCamera = async () => {
-//       try {
-//         if (isCameraOn) {
-//           const stream = await navigator.mediaDevices.getUserMedia({
-//             video: true,
-//           });
-//           if (videoRef.current) {
-//             videoRef.current.srcObject = stream;
-//           }
-//         } else {
-//           if (videoRef.current && videoRef.current.srcObject) {
-//             const tracks = (
-//               videoRef.current.srcObject as MediaStream
-//             ).getTracks();
-//             tracks.forEach(track => track.stop());
-//             videoRef.current.srcObject = null;
-//           }
-//         }
-//       } catch (error) {
-//         console.error("카메라 접근 실패:", error);
-//       }
-//     };
-
-//     initCamera();
-
-//     return () => {
-//       if (videoRef.current && videoRef.current.srcObject) {
-//         const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
-//         tracks.forEach(track => track.stop());
-//       }
-//     };
-//   }, [isCameraOn]);
-
-//   return (
-//     <main
-//       className="translate-background flex w-full flex-col items-center justify-evenly"
-//       style={{ height: "calc(100vh - 78px)" }}
-//     >
-//       <ButtonSection
-//         showMainButtons={showMainButtons}
-//         setShowMainButtons={setShowMainButtons}
-//         startCamera={startCamera}
-//         stopCamera={stopCamera}
-//       />
-//       <VideoSection
-//         isCameraOn={isCameraOn}
-//         videoConstraints={videoConstraints}
-//       />
-//       <TextBoxSection />
-//     </main>
-//   );
-// };
-
-// export default TranslatePage;
-
-//--------------------------------------------------------
