@@ -11,6 +11,7 @@ const CategorySection = () => {
         ({ category_id, category_name, description, category_image_url }) => (
           <CategoryItem
             key={category_id}
+            id={category_id}
             title={category_name}
             description={description}
             category_image_url={category_image_url}

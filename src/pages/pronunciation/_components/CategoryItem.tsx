@@ -2,19 +2,22 @@ import FrontCardView from "@/components/FrontCardView";
 import BackCardView from "@/components/BackCardView";
 
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
+import { setPronunciationId } from "@/utils/handleCategoryID";
 
 interface CategoryItemProps {
+  id: number;
   title: string;
   description: string;
   category_image_url: string;
 }
 
 const CategoryItem = (props: CategoryItemProps) => {
-  const { title, description, category_image_url } = props;
+  const { id, title, description, category_image_url } = props;
 
   const { push } = usePronunciationFlow();
 
   const handleClick = () => {
+    setPronunciationId(id.toString());
     push(
       "QuizActivity",
       {
