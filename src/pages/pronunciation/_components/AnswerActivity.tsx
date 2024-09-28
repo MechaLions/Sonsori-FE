@@ -8,13 +8,16 @@ import {
   ActivityMain,
 } from "@/components/Activity";
 
+import { PronunAccuracyResponse } from "@/types/pronunciationType";
+
 import AnswerSection from "./AnswerSection";
 type AnswerParams = {
   step: number;
+  response: PronunAccuracyResponse;
 };
 
 const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
-  const { step } = params;
+  const { step, response } = params;
 
   return (
     <AppScreen>
@@ -22,7 +25,7 @@ const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
         <ActivityContent container="pronunciation">
           <ActivityHeader step={step}></ActivityHeader>
           <ActivityMain>
-            <AnswerSection step={step} />
+            <AnswerSection step={step} response={response} />
           </ActivityMain>
         </ActivityContent>
       </Activity>

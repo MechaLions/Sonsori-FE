@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@ui/components/ui/button";
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
@@ -10,10 +11,14 @@ import {
   ActivityContent,
 } from "@/components/Activity";
 
+import { useMutationPronunAccuracy } from "@/hooks/mutations/useMutationPronunAccuracy";
+
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 
 import PropmptSection from "./PromptSection";
 import MicDialog from "./MicDialog";
+
+import { usePronunQuizStore } from "@/store/usePronunQuizStore";
 
 type QuizParams = {
   step: number;
@@ -23,15 +28,42 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const { step } = params;
 
   const { replace } = usePronunciationFlow();
+  const mutation = useMutationPronunAccuracy();
 
-  const handleClick = () => {
-    replace(
-      "AnswerActivity",
-      {
-        step: step,
-      },
-      { animate: false },
-    );
+  const [audioFile, setAudioFile] = useState<File | null>(null);
+  const [audioURL, setAudioURL] = useState<string | null>(null);
+
+  const quiz = usePronunQuizStore(state => state.getPronunQuiz(step));
+  if (!quiz) {
+    return <div>Loading quiz data...</div>;
+  }
+
+  const handleClick = async () => {
+    if (audioFile) {
+      mutation.mutate(
+        {
+          word_id: quiz.word_id,
+          audio_file: audioFile,
+        },
+        {
+          onSuccess: response => {
+            replace(
+              "AnswerActivity",
+              {
+                step: step,
+                response: response,
+              },
+              { animate: false },
+            );
+            setAudioFile(null);
+          },
+          onError: () => {
+            alert("녹음을 다시 한번 진행해 주세요.");
+            setAudioFile(null);
+          },
+        },
+      );
+    }
   };
 
   return (
@@ -42,10 +74,22 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
             <ProgressBar percent={step / 10} />
           </ActivityHeader>
           <ActivityMain>
-            <PropmptSection />
+            <PropmptSection
+              voice_text={quiz.answer_voice}
+              origin_text={quiz.word_text}
+            />
+            {audioURL && ( // audioURL로 업데이트된 부분 사용
+              <audio controls className="mt-4">
+                <source src={audioURL} type="audio/mp3" />
+                Your browser does not support the audio tag.
+              </audio>
+            )}
             <div className="relative flex h-20 w-[70%] items-center">
               <div className="absolute left-1/2 -translate-x-1/2 transform">
-                <MicDialog />
+                <MicDialog
+                  setAudioFile={setAudioFile}
+                  setAudioURL={setAudioURL}
+                />
               </div>
               <Button
                 variant="brand"

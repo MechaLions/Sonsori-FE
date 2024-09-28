@@ -1,4 +1,5 @@
 import { ScaleLoader } from "react-spinners";
+import { useRef } from "react";
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -9,10 +10,52 @@ import {
 
 import MicIcon from "@/components/Icons/MicIcon";
 
-const MicDialog = () => {
+interface MicDialogProps {
+  setAudioFile: (file: File | null) => void;
+  setAudioURL: (url: string | null) => void;
+}
+
+const MicDialog = (props: MicDialogProps) => {
+  const { setAudioFile, setAudioURL } = props;
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
+
+  const handleStartRecording = async () => {
+    setAudioFile(null);
+    setAudioURL(null);
+    audioChunksRef.current = [];
+
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    mediaRecorderRef.current = new MediaRecorder(stream);
+
+    mediaRecorderRef.current.ondataavailable = event => {
+      audioChunksRef.current.push(event.data);
+    };
+
+    mediaRecorderRef.current.onstop = () => {
+      const audioBlob = new Blob(audioChunksRef.current, {
+        type: "audio/mp3",
+      });
+      const file = new File([audioBlob], "recording.mp3", {
+        type: "audio/mp3",
+      });
+      const audioURL = URL.createObjectURL(audioBlob); // Blob을 기반으로 URL 생성
+      setAudioURL(audioURL); // audioURL 설정
+      setAudioFile(file);
+    };
+
+    mediaRecorderRef.current.start();
+  };
+
+  const handleStopRecording = () => {
+    if (mediaRecorderRef.current) {
+      mediaRecorderRef.current.stop();
+    }
+  };
+
   return (
     <AlertDialog>
-      <AlertDialogTrigger>
+      <AlertDialogTrigger onClick={handleStartRecording}>
         <MicIcon />
       </AlertDialogTrigger>
       <AlertDialogContent className="flex flex-col items-center justify-center bg-brandLightBlue">
@@ -28,7 +71,9 @@ const MicDialog = () => {
           speedMultiplier={0.7}
           width={10}
         />
-        <AlertDialogAction>녹음 종료하기</AlertDialogAction>
+        <AlertDialogAction onClick={handleStopRecording}>
+          녹음 종료하기
+        </AlertDialogAction>
       </AlertDialogContent>
     </AlertDialog>
   );
