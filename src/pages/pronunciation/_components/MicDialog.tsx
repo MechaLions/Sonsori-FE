@@ -11,15 +11,18 @@ import {
 import MicIcon from "@/components/Icons/MicIcon";
 
 interface MicDialogProps {
-  setAudioURL: (url: string) => void;
+  setAudioFile: (file: File | null) => void;
+  setAudioURL: (url: string | null) => void;
 }
 
 const MicDialog = (props: MicDialogProps) => {
-  const { setAudioURL } = props;
+  const { setAudioFile, setAudioURL } = props;
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
 
   const handleStartRecording = async () => {
+    setAudioFile(null);
+    setAudioURL(null);
     audioChunksRef.current = [];
 
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -36,10 +39,9 @@ const MicDialog = (props: MicDialogProps) => {
       const file = new File([audioBlob], "recording.mp3", {
         type: "audio/mp3",
       });
-      const url = URL.createObjectURL(file); // URL 생성
-      setAudioURL(url); // QuizActivity에 URL 전달
-      console.log(url);
-      handleUpload(file); // 녹음 종료 후 자동 업로드
+      const audioURL = URL.createObjectURL(audioBlob); // Blob을 기반으로 URL 생성
+      setAudioURL(audioURL); // audioURL 설정
+      setAudioFile(file);
     };
 
     mediaRecorderRef.current.start();
@@ -48,22 +50,6 @@ const MicDialog = (props: MicDialogProps) => {
   const handleStopRecording = () => {
     if (mediaRecorderRef.current) {
       mediaRecorderRef.current.stop();
-    }
-  };
-
-  const handleUpload = async (audioFile: File) => {
-    const formData = new FormData();
-    formData.append("audio", audioFile);
-
-    // 백엔드에 파일을 업로드하는 API 호출
-    try {
-      await fetch("YOUR_BACKEND_API_URL", {
-        method: "POST",
-        body: formData,
-      });
-      alert("파일이 업로드되었습니다!");
-    } catch (error) {
-      console.error("파일 업로드 실패:", error);
     }
   };
 

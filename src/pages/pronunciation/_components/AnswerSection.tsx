@@ -4,14 +4,15 @@ import { useStack } from "@stackflow/react";
 
 import DoughnutChart from "@/components/DoughnutChart";
 
+import { PronunAccuracyResponse } from "@/types/pronunciationType";
+
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 
 import AnswerCompareSection from "./AnswerCompareSection";
 
-import { usePronunQuizStore } from "@/store/usePronunQuizStore";
-
 interface AnswerSectionProps {
   step: number;
+  response: PronunAccuracyResponse;
 }
 
 const AnswerSection = (props: AnswerSectionProps) => {
@@ -51,9 +52,6 @@ const AnswerSection = (props: AnswerSectionProps) => {
     );
   };
 
-  const quizList = usePronunQuizStore(state => state.getPronunQuizList());
-  const isLast = step == quizList.length;
-
   return (
     <section className="mb-10 flex w-[70%] flex-col items-center justify-center gap-[70px] rounded-[20px] bg-white py-10 shadow-shadowBrand">
       <h1 className="mt-4 text-4xl font-bold">정확도 100%를 도전해보세요!</h1>
@@ -77,7 +75,7 @@ const AnswerSection = (props: AnswerSectionProps) => {
         <Button variant="brand" onClick={handleOnMore}>
           한번 더 해볼래요
         </Button>
-        {!isLast && (
+        {step !== 10 && (
           <Button
             variant="brand"
             className="h-[52px] border-2 border-brand bg-white text-brand"
