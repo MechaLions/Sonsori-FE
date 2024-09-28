@@ -21,6 +21,7 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
       "QuizActivity",
       {
         step: 1,
+        category_id: category.category_id,
       },
       { animate: false },
     );
