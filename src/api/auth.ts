@@ -1,4 +1,10 @@
-import { LoginRequestParams, SignupRequestParams } from "@/types/authType";
+import {
+  LoginRequestParams,
+  MyPageResponse,
+  SignupRequestParams,
+} from "@/types/authType";
+
+import { getID } from "@/utils/handleID";
 
 import { instance } from "@/api/instance";
 
@@ -29,9 +35,14 @@ export const register = async ({
 };
 
 export const checkID = async (user_login_id: string) => {
-  const { data } = await instance.post("/checkIdDuplicate", {
-    user_login_id,
-  });
+  const { data } = await instance.get(`/checkIdDuplicate/${user_login_id}`);
 
+  return data;
+};
+
+export const myPage = async () => {
+  const userID = getID();
+
+  const { data } = await instance.get<MyPageResponse>(`/mypage/${userID}`);
   return data;
 };
