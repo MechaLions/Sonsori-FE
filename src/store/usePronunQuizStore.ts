@@ -19,7 +19,6 @@ export const usePronunQuizStore = create<PronunQuizState & PronunQuizAction>(
     quiz: null,
     setPronunQuizList: quizList => set({ quizList }),
     getPronunQuizList: () => get().quizList,
-    getPronunQuiz: quizId =>
-      get().quizList.find(quiz => quiz.word_id === quizId),
+    getPronunQuiz: index => get().quizList[index - 1],
   }),
 );

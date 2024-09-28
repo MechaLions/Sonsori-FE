@@ -13,7 +13,7 @@ const PropmptSection = (props: PropmptSectionProps) => {
       </div>
       <div className="flex w-full flex-col gap-[10px]">
         <p className="text-xl text-brandMediumGray">올바른 발음</p>
-        <p className="text-4xl font-bold">{voice_text}</p>
+        <p className="text-4xl font-bold">"{voice_text}"</p>
       </div>
     </section>
   );

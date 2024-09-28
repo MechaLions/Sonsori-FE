@@ -29,6 +29,9 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
 
   const [audioURL, setAudioURL] = useState("");
   const quiz = usePronunQuizStore(state => state.getPronunQuiz(step));
+  if (!quiz) {
+    return <div>Loading quiz data...</div>;
+  }
 
   const handleClick = () => {
     replace(
@@ -49,8 +52,8 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
           </ActivityHeader>
           <ActivityMain>
             <PropmptSection
-              voice_text={quiz!.answer_voice}
-              origin_text={quiz!.word_text}
+              voice_text={quiz.answer_voice}
+              origin_text={quiz.word_text}
             />
             {audioURL && (
               <audio controls className="mt-4">
