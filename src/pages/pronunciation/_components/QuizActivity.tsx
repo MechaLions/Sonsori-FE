@@ -31,7 +31,6 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const mutation = useMutationPronunAccuracy();
 
   const [audioFile, setAudioFile] = useState<File | null>(null);
-  const [audioURL, setAudioURL] = useState<string | null>(null);
 
   const quiz = usePronunQuizStore(state => state.getPronunQuiz(step));
   if (!quiz) {
@@ -78,18 +77,9 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               voice_text={quiz.answer_voice}
               origin_text={quiz.word_text}
             />
-            {audioURL && ( // audioURL로 업데이트된 부분 사용
-              <audio controls className="mt-4">
-                <source src={audioURL} type="audio/mp3" />
-                Your browser does not support the audio tag.
-              </audio>
-            )}
             <div className="relative flex h-20 w-[70%] items-center">
               <div className="absolute left-1/2 -translate-x-1/2 transform">
-                <MicDialog
-                  setAudioFile={setAudioFile}
-                  setAudioURL={setAudioURL}
-                />
+                <MicDialog setAudioFile={setAudioFile} />
               </div>
               <Button
                 variant="brand"
