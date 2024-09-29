@@ -1,63 +1,26 @@
-import { startTransition, useEffect, useState } from "react";
+import { startTransition } from "react";
 import { Button } from "@ui/components/ui/button";
 import { useStack } from "@stackflow/react";
 
 import DoughnutChart from "@/components/DoughnutChart";
 
 import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
-import { getID } from "@/utils/handleID"; // getID 함수 import
 
 import AnswerCompareSection from "./AnswerCompareSection";
 
-import { instance } from "@/api/instance"; // API 인스턴스 import
-
 interface AnswerSectionProps {
   step: number;
-  wordId: number; // wordId를 추가하여 정확도 계산에 사용
-  translatedText: string; // 번역된 텍스트 추가
-  category_id: number; // 카테고리 ID 추가
+  correct_text: string;
+  translated_text: string;
+  accuracy: number;
 }
 
 const AnswerSection = (props: AnswerSectionProps) => {
-  const { step, wordId, translatedText, category_id } = props;
+  const { step, correct_text, translated_text, accuracy } = props;
 
   const { pop, replace } = useShadowingFlow();
   const stack = useStack();
   let popCounts = stack.activities.length;
-
-  const [accuracy, setAccuracy] = useState<number | null>(null); // 정확도 상태 추가
-  const [correctText, setCorrectText] = useState<string | null>(null); // 정답 텍스트 상태 추가
-
-  // 정확도 계산을 위한 useEffect 추가
-  useEffect(() => {
-    const calculateAccuracy = async () => {
-      const userID = getID(); // userID 가져오기
-      console.log("가져온 userID:", userID); // userID가 제대로 가져와지는지 확인
-
-      if (!userID) {
-        console.error("사용자 ID가 없습니다.");
-        return;
-      }
-
-      try {
-        const response = await instance.post(
-          `/shadowing/calculateAccuracy/${userID}/${wordId}`, // userID 사용
-          {
-            translated_text: translatedText,
-          },
-        );
-        console.log("정확도 계산 결과:", response.data);
-        setAccuracy(response.data.accuracy); // 정확도 값 설정
-        setCorrectText(response.data.correct_text); // 정답 텍스트 설정
-      } catch (error) {
-        console.error("정확도 계산 오류:", error);
-      }
-    };
-
-    if (wordId && translatedText) {
-      calculateAccuracy();
-    }
-  }, [wordId, translatedText]);
 
   const handleStop = () => {
     startTransition(() => {
@@ -73,7 +36,6 @@ const AnswerSection = (props: AnswerSectionProps) => {
       "QuizActivity",
       {
         step: step + 1,
-        category_id: category_id,
       },
       { animate: false },
     );
@@ -84,7 +46,6 @@ const AnswerSection = (props: AnswerSectionProps) => {
       "QuizActivity",
       {
         step: step,
-        category_id: category_id,
       },
       { animate: false },
     );
@@ -105,8 +66,8 @@ const AnswerSection = (props: AnswerSectionProps) => {
           </div>
         </div>
         <AnswerCompareSection
-          correctText={correctText !== null ? correctText : ""} // null일 때 빈 문자열로 대체
-          userText={translatedText}
+          correctText={correct_text !== null ? correct_text : ""} // null일 때 빈 문자열로 대체
+          userText={translated_text}
         />
       </section>
       <div className="flex items-center justify-center gap-[50px]">

@@ -15,7 +15,6 @@ import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
 import { getID } from "@/utils/handleID";
 
 import PromptSection from "./PromptSection";
-import AnswerCompareSection from "./AnswerCompareSection";
 
 import { instance } from "@/api/instance";
 
@@ -27,7 +26,7 @@ type Question = {
 
 type QuizParams = {
   step: number;
-  category_id: number;
+  category_id?: number;
 };
 
 type Response = {
@@ -49,7 +48,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const [accuracyData, setAccuracyData] = useState<Response | null>(null);
   useEffect(() => {
     // 첫 번째 문제일 때만 API 호출
-    if (step === 1 && questions.length === 0) {
+    if (step === 1 && questions.length === 0 && category_id !== null) {
       const fetchQuestions = async () => {
         try {
           const response = await instance.get(
@@ -87,13 +86,19 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   };
 
   const handleClick = () => {
-    replace(
-      "AnswerActivity",
-      {
-        step: step,
-      },
-      { animate: false },
-    );
+    // accuracydata 있으면 replace 함수 호출
+    if (accuracyData) {
+      replace(
+        "AnswerActivity",
+        {
+          step: step,
+          correct_text: accuracyData.correct_text,
+          translated_text: accuracyData.translated_text,
+          accuracy: accuracyData.accuracy,
+        },
+        { animate: false },
+      );
+    }
   };
 
   return (
@@ -116,12 +121,12 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               step={step}
               calculateAccuracy={calculateAccuracy}
             />
-            {accuracyData && (
+            {/* {accuracyData && (
               <AnswerCompareSection
                 correctText={accuracyData.correct_text}
                 userText={accuracyData.translated_text}
               />
-            )}
+            )} */}
           </ActivityMain>
         </ActivityContent>
       </Activity>
