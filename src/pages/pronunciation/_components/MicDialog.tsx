@@ -37,7 +37,6 @@ const MicDialog = (props: MicDialogProps) => {
       const file = new File([audioBlob], "recording.mp3", {
         type: "audio/mp3",
       });
-
       setAudioFile(file);
     };
 

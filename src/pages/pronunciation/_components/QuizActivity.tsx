@@ -31,6 +31,10 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const mutation = useMutationPronunAccuracy();
 
   const [audioFile, setAudioFile] = useState<File | null>(null);
+<<<<<<< HEAD
+=======
+  const [audioURL, setAudioURL] = useState<string | null>(null);
+>>>>>>> dev
 
   const quiz = usePronunQuizStore(state => state.getPronunQuiz(step));
   if (!quiz) {

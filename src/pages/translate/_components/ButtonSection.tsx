@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "@ui/components/ui/button";
 
 interface ButtonSectionProps {
@@ -6,14 +5,18 @@ interface ButtonSectionProps {
   startCamera: () => void;
   stopCamera: () => void;
   setShowMainButtons: (value: boolean) => void;
+  deleteLastWord: () => void;
 }
 
-const ButtonSection: React.FC<ButtonSectionProps> = ({
-  showMainButtons,
-  startCamera,
-  stopCamera,
-  setShowMainButtons,
-}) => {
+const ButtonSection = (props: ButtonSectionProps) => {
+  const {
+    showMainButtons,
+    startCamera,
+    stopCamera,
+    setShowMainButtons,
+    deleteLastWord,
+  } = props;
+
   return (
     <div className="flex h-[100px] items-center justify-between gap-[60px]">
       {showMainButtons ? (
@@ -38,6 +41,7 @@ const ButtonSection: React.FC<ButtonSectionProps> = ({
               variant="brand"
               size="default"
               className="bg-white text-black"
+              onClick={deleteLastWord}
             >
               단어 삭제
             </Button>
@@ -62,6 +66,7 @@ const ButtonSection: React.FC<ButtonSectionProps> = ({
               variant="brand"
               size="default"
               className="bg-white text-black"
+              onClick={deleteLastWord}
             >
               단어 삭제
             </Button>

@@ -10,3 +10,12 @@ export type AuthResponse = {
   user_login_id: string;
   name: string;
 };
+
+export type MyPageResponse = {
+  name: string;
+  quiz_correct_number: number;
+  shadowing_accuracy_avg: number;
+  shadowing_category_name: string;
+  voice_accuracy_avg: number;
+  voice_category_name: string;
+};
