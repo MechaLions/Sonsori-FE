@@ -4,9 +4,12 @@ import { useStack } from "@stackflow/react";
 
 import DoughnutChart from "@/components/DoughnutChart";
 
+import { useMutationPronunSaveAccuracy } from "@/hooks/mutations/useMutationPronunSaveAccuracy";
+
 import { PronunAccuracyResponse } from "@/types/pronunciationType";
 
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
+import { clearPronunciationId } from "@/utils/handleCategoryID";
 
 import AnswerCompareSection from "./AnswerCompareSection";
 
@@ -17,13 +20,22 @@ interface AnswerSectionProps {
 
 const AnswerSection = (props: AnswerSectionProps) => {
   const { step, response } = props;
-
   const { pop, replace } = usePronunciationFlow();
+
+  const mutation = useMutationPronunSaveAccuracy();
 
   const stack = useStack();
   let popCounts = stack.activities.length;
 
   const handleStop = () => {
+    if (step === 10) {
+      mutation.mutate(undefined, {
+        onSuccess: () => {
+          clearPronunciationId();
+        },
+      });
+    }
+
     startTransition(() => {
       while (popCounts > 0) {
         pop({ animate: false });

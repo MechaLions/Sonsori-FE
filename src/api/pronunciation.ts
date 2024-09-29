@@ -4,6 +4,7 @@ import {
 } from "@/types/pronunciationType";
 
 import { getID } from "@/utils/handleID";
+import { getPronunciationId } from "@/utils/handleCategoryID";
 
 import { instance } from "@/api/instance";
 
@@ -21,10 +22,6 @@ export const calcPronunAccuracy = async (word_id: number, audio_file: File) => {
   const formData = new FormData();
   formData.append("audio_file", audio_file);
 
-  formData.forEach((value, key) => {
-    console.log(key, value);
-  });
-
   const { data } = await instance.post<PronunAccuracyResponse>(
     `/voice/calculateAccuracy/${user_id}/${word_id}`,
     formData,
@@ -35,5 +32,15 @@ export const calcPronunAccuracy = async (word_id: number, audio_file: File) => {
     },
   );
 
+  return data;
+};
+
+export const savePronunAccuracy = async () => {
+  const user_id = getID();
+  const category_id = getPronunciationId();
+
+  const { data } = await instance.post(
+    `/voice/saveVoiceAccuracy/${user_id}/${category_id}`,
+  );
   return data;
 };
