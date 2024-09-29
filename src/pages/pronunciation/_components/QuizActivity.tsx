@@ -38,31 +38,29 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   }
 
   const handleClick = async () => {
-    if (audioFile) {
-      mutation.mutate(
-        {
-          word_id: quiz.word_id,
-          audio_file: audioFile,
+    mutation.mutate(
+      {
+        word_id: quiz.word_id,
+        audio_file: audioFile!,
+      },
+      {
+        onSuccess: response => {
+          replace(
+            "AnswerActivity",
+            {
+              step: step,
+              response: response,
+            },
+            { animate: false },
+          );
+          setAudioFile(null);
         },
-        {
-          onSuccess: response => {
-            replace(
-              "AnswerActivity",
-              {
-                step: step,
-                response: response,
-              },
-              { animate: false },
-            );
-            setAudioFile(null);
-          },
-          onError: () => {
-            alert("녹음을 다시 한번 진행해 주세요.");
-            setAudioFile(null);
-          },
+        onError: () => {
+          alert("녹음을 다시 한번 진행해 주세요.");
+          setAudioFile(null);
         },
-      );
-    }
+      },
+    );
   };
 
   return (
@@ -85,6 +83,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
                 variant="brand"
                 className="absolute right-0"
                 onClick={handleClick}
+                disabled={!audioFile}
               >
                 결과 확인
               </Button>
