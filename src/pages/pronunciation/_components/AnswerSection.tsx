@@ -4,12 +4,15 @@ import { useStack } from "@stackflow/react";
 
 import DoughnutChart from "@/components/DoughnutChart";
 
+import { PronunAccuracyResponse } from "@/types/pronunciationType";
+
 import { usePronunciationFlow } from "@/utils/usePronunciationFlow";
 
 import AnswerCompareSection from "./AnswerCompareSection";
 
 interface AnswerSectionProps {
   step: number;
+  response: PronunAccuracyResponse;
 }
 
 const AnswerSection = (props: AnswerSectionProps) => {

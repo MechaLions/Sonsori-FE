@@ -34,7 +34,6 @@ const ActivityContent: React.FC<ActivityContentProps> = ({
   container,
   ...props
 }) => {
-  console.log(`${container}-container`);
   return (
     <main className={cn(`${container}-container`, "h-full w-full pt-[88px]")}>
       <section

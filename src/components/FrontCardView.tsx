@@ -4,13 +4,15 @@ interface FrontCardViewProps {
 }
 
 const FrontCardView = (props: FrontCardViewProps) => {
-  const { title } = props;
+  const { title, imageUrl } = props;
 
   return (
     <div className="card-dynamic-size card-front-back">
-      <div className="flex w-full flex-1 items-center justify-center text-3xl font-bold text-brand">
-        이미지
-      </div>
+      <img
+        src={imageUrl}
+        alt={title}
+        className="h-[170px] w-full flex-1 rounded-t-[15px] object-cover"
+      />
       <div className="flex h-[130px] w-full items-center justify-center rounded-b-[15px] bg-brand text-3xl font-bold text-white">
         {title}
       </div>
