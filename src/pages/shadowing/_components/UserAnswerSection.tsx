@@ -111,7 +111,8 @@ const UserAnswerSection = () => {
               ref={videoRef}
               autoPlay
               playsInline
-              className="h-[280px] w-[450px] scale-x-[-1] rounded-2xl" // 좌우 반전
+              className="scale-x-[-1] rounded-2xl object-cover" // 좌우 반전
+              style={{ height: "280px", width: "450px" }}
             ></video>
             <canvas ref={canvasRef} width={640} height={480}></canvas>
           </div>
