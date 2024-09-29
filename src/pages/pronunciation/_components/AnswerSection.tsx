@@ -28,13 +28,11 @@ const AnswerSection = (props: AnswerSectionProps) => {
   let popCounts = stack.activities.length;
 
   const handleStop = () => {
-    if (step === 10) {
-      mutation.mutate(undefined, {
-        onSuccess: () => {
-          clearPronunciationId();
-        },
-      });
-    }
+    mutation.mutate(undefined, {
+      onSuccess: () => {
+        clearPronunciationId();
+      },
+    });
 
     startTransition(() => {
       while (popCounts > 0) {
