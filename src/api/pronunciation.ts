@@ -27,11 +27,11 @@ export const calcPronunAccuracy = async (word_id: number, audio_file: File) => {
 
   const { data } = await instance.post<PronunAccuracyResponse>(
     `/voice/calculateAccuracy/${user_id}/${word_id}`,
+    formData,
     {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-      body: formData,
     },
   );
 

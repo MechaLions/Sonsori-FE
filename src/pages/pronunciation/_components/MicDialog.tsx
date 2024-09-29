@@ -12,17 +12,15 @@ import MicIcon from "@/components/Icons/MicIcon";
 
 interface MicDialogProps {
   setAudioFile: (file: File | null) => void;
-  setAudioURL: (url: string | null) => void;
 }
 
 const MicDialog = (props: MicDialogProps) => {
-  const { setAudioFile, setAudioURL } = props;
+  const { setAudioFile } = props;
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
 
   const handleStartRecording = async () => {
     setAudioFile(null);
-    setAudioURL(null);
     audioChunksRef.current = [];
 
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -39,8 +37,7 @@ const MicDialog = (props: MicDialogProps) => {
       const file = new File([audioBlob], "recording.mp3", {
         type: "audio/mp3",
       });
-      const audioURL = URL.createObjectURL(audioBlob); // Blob을 기반으로 URL 생성
-      setAudioURL(audioURL); // audioURL 설정
+
       setAudioFile(file);
     };
 

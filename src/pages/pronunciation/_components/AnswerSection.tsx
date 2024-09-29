@@ -16,7 +16,7 @@ interface AnswerSectionProps {
 }
 
 const AnswerSection = (props: AnswerSectionProps) => {
-  const { step } = props;
+  const { step, response } = props;
 
   const { pop, replace } = usePronunciationFlow();
 
@@ -57,12 +57,15 @@ const AnswerSection = (props: AnswerSectionProps) => {
       <h1 className="mt-4 text-4xl font-bold">정확도 100%를 도전해보세요!</h1>
       <section className="flex w-full items-center justify-center gap-[100px]">
         <div className="flex flex-col items-center gap-5">
-          <DoughnutChart percent={0.82} size="150px" />
+          <DoughnutChart percent={response.accuracy / 100} size="150px" />
           <div className="text-[25px] font-bold">
-            <p>정확도: 82%</p>
+            <p>정확도: {response.accuracy}%</p>
           </div>
         </div>
-        <AnswerCompareSection />
+        <AnswerCompareSection
+          correct_pronun={response.correct_pronunciation}
+          user_pronun={response.voice_recognition_result}
+        />
       </section>
       <div className="flex items-center justify-center gap-[50px]">
         <Button
