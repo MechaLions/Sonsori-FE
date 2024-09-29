@@ -8,7 +8,11 @@ import UndoIcon from "@/components/Icons/UndoIcon";
 import PlayIcon from "@/components/Icons/PlayIcon";
 import PauseIcon from "@/components/Icons/PauseIcon";
 
-const UserAnswerSection = () => {
+interface UserAnswerSectionProps {
+  onTranslate: (text: string) => void; // 번역된 텍스트를 전달하는 콜백
+}
+
+const UserAnswerSection = ({ onTranslate }: UserAnswerSectionProps) => {
   const [isCameraOn, setIsCameraOn] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -27,16 +31,19 @@ const UserAnswerSection = () => {
     socket.on("result", (data: string) => {
       console.log("최종 번역 결과:", data);
       setTranslateText(data);
+      onTranslate(data); // 상위 컴포넌트로 번역 텍스트 전달
     });
 
     socket.on("response_back", (data: string) => {
       console.log("번역된 단어:", data);
       setTranslateText(data);
+      onTranslate(data); // 상위 컴포넌트로 번역 텍스트 전달
     });
 
-    socket.on("delete_back", (data: string) => {
-      console.log("삭제 응답:", data);
+    socket.on("delete_back", () => {
+      console.log("삭제 응답");
       setTranslateText(""); // 삭제 시 번역 텍스트 지우기
+      onTranslate(""); // 상위 컴포넌트에도 빈 텍스트 전달
     });
 
     return () => {
@@ -46,7 +53,7 @@ const UserAnswerSection = () => {
       socket.off("response_back");
       socket.off("delete_back");
     };
-  }, []);
+  }, [onTranslate]);
 
   const startVideo = async () => {
     setIsCameraOn(true);
@@ -62,7 +69,7 @@ const UserAnswerSection = () => {
   };
 
   const stopVideo = () => {
-    setTranslateText(""); // 비디오 정지 시 텍스트 지우기
+    // setTranslateText(""); // 비디오 정지 시 텍스트 지우기
     setIsCameraOn(false);
     if (videoRef.current && videoRef.current.srcObject) {
       const stream = videoRef.current.srcObject as MediaStream;

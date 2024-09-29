@@ -10,16 +10,18 @@ type Question = {
 const PromptSection = ({
   questions = [],
   step,
+  calculateAccuracy,
 }: {
   questions?: Question[];
   step: number;
+  calculateAccuracy: (userText: string, wordId: number) => void;
 }) => {
   console.log("PromptSection:", questions, step);
   console.log("quesitons.length:", questions.length);
   const currentQuestion =
     questions.length > 0 && step > 0 && step <= questions.length
       ? questions[step - 1]
-      : { word_text: "문제를 로딩 중입니다...", sign_url: "" };
+      : { word_id: 0, word_text: "문제를 로딩 중입니다...", sign_url: "" };
   return (
     <div className="relative flex w-[1032px] items-center justify-between rounded-2xl bg-white p-1 pb-10 pt-10 shadow-lg">
       {/* 점 세개 */}
@@ -39,7 +41,11 @@ const PromptSection = ({
         {/* Divider 선 */}
         <div className="h-[500px] w-[1px] bg-gray-500"></div>
         <div className="flex flex-1 items-center justify-center">
-          <UserAnswerSection />
+          <UserAnswerSection
+            onTranslate={userText =>
+              calculateAccuracy(userText, currentQuestion.word_id)
+            }
+          />
         </div>
       </div>
     </div>
