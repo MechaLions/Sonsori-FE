@@ -11,10 +11,13 @@ import {
 import AnswerSection from "./AnswerSection";
 type AnswerParams = {
   step: number;
+  correct_text: string;
+  translated_text: string;
+  accuracy: number;
 };
 
 const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
-  const { step } = params;
+  const { step, correct_text, translated_text, accuracy } = params;
 
   return (
     <AppScreen>
@@ -22,7 +25,12 @@ const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
         <ActivityContent container="shadowing">
           <ActivityHeader step={step}></ActivityHeader>
           <ActivityMain>
-            <AnswerSection step={step} />
+            <AnswerSection
+              step={step}
+              correct_text={correct_text}
+              translated_text={translated_text}
+              accuracy={accuracy}
+            />
           </ActivityMain>
         </ActivityContent>
       </Activity>

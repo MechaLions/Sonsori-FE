@@ -1,23 +1,27 @@
 import UserAnswerSection from "./UserAnswerSection";
 import QuestionSection from "./QuestionSection";
 
-const FACING_MODE_ENVIRONMENT = "environment";
-
-const videoConstraints: MediaTrackConstraints = {
-  facingMode: FACING_MODE_ENVIRONMENT,
-  advanced: [
-    { width: { exact: 2560 }, height: { exact: 1440 } },
-    { width: { exact: 1920 }, height: { exact: 1080 } },
-    { width: { exact: 1280 }, height: { exact: 720 } },
-    { width: { exact: 1024 }, height: { exact: 576 } },
-    { width: { exact: 900 }, height: { exact: 506 } },
-    { width: { exact: 800 }, height: { exact: 450 } },
-    { width: { exact: 640 }, height: { exact: 360 } },
-    { width: { exact: 320 }, height: { exact: 180 } },
-  ],
+type Question = {
+  word_id: number;
+  word_text: string;
+  sign_url: string;
 };
 
-const PromptSection = () => {
+const PromptSection = ({
+  questions = [],
+  step,
+  calculateAccuracy,
+}: {
+  questions?: Question[];
+  step: number;
+  calculateAccuracy: (userText: string, wordId: number) => void;
+}) => {
+  console.log("PromptSection:", questions, step);
+  console.log("quesitons.length:", questions.length);
+  const currentQuestion =
+    questions.length > 0 && step > 0 && step <= questions.length
+      ? questions[step - 1]
+      : { word_id: 0, word_text: "문제를 로딩 중입니다...", sign_url: "" };
   return (
     <div className="relative flex w-[1032px] items-center justify-between rounded-2xl bg-white p-1 pb-10 pt-10 shadow-lg">
       {/* 점 세개 */}
@@ -29,12 +33,19 @@ const PromptSection = () => {
       {/* 양쪽 콘텐츠 공간*/}
       <div className="flex h-full w-full items-center">
         <div className="flex flex-1 items-center justify-center">
-          <QuestionSection />
+          <QuestionSection
+            video={currentQuestion.sign_url}
+            question={currentQuestion.word_text}
+          />
         </div>
         {/* Divider 선 */}
         <div className="h-[500px] w-[1px] bg-gray-500"></div>
         <div className="flex flex-1 items-center justify-center">
-          <UserAnswerSection videoConstraints={videoConstraints} />
+          <UserAnswerSection
+            onTranslate={userText =>
+              calculateAccuracy(userText, currentQuestion.word_id)
+            }
+          />
         </div>
       </div>
     </div>
