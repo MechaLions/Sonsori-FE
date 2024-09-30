@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { Button } from "@ui/components/ui/button";
 
 import { Link } from "@/router";
+import TranslateExampleImg from "@/assets/TranslateExample.png";
 
 interface TranslateSectionProps {}
 
@@ -20,9 +21,12 @@ const TranslateSection = forwardRef<HTMLDivElement>(
               <p>자유롭게 소통하세요.</p>
             </h1>
           </div>
-          <div className="mt-5 min-h-[320px] w-1/3 min-w-[450px] bg-black text-white">
-            이미지
-          </div>
+
+          <img
+            src={TranslateExampleImg}
+            alt="Translate Section"
+            className="mt-5 min-h-[320px] w-1/3 min-w-[450px] rounded-[20px] object-cover shadow-shadowBrand"
+          />
         </section>
 
         <section className="flex w-full flex-col gap-8 text-[30px]">

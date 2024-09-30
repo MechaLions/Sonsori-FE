@@ -2,6 +2,8 @@ import { forwardRef } from "react";
 import { Button } from "@ui/components/ui/button";
 
 import { Link } from "@/router";
+import QuizExample2 from "@/assets/QuizExample2.png";
+import QuizExample1 from "@/assets/QuizExample1.png";
 
 interface QuizSectionProps {}
 
@@ -22,9 +24,11 @@ const QuizSection = forwardRef<HTMLDivElement>(
 
         <section className="flex w-full justify-between">
           <div className="flex w-full flex-col items-center justify-between gap-16">
-            <div className="min-h-[320px] w-1/3 min-w-[450px] bg-black text-white">
-              이미지
-            </div>
+            <img
+              src={QuizExample1}
+              alt="Pronun Section"
+              className="min-h-[320px] w-1/3 min-w-[450px] rounded-[20px] object-cover shadow-shadowBrand"
+            />
             <div className="flex w-full flex-col gap-8 text-center text-[30px]">
               <h1 className="font-semibold text-brand">
                 수어 영상보고 의미 맞추기
@@ -37,9 +41,11 @@ const QuizSection = forwardRef<HTMLDivElement>(
             </div>
           </div>
           <div className="flex w-full flex-col items-center justify-between gap-16">
-            <div className="min-h-[320px] w-1/3 min-w-[450px] bg-black text-white">
-              이미지
-            </div>
+            <img
+              src={QuizExample2}
+              alt="Pronun Section"
+              className="min-h-[320px] w-1/3 min-w-[450px] rounded-[20px] object-cover shadow-shadowBrand"
+            />
             <div className="flex w-full flex-col gap-8 text-center text-[30px]">
               <h1 className="font-semibold text-brand">
                 의미에 부합하는 수어 동작 맞추기

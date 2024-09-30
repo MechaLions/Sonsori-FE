@@ -2,6 +2,8 @@ import { forwardRef } from "react";
 import { Button } from "@ui/components/ui/button";
 
 import { Link } from "@/router";
+import PronunExample2 from "@/assets/PronunExample2.png";
+import PronunExample1 from "@/assets/PronunExample1.png";
 
 interface PronunciationSectionProps {}
 
@@ -20,9 +22,11 @@ const PronunciationSection = forwardRef<HTMLDivElement>(
         </section>
 
         <section className="flex w-full items-center justify-between gap-[70px]">
-          <div className="min-h-[320px] w-1/3 min-w-[450px] bg-black text-white">
-            이미지
-          </div>
+          <img
+            src={PronunExample1}
+            alt="Pronun Section"
+            className="min-h-[320px] w-1/3 min-w-[450px] rounded-[20px] object-cover shadow-shadowBrand"
+          />
           <div className="flex w-full flex-col gap-8">
             <h1 className="text-3xl font-semibold text-brand">
               표준발음 따라 정확한 발음 학습
@@ -51,9 +55,11 @@ const PronunciationSection = forwardRef<HTMLDivElement>(
               100%를 목표로 계속 도전해봐요!
             </div>
           </div>
-          <div className="min-h-[320px] w-1/3 min-w-[450px] bg-black text-white">
-            이미지
-          </div>
+          <img
+            src={PronunExample2}
+            alt="Pronun Section"
+            className="min-h-[320px] w-1/3 min-w-[450px] rounded-[20px] object-cover shadow-shadowBrand"
+          />
         </section>
 
         <Link to={"/pronunciation"}>

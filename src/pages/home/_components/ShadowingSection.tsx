@@ -2,6 +2,8 @@ import { forwardRef } from "react";
 import { Button } from "@ui/components/ui/button";
 
 import { Link } from "@/router";
+import ShadowingExample2 from "@/assets/ShadowingExample2.png";
+import ShadowingExample1 from "@/assets/ShadowingExample1.png";
 
 interface ShadowingSectionProps {}
 
@@ -21,9 +23,11 @@ const ShadowingSection = forwardRef<HTMLDivElement>(
         </section>
 
         <section className="flex w-full items-center justify-between gap-[70px]">
-          <div className="min-h-[320px] w-1/3 min-w-[450px] bg-black text-white">
-            이미지
-          </div>
+          <img
+            src={ShadowingExample1}
+            alt="Pronun Section"
+            className="min-h-[320px] w-1/3 min-w-[450px] rounded-[20px] object-cover shadow-shadowBrand"
+          />
           <div className="flex w-full flex-col gap-8">
             <h1 className="text-3xl font-semibold text-brand">
               따라하기를 통한 반복 학습
@@ -44,9 +48,11 @@ const ShadowingSection = forwardRef<HTMLDivElement>(
         </section>
 
         <section className="flex w-full items-center justify-between gap-[70px]">
-          <div className="min-h-[320px] w-1/3 min-w-[450px] bg-black text-white">
-            이미지
-          </div>
+          <img
+            src={ShadowingExample2}
+            alt="Pronun Section"
+            className="min-h-[320px] w-1/3 min-w-[450px] rounded-[20px] object-cover shadow-shadowBrand"
+          />
           <div className="flex w-full flex-col gap-8">
             <h1 className="text-3xl font-semibold text-brand">
               실시간 정확도 측정
