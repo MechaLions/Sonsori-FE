@@ -4,18 +4,18 @@ export type ShadowingQuizList = {
 
 export type ShadowingQuizItem = {
   word_id: number;
-  correct_text: string;
-  user_text: string;
+  word_text: string;
+  sign_url: string;
 };
 
 export type ShadowingAccuracyRequest = {
   word_id: number;
-  user_text: string;
+  translated_text: string;
 };
 
 export type ShadowingAccuracyResponse = {
   word_id: number;
   correct_text: string;
-  user_text: string;
+  translated_text: string;
   accuracy: number;
 };
