@@ -3,27 +3,26 @@ interface AnswerCompareSectionProps {
   userText: string | string[];
 }
 
-const AnswerCompareSection = ({
-  correctText,
-  userText,
-}: AnswerCompareSectionProps) => {
-  const getColoredText = (correct: string, user: string | string[]) => {
-    if (!correct) return <span className="text-brandRed">null</span>;
+// 발음을 비교하여 같은 글자는 초록색, 다른 글자는 빨간색으로
+const getColoredText = (correct: string, user: string | string[]) => {
+  if (!correct) return <span className="text-brandRed">null</span>;
 
-    const userString = Array.isArray(user) ? user[0] || "" : user || "";
-    return correct.split("").map((char, index) => {
-      const userChar = userString[index] || "";
-      return (
-        <span
-          key={index}
-          className={char === userChar ? "text-brandGreen" : "text-brandRed"}
-        >
-          {userChar || ""}
-        </span>
-      );
-    });
-  };
+  const userString = Array.isArray(user) ? user[0] || "" : user || "";
+  return correct.split("").map((char, index) => {
+    const userChar = userString[index] || "";
+    return (
+      <span
+        key={index}
+        className={char === userChar ? "text-brandGreen" : "text-brandRed"}
+      >
+        {userChar || ""}
+      </span>
+    );
+  });
+};
 
+const AnswerCompareSection = (props: AnswerCompareSectionProps) => {
+  const { correctText, userText } = props;
   return (
     <div className="flex w-1/2 flex-col items-center justify-center gap-10 rounded-[20px] bg-brandLightBlue py-9 pl-[60px] leading-tight">
       <div className="flex w-full flex-col gap-1">
