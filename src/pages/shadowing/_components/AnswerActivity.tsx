@@ -3,21 +3,22 @@ import { AppScreen } from "@stackflow/plugin-basic-ui";
 
 import {
   Activity,
-  ActivityHeader,
   ActivityContent,
+  ActivityHeader,
   ActivityMain,
 } from "@/components/Activity";
 
+import { ShadowingAccuracyResponse } from "@/types/shadowingType";
+
 import AnswerSection from "./AnswerSection";
+
 type AnswerParams = {
   step: number;
-  correct_text: string;
-  translated_text: string;
-  accuracy: number;
+  response: ShadowingAccuracyResponse;
 };
 
 const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
-  const { step, correct_text, translated_text, accuracy } = params;
+  const { step, response } = params;
 
   return (
     <AppScreen>
@@ -25,12 +26,7 @@ const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
         <ActivityContent container="shadowing">
           <ActivityHeader step={step}></ActivityHeader>
           <ActivityMain>
-            <AnswerSection
-              step={step}
-              correct_text={correct_text}
-              translated_text={translated_text}
-              accuracy={accuracy}
-            />
+            <AnswerSection step={step} response={response} />
           </ActivityMain>
         </ActivityContent>
       </Activity>
