@@ -3,12 +3,13 @@ import { AppScreen } from "@stackflow/plugin-basic-ui";
 
 import {
   Activity,
-  ActivityHeader,
   ActivityContent,
+  ActivityHeader,
   ActivityMain,
 } from "@/components/Activity";
 
 import AnswerSection from "./AnswerSection";
+
 type AnswerParams = {
   step: number;
   correct_text: string;
@@ -23,7 +24,7 @@ const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
     <AppScreen>
       <Activity>
         <ActivityContent container="shadowing">
-          <ActivityHeader step={step}></ActivityHeader>
+          <ActivityHeader step={step} />
           <ActivityMain>
             <AnswerSection
               step={step}
