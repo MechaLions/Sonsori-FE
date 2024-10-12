@@ -37,7 +37,7 @@ export const calcShadowingAccuracy = async (
   return data;
 };
 
-export const savePronunAccuracy = async () => {
+export const saveShadowingAccuracy = async () => {
   const user_id = getID();
   const category_id = getShadowingId();
 
