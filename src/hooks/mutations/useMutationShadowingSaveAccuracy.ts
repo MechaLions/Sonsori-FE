@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { savePronunAccuracy } from "@/api/pronunciation";
+import { saveShadowingAccuracy } from "@/api/shadowing";
 
-export const useMutationPronunSaveAccuracy = () => {
+export const useMutationShadowingSaveAccuracy = () => {
   const mutation = useMutation({
-    mutationFn: () => savePronunAccuracy(),
+    mutationFn: () => saveShadowingAccuracy(),
   });
 
   return mutation;
