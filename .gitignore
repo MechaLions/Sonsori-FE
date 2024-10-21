@@ -25,3 +25,6 @@ dist-ssr
 
 # setting files
 *.env
+
+# hosting
+hosting.*
