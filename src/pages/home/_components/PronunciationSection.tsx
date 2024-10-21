@@ -11,6 +11,7 @@ const PronunciationSection = forwardRef<HTMLDivElement>(
   (props: PronunciationSectionProps, ref) => {
     return (
       <main
+        {...props}
         ref={ref}
         className="gap- flex flex-col items-center justify-center gap-20 bg-[#F5F5F5] px-40 py-36"
       >

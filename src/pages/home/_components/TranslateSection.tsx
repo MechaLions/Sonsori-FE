@@ -10,6 +10,7 @@ const TranslateSection = forwardRef<HTMLDivElement>(
   (props: TranslateSectionProps, ref) => {
     return (
       <main
+        {...props}
         ref={ref}
         className="flex flex-col items-center justify-center gap-20 px-40 py-36"
       >

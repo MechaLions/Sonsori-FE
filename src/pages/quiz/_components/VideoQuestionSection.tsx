@@ -1,5 +1,3 @@
-import React from "react";
-
 import ReplayIcon from "@/components/Icons/ReplayIcon";
 
 const VideoQuestionSection = () => {
