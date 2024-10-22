@@ -1,5 +1,4 @@
 import VideoQuestionSection from "./VideoQuestionSection";
-import VideoAnswerSection from "./VideoAnswerSection";
 import UserVideoAnswerSection from "./UserVideoAnswerSection";
 import TextQuestionSection from "./TextQuestionSection";
 import TextAnswerSection from "./TextAnswerSection";
@@ -31,7 +30,7 @@ const PromptSection = ({
   const rightSection =
     step > 5 ? (
       showVideoAnswerSection ? (
-        <VideoAnswerSection />
+        <VideoQuestionSection />
       ) : (
         <UserVideoAnswerSection
           videoConstraints={videoConstraints}
