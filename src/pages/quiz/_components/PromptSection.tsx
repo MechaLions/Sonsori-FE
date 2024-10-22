@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import useVideoStream from "@/hooks/useVideoStream";
 
 import VideoQuestionSection from "./VideoQuestionSection";
@@ -23,12 +25,19 @@ const PromptSection = ({
   const {
     videoRef,
     canvasRef,
-    // translateText,
+    translateText,
     isCameraOn,
     startVideo,
     stopVideo,
     deleteLastWord,
   } = useVideoStream();
+
+  // 일단 translatedText localStorage에 저장시킴
+  useEffect(() => {
+    if (translateText) {
+      localStorage.setItem("translateText", translateText);
+    }
+  }, [translateText]);
 
   const leftSection =
     step > 5 ? (
