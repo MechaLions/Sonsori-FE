@@ -8,7 +8,14 @@ import { Activity, ActivityContent } from "@/components/Activity";
 
 import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
 
-const ResultActivity: ActivityComponentType = () => {
+// QuizParams 타입 추가
+type QuizParams = {
+  correctCount: number;
+};
+
+const ResultActivity: ActivityComponentType = ({ params }) => {
+  // correctCount 받아오기
+  const { correctCount } = params as QuizParams;
   const { pop, replace } = useQuizFlow();
 
   const stack = useStack();
@@ -24,6 +31,7 @@ const ResultActivity: ActivityComponentType = () => {
 
     replace("MainActivity", { animate: false });
   };
+
   const handleOneMore = () => {
     replace(
       "QuizActivity",
@@ -49,8 +57,9 @@ const ResultActivity: ActivityComponentType = () => {
               <p className="text-center text-[30px] font-bold">
                 10문제 중&nbsp;
               </p>
+              {/* correctCount 사용 */}
               <p className="text-center text-[40px] font-bold text-brand">
-                8문제&nbsp;
+                {correctCount}문제&nbsp;
               </p>
               <p className="text-center text-[30px] font-bold">맞았어요.</p>
             </div>

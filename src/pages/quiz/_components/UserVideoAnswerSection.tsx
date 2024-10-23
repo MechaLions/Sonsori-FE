@@ -12,6 +12,9 @@ interface UserVideoAnswerSectionProps {
   stopVideo: () => void;
   deleteLastWord: () => void;
   setIsChecked: (value: boolean) => void;
+  translateText: string; // translateText 추가
+  correctText: string; // correctText 추가
+  setCorrectness: (value: boolean) => void; // setCorrectness 추가
 }
 
 const UserVideoAnswerSection: React.FC<UserVideoAnswerSectionProps> = ({
@@ -22,7 +25,22 @@ const UserVideoAnswerSection: React.FC<UserVideoAnswerSectionProps> = ({
   stopVideo,
   deleteLastWord,
   setIsChecked,
+  translateText, // translateText 받음
+  correctText, // correctText 받음
+  setCorrectness, // setCorrectness 받음
 }) => {
+  const handleCheckClick = () => {
+    stopVideo();
+    setIsChecked(true);
+
+    // translateText와 correctText 비교
+    if (translateText === correctText) {
+      setCorrectness(true); // 일치하면 true로 설정
+    } else {
+      setCorrectness(false); // 일치하지 않으면 false로 설정
+    }
+  };
+
   return (
     <div className="flex w-[450px] flex-col items-center">
       <div className="bg-gray h-[280px] w-[450px] rounded-lg">
@@ -60,10 +78,7 @@ const UserVideoAnswerSection: React.FC<UserVideoAnswerSectionProps> = ({
           <UndoIcon />
         </button>
         <button
-          onClick={() => {
-            stopVideo();
-            setIsChecked(true);
-          }}
+          onClick={handleCheckClick} // 체크 버튼 클릭 시 비교 로직 실행
         >
           <CheckIcon />
         </button>

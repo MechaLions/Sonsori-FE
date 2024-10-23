@@ -15,6 +15,7 @@ interface PromptSectionProps {
   setIsChecked: (value: boolean) => void;
   showVideoAnswerSection: boolean;
   textQuestionChanged: boolean;
+  correctCount: number; // correctCount를 받아옴
 }
 
 const PromptSection = ({
@@ -23,6 +24,7 @@ const PromptSection = ({
   setIsChecked,
   showVideoAnswerSection,
   textQuestionChanged,
+  correctCount,
 }: PromptSectionProps) => {
   const {
     videoRef,
@@ -38,20 +40,23 @@ const PromptSection = ({
   const [signUrl, setSignUrl] = useState("");
   const [options, setOptions] = useState<string[]>([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
+  const [correctness, setCorrectness] = useState<boolean | undefined>(
+    undefined,
+  );
 
   // API 호출: quiz 데이터 가져오기
   useEffect(() => {
     const fetchQuizData = async () => {
       try {
-        const response = await instance.get("/quiz"); // API 경로에 맞게 수정
+        const response = await instance.get("/quiz");
         if (response.status === 200) {
-          const data = response.data.quiz[step - 1]; // step에 맞는 데이터 선택 (step이 1부터 시작하므로 -1)
+          const data = response.data.quiz[step - 1]; // step에 맞는 데이터 선택
 
           // API 응답에 따라 상태 업데이트
           setCorrectText(data.correct_text);
           setSignUrl(data.sign_url);
-          setOptions(data.options || []); // options가 없을 경우 빈 배열로 초기화
-          setCorrectAnswer(data.correct_text); // 정답을 correct_text로 설정
+          setOptions(data.options || []);
+          setCorrectAnswer(data.correct_text);
         } else {
           throw new Error("API 요청 실패");
         }
@@ -61,7 +66,7 @@ const PromptSection = ({
     };
 
     fetchQuizData();
-  }, [step]); // step이 변경될 때마다 API 호출
+  }, [step]);
 
   // translateText localStorage에 저장
   useEffect(() => {
@@ -69,6 +74,14 @@ const PromptSection = ({
       localStorage.setItem("translateText", translateText);
     }
   }, [translateText]);
+
+  // correctness가 true로 설정되면 correctCount 증가
+  useEffect(() => {
+    if (correctness !== undefined && correctness === true) {
+      setCorrectness(undefined); // 상태를 초기화
+      correctCount++; // correctCount 증가
+    }
+  }, [correctness, correctCount]);
 
   // 왼쪽 섹션: step에 따른 로직 적용
   const leftSection =
@@ -95,13 +108,17 @@ const PromptSection = ({
           stopVideo={stopVideo}
           deleteLastWord={deleteLastWord}
           setIsChecked={setIsChecked}
+          translateText={translateText}
+          correctText={correctText} // correctText 전달
+          setCorrectness={setCorrectness} // correctness 설정 함수 전달
         />
       )
     ) : (
       <TextAnswerSection
-        options={options.length > 0 ? options : ["옵션이 없습니다."]} // options가 없을 경우 대체 메시지 추가
+        options={options.length > 0 ? options : ["옵션이 없습니다."]}
         correctAnswer={correctAnswer}
         onAnswerSelect={onAnswerSelect}
+        setCorrectness={setCorrectness} // correctness 설정 함수 전달
       />
     );
 

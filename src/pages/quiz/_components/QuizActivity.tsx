@@ -16,6 +16,7 @@ import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
 
 import PromptSection from "./PromptSection";
 type QuizParams = {
+  // 이게 지정 되어있어야 parameter로 받을수 있다.
   step: number;
 };
 
@@ -40,6 +41,8 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const [isChecked, setIsChecked] = useState(false); // 카메라 Check 상태 관리
   const [showVideoAnswerSection, setShowVideoAnswerSection] = useState(false); // UserVideoAnswerSection을 VideoAnswerSection으로 변경
   const [textQuestionChanged, setTextQuestionChanged] = useState(false); // 문구 변경 관리
+
+  const [correctCount] = useState(0); // correctCount 변수 선언 및 초기화
 
   const isDisabled = selectedAnswer === null && !isChecked; // 답 선택 전과 pause 상태 전까지 비활성화
 
@@ -67,7 +70,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     replace(
       "ResultActivity",
       {
-        step: step,
+        correctCount: correctCount, // 정답개수 변수를 넘겨라
       },
       { animate: false },
     );
@@ -112,6 +115,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               videoConstraints={videoConstraints}
               showVideoAnswerSection={showVideoAnswerSection}
               textQuestionChanged={textQuestionChanged}
+              correctCount={correctCount}
             />
           </ActivityMain>
         </ActivityContent>
