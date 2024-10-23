@@ -87,6 +87,8 @@ const PromptSection = ({
   const rightSection =
     step > 5 ? (
       showVideoAnswerSection ? (
+        <VideoQuestionSection signUrl={signUrl} />
+      ) : (
         <UserVideoAnswerSection
           videoRef={videoRef}
           canvasRef={canvasRef}
@@ -97,13 +99,6 @@ const PromptSection = ({
           setIsChecked={setIsChecked}
           translateText={translateText}
           correctText={correctText} // correctText 전달
-          handleCorrectness={handleCorrectness} // handleCorrectness 전달
-        />
-      ) : (
-        <TextAnswerSection
-          options={options.length > 0 ? options : ["옵션이 없습니다."]}
-          correctAnswer={correctAnswer}
-          onAnswerSelect={onAnswerSelect}
           handleCorrectness={handleCorrectness} // handleCorrectness 전달
         />
       )
