@@ -21,20 +21,6 @@ type QuizParams = {
   correctCount: number;
 };
 
-const videoConstraints: MediaTrackConstraints = {
-  facingMode: "environment",
-  advanced: [
-    { width: { exact: 2560 }, height: { exact: 1440 } },
-    { width: { exact: 1920 }, height: { exact: 1080 } },
-    { width: { exact: 1280 }, height: { exact: 720 } },
-    { width: { exact: 1024 }, height: { exact: 576 } },
-    { width: { exact: 900 }, height: { exact: 506 } },
-    { width: { exact: 800 }, height: { exact: 450 } },
-    { width: { exact: 640 }, height: { exact: 360 } },
-    { width: { exact: 320 }, height: { exact: 180 } },
-  ],
-};
-
 const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const { step, correctCount } = params;
   const { pop, replace } = useQuizFlow();
@@ -123,7 +109,6 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               step={step}
               onAnswerSelect={handleAnswerSelect}
               setIsChecked={handleCheck} // VideoAnswerSection에서 상태 변경
-              videoConstraints={videoConstraints}
               showVideoAnswerSection={showVideoAnswerSection}
               textQuestionChanged={textQuestionChanged}
               handleCorrectness={handleCorrectness} // handleCorrectCount 전달

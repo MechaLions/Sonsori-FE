@@ -8,14 +8,14 @@ import { Activity, ActivityContent } from "@/components/Activity";
 
 import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
 
-// QuizParams 타입 추가
-type QuizParams = {
+// ResultParams 타입 추가
+type ResultParams = {
   correctCount: number;
 };
 
-const ResultActivity: ActivityComponentType = ({ params }) => {
+const ResultActivity: ActivityComponentType<ResultParams> = ({ params }) => {
   // correctCount 받아오기
-  const { correctCount } = params as QuizParams;
+  const { correctCount } = params;
   const { pop, replace } = useQuizFlow();
 
   const stack = useStack();
@@ -37,6 +37,7 @@ const ResultActivity: ActivityComponentType = ({ params }) => {
       "QuizActivity",
       {
         step: 1,
+        correctCount: 0,
       },
       { animate: false },
     );
