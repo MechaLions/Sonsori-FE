@@ -1,7 +1,9 @@
 import io from "socket.io-client";
 import { useState, useRef, useEffect } from "react";
 
-const socket = io("http://3.39.217.112:8080");
+const URL = `${import.meta.env.VITE_SOKET_URL}`;
+
+const socket = io(URL);
 
 const useVideoStream = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
