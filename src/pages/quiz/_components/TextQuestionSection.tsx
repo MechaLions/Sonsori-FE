@@ -2,10 +2,12 @@ import React from "react";
 
 interface TextQuestionSectionProps {
   textQuestionChanged: boolean;
+  correctText: string;
 }
 
 const TextQuestionSection: React.FC<TextQuestionSectionProps> = ({
   textQuestionChanged,
+  correctText,
 }) => {
   return (
     <div className="flex w-[450px] flex-col items-center">
@@ -16,7 +18,7 @@ const TextQuestionSection: React.FC<TextQuestionSectionProps> = ({
       </p>
       <div className="mb-5 flex h-[200px] w-[450px] items-center justify-center rounded-2xl bg-brandLightBlue">
         <p className="text-center text-[30px] font-semibold text-brand">
-          감사합니다
+          {correctText}
         </p>
       </div>
     </div>

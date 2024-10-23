@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import useVideoStream from "@/hooks/useVideoStream";
 
@@ -6,6 +6,8 @@ import VideoQuestionSection from "./VideoQuestionSection";
 import UserVideoAnswerSection from "./UserVideoAnswerSection";
 import TextQuestionSection from "./TextQuestionSection";
 import TextAnswerSection from "./TextAnswerSection";
+
+import { instance } from "@/api/instance";
 
 interface PromptSectionProps {
   step: number;
@@ -32,24 +34,58 @@ const PromptSection = ({
     deleteLastWord,
   } = useVideoStream();
 
-  // 일단 translatedText localStorage에 저장시킴
+  const [correctText, setCorrectText] = useState("");
+  const [signUrl, setSignUrl] = useState("");
+  const [options, setOptions] = useState<string[]>([]);
+  const [correctAnswer, setCorrectAnswer] = useState("");
+
+  // API 호출: quiz 데이터 가져오기
+  useEffect(() => {
+    const fetchQuizData = async () => {
+      try {
+        const response = await instance.get("/quiz"); // API 경로에 맞게 수정
+        if (response.status === 200) {
+          const data = response.data.quiz[step - 1]; // step에 맞는 데이터 선택 (step이 1부터 시작하므로 -1)
+
+          // API 응답에 따라 상태 업데이트
+          setCorrectText(data.correct_text);
+          setSignUrl(data.sign_url);
+          setOptions(data.options || []); // options가 없을 경우 빈 배열로 초기화
+          setCorrectAnswer(data.correct_text); // 정답을 correct_text로 설정
+        } else {
+          throw new Error("API 요청 실패");
+        }
+      } catch (error) {
+        console.error("Error fetching quiz data:", error);
+      }
+    };
+
+    fetchQuizData();
+  }, [step]); // step이 변경될 때마다 API 호출
+
+  // translateText localStorage에 저장
   useEffect(() => {
     if (translateText) {
       localStorage.setItem("translateText", translateText);
     }
   }, [translateText]);
 
+  // 왼쪽 섹션: step에 따른 로직 적용
   const leftSection =
     step > 5 ? (
-      <TextQuestionSection textQuestionChanged={textQuestionChanged} />
+      <TextQuestionSection
+        textQuestionChanged={textQuestionChanged}
+        correctText={correctText}
+      />
     ) : (
-      <VideoQuestionSection />
+      <VideoQuestionSection signUrl={signUrl} />
     );
 
+  // 오른쪽 섹션: step에 따른 로직 적용
   const rightSection =
     step > 5 ? (
       showVideoAnswerSection ? (
-        <VideoQuestionSection />
+        <VideoQuestionSection signUrl={signUrl} />
       ) : (
         <UserVideoAnswerSection
           videoRef={videoRef}
@@ -62,7 +98,11 @@ const PromptSection = ({
         />
       )
     ) : (
-      <TextAnswerSection onAnswerSelect={onAnswerSelect} />
+      <TextAnswerSection
+        options={options.length > 0 ? options : ["옵션이 없습니다."]} // options가 없을 경우 대체 메시지 추가
+        correctAnswer={correctAnswer}
+        onAnswerSelect={onAnswerSelect}
+      />
     );
 
   return (
