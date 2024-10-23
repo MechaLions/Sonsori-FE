@@ -6,14 +6,14 @@ interface TextAnswerSectionProps {
   options: string[];
   correctAnswer: string;
   onAnswerSelect: (selected: string) => void;
-  setCorrectness: (value: boolean) => void; // setCorrectness를 받아옴
+  handleCorrectness: (value: boolean) => void; // handleCorrectness를 받아옴
 }
 
 const TextAnswerSection: React.FC<TextAnswerSectionProps> = ({
   options = [], // options 기본값 설정
   correctAnswer,
   onAnswerSelect,
-  setCorrectness, // setCorrectness를 추가
+  handleCorrectness, // handleCorrectness를 추가
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [answerStatus, setAnswerStatus] = useState<{
@@ -31,7 +31,7 @@ const TextAnswerSection: React.FC<TextAnswerSectionProps> = ({
           ...prev,
           [answer]: "correct",
         }));
-        setCorrectness(true); // 정답일 경우 setCorrectness(true) 호출
+        handleCorrectness(true); // 정답일 경우 handleCorrectness(true) 호출
       } else {
         setAnswerStatus(prev => ({
           ...prev,
@@ -41,7 +41,7 @@ const TextAnswerSection: React.FC<TextAnswerSectionProps> = ({
           ...prev,
           [correctAnswer]: "correct",
         }));
-        setCorrectness(false); // 오답일 경우 setCorrectness(false) 호출
+        handleCorrectness(false); // 오답일 경우 handleCorrectness(false) 호출
       }
       onAnswerSelect(answer);
     }

@@ -14,7 +14,7 @@ interface UserVideoAnswerSectionProps {
   setIsChecked: (value: boolean) => void;
   translateText: string; // translateText 추가
   correctText: string; // correctText 추가
-  setCorrectness: (value: boolean) => void; // setCorrectness 추가
+  handleCorrectness: (value: boolean) => void; // handleCorrectness 추가
 }
 
 const UserVideoAnswerSection: React.FC<UserVideoAnswerSectionProps> = ({
@@ -27,7 +27,7 @@ const UserVideoAnswerSection: React.FC<UserVideoAnswerSectionProps> = ({
   setIsChecked,
   translateText, // translateText 받음
   correctText, // correctText 받음
-  setCorrectness, // setCorrectness 받음
+  handleCorrectness, // handleCorrectness 받음
 }) => {
   const handleCheckClick = () => {
     stopVideo();
@@ -35,9 +35,9 @@ const UserVideoAnswerSection: React.FC<UserVideoAnswerSectionProps> = ({
 
     // translateText와 correctText 비교
     if (translateText === correctText) {
-      setCorrectness(true); // 일치하면 true로 설정
+      handleCorrectness(true); // 일치하면 true로 설정
     } else {
-      setCorrectness(false); // 일치하지 않으면 false로 설정
+      handleCorrectness(false); // 일치하지 않으면 false로 설정
     }
   };
 

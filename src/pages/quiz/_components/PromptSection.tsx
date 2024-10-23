@@ -26,7 +26,7 @@ const PromptSection = ({
   showVideoAnswerSection,
   textQuestionChanged,
   correctCount,
-  handleCorrectCount, // handleCorrectCount 파라미터로 받음
+  handleCorrectCount,
 }: PromptSectionProps) => {
   const {
     videoRef,
@@ -79,9 +79,6 @@ const PromptSection = ({
 
   // correctness에 따라 handleCorrectCount 호출
   const handleCorrectness = (isCorrect: boolean) => {
-    if (isCorrect) {
-      handleCorrectCount(correctCount + 1);
-    }
     setCorrectness(isCorrect);
   };
 
@@ -110,14 +107,14 @@ const PromptSection = ({
           setIsChecked={setIsChecked}
           translateText={translateText}
           correctText={correctText} // correctText 전달
-          setCorrectness={handleCorrectness} // handleCorrectness 전달
+          handleCorrectness={handleCorrectness} // handleCorrectness 전달
         />
       ) : (
         <TextAnswerSection
           options={options.length > 0 ? options : ["옵션이 없습니다."]}
           correctAnswer={correctAnswer}
           onAnswerSelect={onAnswerSelect}
-          setCorrectness={handleCorrectness} // handleCorrectness 전달
+          handleCorrectness={handleCorrectness} // handleCorrectness 전달
         />
       )
     ) : (
@@ -125,7 +122,7 @@ const PromptSection = ({
         options={options.length > 0 ? options : ["옵션이 없습니다."]}
         correctAnswer={correctAnswer}
         onAnswerSelect={onAnswerSelect}
-        setCorrectness={handleCorrectness} // handleCorrectness 전달
+        handleCorrectness={handleCorrectness} // handleCorrectness 전달
       />
     );
 
