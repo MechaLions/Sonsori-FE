@@ -18,6 +18,7 @@ import PromptSection from "./PromptSection";
 type QuizParams = {
   // 이게 지정 되어있어야 parameter로 받을수 있다.
   step: number;
+  correctCount: number;
 };
 
 const videoConstraints: MediaTrackConstraints = {
@@ -35,14 +36,21 @@ const videoConstraints: MediaTrackConstraints = {
 };
 
 const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
-  const { step } = params;
+  const { step, correctCount } = params;
   const { pop, replace } = useQuizFlow();
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isChecked, setIsChecked] = useState(false); // 카메라 Check 상태 관리
   const [showVideoAnswerSection, setShowVideoAnswerSection] = useState(false); // UserVideoAnswerSection을 VideoAnswerSection으로 변경
   const [textQuestionChanged, setTextQuestionChanged] = useState(false); // 문구 변경 관리
 
-  const [correctCount, setCorrectCount] = useState(0); // correctCount 변수 선언 및 초기화
+  const [correctness, setCorrectness] = useState<boolean | undefined>(
+    undefined,
+  );
+
+  // correctness에 따라 handleCorrectCount 호출
+  const handleCorrectness = (isCorrect: boolean) => {
+    setCorrectness(isCorrect);
+  };
 
   const isDisabled = selectedAnswer === null && !isChecked; // 답 선택 전과 pause 상태 전까지 비활성화
 
@@ -54,6 +62,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
       "QuizActivity",
       {
         step: step + 1,
+        correctCount: correctness === true ? correctCount + 1 : correctCount,
       },
       { animate: false },
     );
@@ -84,11 +93,6 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     setIsChecked(true);
     setShowVideoAnswerSection(true);
     setTextQuestionChanged(true);
-  };
-
-  // 정답 개수를 증가시키는 함수
-  const handleCorrectCount = (count: number) => {
-    setCorrectCount(count + 1);
   };
 
   const buttonText = step === 10 ? "결과 확인" : "다음 문제";
@@ -122,8 +126,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               videoConstraints={videoConstraints}
               showVideoAnswerSection={showVideoAnswerSection}
               textQuestionChanged={textQuestionChanged}
-              correctCount={correctCount}
-              handleCorrectCount={handleCorrectCount} // handleCorrectCount 전달
+              handleCorrectness={handleCorrectness} // handleCorrectCount 전달
             />
           </ActivityMain>
         </ActivityContent>

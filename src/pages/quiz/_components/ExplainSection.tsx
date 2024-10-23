@@ -12,6 +12,7 @@ const ExplainSection = () => {
       "QuizActivity",
       {
         step: 1,
+        correctCount: 0,
       },
       { animate: false },
     );

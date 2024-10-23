@@ -15,8 +15,7 @@ interface PromptSectionProps {
   setIsChecked: (value: boolean) => void;
   showVideoAnswerSection: boolean;
   textQuestionChanged: boolean;
-  correctCount: number; // correctCount를 받아옴
-  handleCorrectCount: (count: number) => void; // handleCorrectCount 추가
+  handleCorrectness: (value: boolean) => void;
 }
 
 const PromptSection = ({
@@ -25,8 +24,7 @@ const PromptSection = ({
   setIsChecked,
   showVideoAnswerSection,
   textQuestionChanged,
-  correctCount,
-  handleCorrectCount,
+  handleCorrectness,
 }: PromptSectionProps) => {
   const {
     videoRef,
@@ -42,9 +40,6 @@ const PromptSection = ({
   const [signUrl, setSignUrl] = useState("");
   const [options, setOptions] = useState<string[]>([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
-  const [correctness, setCorrectness] = useState<boolean | undefined>(
-    undefined,
-  );
 
   // API 호출: quiz 데이터 가져오기
   useEffect(() => {
@@ -76,11 +71,6 @@ const PromptSection = ({
       localStorage.setItem("translateText", translateText);
     }
   }, [translateText]);
-
-  // correctness에 따라 handleCorrectCount 호출
-  const handleCorrectness = (isCorrect: boolean) => {
-    setCorrectness(isCorrect);
-  };
 
   // 왼쪽 섹션: step에 따른 로직 적용
   const leftSection =
