@@ -16,6 +16,7 @@ interface PromptSectionProps {
   showVideoAnswerSection: boolean;
   textQuestionChanged: boolean;
   correctCount: number; // correctCount를 받아옴
+  handleCorrectCount: (count: number) => void; // handleCorrectCount 추가
 }
 
 const PromptSection = ({
@@ -25,6 +26,7 @@ const PromptSection = ({
   showVideoAnswerSection,
   textQuestionChanged,
   correctCount,
+  handleCorrectCount, // handleCorrectCount 파라미터로 받음
 }: PromptSectionProps) => {
   const {
     videoRef,
@@ -75,13 +77,13 @@ const PromptSection = ({
     }
   }, [translateText]);
 
-  // correctness가 true로 설정되면 correctCount 증가
-  useEffect(() => {
-    if (correctness !== undefined && correctness === true) {
-      setCorrectness(undefined); // 상태를 초기화
-      correctCount++; // correctCount 증가
+  // correctness에 따라 handleCorrectCount 호출
+  const handleCorrectness = (isCorrect: boolean) => {
+    if (isCorrect) {
+      handleCorrectCount(correctCount + 1);
     }
-  }, [correctness, correctCount]);
+    setCorrectness(isCorrect);
+  };
 
   // 왼쪽 섹션: step에 따른 로직 적용
   const leftSection =
@@ -98,8 +100,6 @@ const PromptSection = ({
   const rightSection =
     step > 5 ? (
       showVideoAnswerSection ? (
-        <VideoQuestionSection signUrl={signUrl} />
-      ) : (
         <UserVideoAnswerSection
           videoRef={videoRef}
           canvasRef={canvasRef}
@@ -110,7 +110,14 @@ const PromptSection = ({
           setIsChecked={setIsChecked}
           translateText={translateText}
           correctText={correctText} // correctText 전달
-          setCorrectness={setCorrectness} // correctness 설정 함수 전달
+          setCorrectness={handleCorrectness} // handleCorrectness 전달
+        />
+      ) : (
+        <TextAnswerSection
+          options={options.length > 0 ? options : ["옵션이 없습니다."]}
+          correctAnswer={correctAnswer}
+          onAnswerSelect={onAnswerSelect}
+          setCorrectness={handleCorrectness} // handleCorrectness 전달
         />
       )
     ) : (
@@ -118,7 +125,7 @@ const PromptSection = ({
         options={options.length > 0 ? options : ["옵션이 없습니다."]}
         correctAnswer={correctAnswer}
         onAnswerSelect={onAnswerSelect}
-        setCorrectness={setCorrectness} // correctness 설정 함수 전달
+        setCorrectness={handleCorrectness} // handleCorrectness 전달
       />
     );
 

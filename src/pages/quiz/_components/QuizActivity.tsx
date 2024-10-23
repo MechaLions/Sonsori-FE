@@ -42,7 +42,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const [showVideoAnswerSection, setShowVideoAnswerSection] = useState(false); // UserVideoAnswerSection을 VideoAnswerSection으로 변경
   const [textQuestionChanged, setTextQuestionChanged] = useState(false); // 문구 변경 관리
 
-  const [correctCount] = useState(0); // correctCount 변수 선언 및 초기화
+  const [correctCount, setCorrectCount] = useState(0); // correctCount 변수 선언 및 초기화
 
   const isDisabled = selectedAnswer === null && !isChecked; // 답 선택 전과 pause 상태 전까지 비활성화
 
@@ -85,8 +85,15 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     setShowVideoAnswerSection(true);
     setTextQuestionChanged(true);
   };
+
+  // 정답 개수를 증가시키는 함수
+  const handleCorrectCount = (count: number) => {
+    setCorrectCount(count + 1);
+  };
+
   const buttonText = step === 10 ? "결과 확인" : "다음 문제";
   const handleClick = step === 10 ? handleStop : handleNext;
+
   return (
     <AppScreen>
       <Activity>
@@ -116,6 +123,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               showVideoAnswerSection={showVideoAnswerSection}
               textQuestionChanged={textQuestionChanged}
               correctCount={correctCount}
+              handleCorrectCount={handleCorrectCount} // handleCorrectCount 전달
             />
           </ActivityMain>
         </ActivityContent>
