@@ -7,6 +7,9 @@ import { AppScreen } from "@stackflow/plugin-basic-ui";
 import { Activity, ActivityContent } from "@/components/Activity";
 
 import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
+import { getID } from "@/utils/handleID";
+
+import { instance } from "@/api/instance";
 
 // ResultParams 타입 추가
 type ResultParams = {
@@ -21,7 +24,9 @@ const ResultActivity: ActivityComponentType<ResultParams> = ({ params }) => {
   const stack = useStack();
   let popCounts = stack.activities.length;
 
-  const handleStop = () => {
+  const handleStop = async () => {
+    await recordQuizScore(correctCount);
+
     startTransition(() => {
       while (popCounts > 0) {
         pop({ animate: false });
@@ -41,6 +46,23 @@ const ResultActivity: ActivityComponentType<ResultParams> = ({ params }) => {
       },
       { animate: false },
     );
+  };
+
+  // API 호출 함수 정의
+  const recordQuizScore = async (correctCount: number) => {
+    try {
+      const userId = getID();
+      const response = await instance.post(`/quiz/${userId}/record`, {
+        quiz_correct_number: correctCount,
+      });
+      console.log("퀴즈 점수 기록 결과:", response.data);
+
+      if (response.status === 200) {
+        console.log(response.data.message);
+      }
+    } catch (error) {
+      console.error("퀴즈 점수 기록 오류:", error);
+    }
   };
 
   return (
