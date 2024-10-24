@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 
 // 서버 소켓 연결
 const URL = import.meta.env.VITE_SOKET_URL;
-const socket = io(URL);
+const socket = io(URL, { transports: ["polling"] });
 
 import UndoIcon from "@/components/Icons/UndoIcon";
 import PlayIcon from "@/components/Icons/PlayIcon";

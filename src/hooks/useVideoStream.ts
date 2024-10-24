@@ -2,7 +2,7 @@ import io from "socket.io-client";
 import { useState, useRef, useEffect } from "react";
 
 const URL = import.meta.env.VITE_SOKET_URL;
-const socket = io(URL);
+const socket = io(URL, { transports: ["polling"] });
 
 const useVideoStream = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
