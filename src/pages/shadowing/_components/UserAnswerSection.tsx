@@ -2,8 +2,7 @@ import io from "socket.io-client";
 import { useEffect, useState, useRef } from "react";
 
 // 서버 소켓 연결
-const URL = `${import.meta.env.VITE_SOKET_URL}`;
-
+const URL = import.meta.env.VITE_SOKET_URL;
 const socket = io(URL);
 
 import UndoIcon from "@/components/Icons/UndoIcon";
