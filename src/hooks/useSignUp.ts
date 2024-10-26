@@ -97,12 +97,20 @@ export const useSignUp = () => {
       }));
       setIsPWPass(false);
       return;
+    } else if (pwValue !== checkPW) {
+      setErrorMent(prev => ({
+        ...prev,
+        pw: "비밀번호가 일치하지 않습니다.",
+      }));
+      setIsPWPass(true);
+      setIsPWSame(false);
     } else {
       setErrorMent(prev => ({
         ...prev,
-        pw: "",
+        pw: "비밀번호가 일치합니다.",
       }));
       setIsPWPass(true);
+      setIsPWSame(true);
     }
   };
 
@@ -110,18 +118,27 @@ export const useSignUp = () => {
     const checkPWValue = event.target.value;
     setCheckPW(checkPWValue);
 
-    if (pw === checkPWValue && checkPWValue !== "" && pw !== "") {
-      setErrorMent(prev => ({
-        ...prev,
-        pw: "비밀번호가 일치합니다.",
-      }));
-      setIsPWSame(true);
+    if (isPWPass) {
+      if (pw === checkPWValue && checkPWValue !== "" && pw !== "") {
+        setErrorMent(prev => ({
+          ...prev,
+          pw: "비밀번호가 일치합니다.",
+        }));
+        setIsPWSame(true);
+      } else {
+        setErrorMent(prev => ({
+          ...prev,
+          pw: "비밀번호가 일치하지 않습니다.",
+        }));
+        setIsPWSame(false);
+        return;
+      }
     } else {
       setErrorMent(prev => ({
         ...prev,
-        pw: "비밀번호가 일치하지 않습니다.",
+        pw: "비밀번호는 영어, 숫자, 특수기호를 포함하여 6~15자여야 합니다.",
       }));
-      setIsPWSame(false);
+      setIsPWPass(false);
       return;
     }
   };
