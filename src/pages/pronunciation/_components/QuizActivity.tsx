@@ -3,13 +3,8 @@ import { Button } from "@ui/components/ui/button";
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
-import ProgressBar from "@/components/ProgressBar";
-import {
-  Activity,
-  ActivityHeader,
-  ActivityMain,
-  ActivityContent,
-} from "@/components/Activity";
+import StepNumber from "@/components/StepNumber";
+import { Activity, ActivityMain, ActivityContent } from "@/components/Activity";
 
 import { useMutationPronunAccuracy } from "@/hooks/mutations/useMutationPronunAccuracy";
 
@@ -67,9 +62,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     <AppScreen>
       <Activity>
         <ActivityContent container="pronunciation">
-          <ActivityHeader step={step}>
-            <ProgressBar percent={step / 10} />
-          </ActivityHeader>
+          <StepNumber step={step} />
           <ActivityMain>
             <PropmptSection
               voice_text={quiz.answer_voice}

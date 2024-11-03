@@ -1,12 +1,8 @@
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
-import {
-  Activity,
-  ActivityHeader,
-  ActivityContent,
-  ActivityMain,
-} from "@/components/Activity";
+import StepNumber from "@/components/StepNumber";
+import { Activity, ActivityContent, ActivityMain } from "@/components/Activity";
 
 import { PronunAccuracyResponse } from "@/types/pronunciationType";
 
@@ -23,7 +19,7 @@ const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
     <AppScreen>
       <Activity>
         <ActivityContent container="pronunciation">
-          <ActivityHeader step={step}></ActivityHeader>
+          <StepNumber step={step} />
           <ActivityMain>
             <AnswerSection step={step} response={response} />
           </ActivityMain>
