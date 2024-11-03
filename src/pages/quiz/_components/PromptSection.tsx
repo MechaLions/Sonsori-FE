@@ -78,6 +78,7 @@ const PromptSection = ({
       <TextQuestionSection
         textQuestionChanged={textQuestionChanged}
         correctText={correctText}
+        translateText={translateText}
       />
     ) : (
       <VideoQuestionSection signUrl={signUrl} />
