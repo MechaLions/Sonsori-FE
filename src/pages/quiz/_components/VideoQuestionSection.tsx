@@ -1,5 +1,3 @@
-import ReplayIcon from "@/components/Icons/ReplayIcon";
-
 interface VideoQuestionSectionProps {
   signUrl: string;
 }
@@ -18,10 +16,6 @@ const VideoQuestionSection: React.FC<VideoQuestionSectionProps> = ({
         >
           수어 영상을 불러오는 중...
         </video>
-      </div>
-      {/* 다시하기 아이콘 placeholder */}
-      <div className="mt-5 flex gap-[30px] space-x-2">
-        <ReplayIcon />
       </div>
     </div>
   );
