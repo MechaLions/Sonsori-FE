@@ -105,6 +105,11 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
             </Button>
           </ActivityHeader>
           <ActivityMain className="gap-5">
+            <h1 className="text-center text-2xl font-semibold">
+              {step > 5
+                ? "주어진 단어에 부합하는 수어 영상을 촬영해주세요."
+                : "왼쪽의 수어 영상을 확인하고, 이에 부합하는 단어를 골라주세요."}
+            </h1>
             <PromptSection
               step={step}
               onAnswerSelect={handleAnswerSelect}
