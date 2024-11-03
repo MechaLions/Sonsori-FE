@@ -4,25 +4,36 @@ import { useStack } from "@stackflow/react";
 
 import DoughnutChart from "@/components/DoughnutChart";
 
+import { useMutationShadowingSaveAccuracy } from "@/hooks/mutations/useMutationShadowingSaveAccuracy";
+
+import { ShadowingAccuracyResponse } from "@/types/shadowingType";
+
 import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
+import { clearShadowingId } from "@/utils/handleCategoryID";
 
 import AnswerCompareSection from "./AnswerCompareSection";
 
 interface AnswerSectionProps {
   step: number;
-  correct_text: string;
-  translated_text: string;
-  accuracy: number;
+  response: ShadowingAccuracyResponse;
 }
 
 const AnswerSection = (props: AnswerSectionProps) => {
-  const { step, correct_text, translated_text, accuracy } = props;
-
+  const { step, response } = props;
   const { pop, replace } = useShadowingFlow();
+
+  const mutation = useMutationShadowingSaveAccuracy();
+
   const stack = useStack();
   let popCounts = stack.activities.length;
 
   const handleStop = () => {
+    mutation.mutate(undefined, {
+      onSuccess: () => {
+        clearShadowingId();
+      },
+    });
+
     startTransition(() => {
       while (popCounts > 0) {
         pop({ animate: false });
@@ -56,18 +67,14 @@ const AnswerSection = (props: AnswerSectionProps) => {
       <h1 className="mt-4 text-4xl font-bold">정확도 100%를 도전해보세요!</h1>
       <section className="flex w-full items-center justify-center gap-[100px]">
         <div className="flex flex-col items-center gap-5">
-          <DoughnutChart
-            percent={accuracy !== null ? accuracy / 100 : 0.82}
-            size="150px"
-          />
+          <DoughnutChart percent={response.accuracy / 100} size="150px" />
           <div className="text-[25px] font-bold">
-            {/* API에서 받은 정확도 표시 */}
-            <p>정확도: {accuracy !== null ? `${accuracy}%` : "계산 중..."}</p>
+            <p>정확도: {response.accuracy}%</p>
           </div>
         </div>
         <AnswerCompareSection
-          correctText={correct_text !== null ? correct_text : ""} // null일 때 빈 문자열로 대체
-          userText={translated_text}
+          correct_text={response.correct_text}
+          user_text={response.translated_text}
         />
       </section>
       <div className="flex items-center justify-center gap-[50px]">
