@@ -64,6 +64,10 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
         <ActivityContent container="pronunciation">
           <StepNumber step={step} />
           <ActivityMain>
+            <h1 className="text-center text-2xl font-medium text-brandDarkGray">
+              학습할 문장과 발음 텍스트를 확인하고, 녹음 버튼을 누르고 녹음을
+              완료해주세요.
+            </h1>
             <PropmptSection
               voice_text={quiz.answer_voice}
               origin_text={quiz.word_text}
