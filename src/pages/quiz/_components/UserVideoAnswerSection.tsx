@@ -1,8 +1,5 @@
 import React from "react";
-
-import UndoIcon from "@/components/Icons/UndoIcon";
-import PlayIcon from "@/components/Icons/PlayIcon";
-import CheckIcon from "@/components/Icons/CheckIcon";
+import { Button } from "@ui/components/ui/button";
 
 interface UserVideoAnswerSectionProps {
   videoRef: React.RefObject<HTMLVideoElement>;
@@ -23,7 +20,6 @@ const UserVideoAnswerSection: React.FC<UserVideoAnswerSectionProps> = ({
   isCameraOn,
   startVideo,
   stopVideo,
-  deleteLastWord,
   setIsChecked,
   translateText, // translateText 받음
   correctText, // correctText 받음
@@ -71,17 +67,22 @@ const UserVideoAnswerSection: React.FC<UserVideoAnswerSectionProps> = ({
 
       {/* Icon Buttons */}
       <div className="mt-5 flex gap-[30px]">
-        <button onClick={startVideo}>
-          <PlayIcon />
-        </button>
-        <button onClick={deleteLastWord}>
-          <UndoIcon />
-        </button>
-        <button
-          onClick={handleCheckClick} // 체크 버튼 클릭 시 비교 로직 실행
+        <Button
+          variant="brand"
+          size="small"
+          onClick={startVideo}
+          className="py-[8px] text-[13px] font-medium"
         >
-          <CheckIcon />
-        </button>
+          시작하기
+        </Button>
+        <Button
+          variant="quiz"
+          size="small"
+          onClick={handleCheckClick}
+          className="py-[8px] text-[13px]"
+        >
+          제출하기
+        </Button>
       </div>
     </div>
   );
