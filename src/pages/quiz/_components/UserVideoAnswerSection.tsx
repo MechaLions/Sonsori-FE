@@ -46,7 +46,7 @@ const UserVideoAnswerSection: React.FC<UserVideoAnswerSectionProps> = ({
               ref={videoRef}
               autoPlay
               playsInline
-              className="scale-x-[-1] rounded-2xl object-cover"
+              className="scale-x-[-1] rounded-lg object-cover"
               style={{ width: "450px", height: "280px" }}
             ></video>
             <canvas
