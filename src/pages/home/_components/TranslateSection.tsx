@@ -30,16 +30,15 @@ const TranslateSection = forwardRef<HTMLDivElement>(
           />
         </section>
 
-        <section className="flex w-full flex-col gap-8 text-[30px]">
+        <section className="flex w-full flex-col gap-6 text-[30px]">
           <h1 className="font-semibold text-brand">실시간 수어 동작 번역</h1>
-          <div className="font-normal leading-tight">
-            시작하기 버튼을 누르고, 촬영이 시작되면 원하는 마음껏 수어 동작을
-            표현해주세요.
+          <div className="font-normal leading-snug">
+            시작하기 버튼을 눌러 촬영을 시작하세요.
             <br />
-            실시간으로 영상이 번역된 텍스트를 확인해보세요.
+            실시간으로 입력한 수어의 번역된 텍스트를 바로 확인할 수 있습니다.
             <br />
-            잘못된 영상이 입력되어 번역되었다면, 단어 삭제 버튼으로 삭제할 수
-            있어요.
+            잘못된 수어가 입력되었을 경우, 단어 삭제 버튼으로 마지막 단어를
+            삭제할 수 있습니다.
           </div>
         </section>
         <Link to={"/translate"}>
