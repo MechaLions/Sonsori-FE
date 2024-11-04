@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Button } from "@ui/components/ui/button";
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
 import StepNumber from "@/components/StepNumber";
+import NextStepButton from "@/components/NextStepButton";
 import { Activity, ActivityMain, ActivityContent } from "@/components/Activity";
 
 import { useMutationPronunAccuracy } from "@/hooks/mutations/useMutationPronunAccuracy";
@@ -76,14 +76,12 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               <div className="absolute left-1/2 -translate-x-1/2 transform">
                 <MicDialog setAudioFile={setAudioFile} />
               </div>
-              <Button
-                variant="brand"
+              <NextStepButton
                 className="absolute right-0"
-                onClick={handleClick}
+                handleClick={handleClick}
                 disabled={!audioFile}
-              >
-                결과 확인
-              </Button>
+                isLoading={mutation.isPending}
+              />
             </div>
           </ActivityMain>
         </ActivityContent>
