@@ -17,7 +17,7 @@ const NextStepButton = (props: NextStepButtonProps) => {
       variant="brand"
       className={cn("", className)}
       onClick={handleClick}
-      disabled={disabled || isLoading}
+      disabled={disabled}
       {...rest}
     >
       {isLoading ? (
