@@ -14,7 +14,6 @@ interface PromptSectionProps {
   onAnswerSelect: (answer: string) => void;
   setIsChecked: (value: boolean) => void;
   showVideoAnswerSection: boolean;
-  textQuestionChanged: boolean;
   handleCorrectness: (value: boolean) => void;
 }
 
@@ -23,7 +22,6 @@ const PromptSection = ({
   onAnswerSelect,
   setIsChecked,
   showVideoAnswerSection,
-  textQuestionChanged,
   handleCorrectness,
 }: PromptSectionProps) => {
   const {
@@ -76,7 +74,6 @@ const PromptSection = ({
   const leftSection =
     step > 5 ? (
       <TextQuestionSection
-        textQuestionChanged={textQuestionChanged}
         correctText={correctText}
         translateText={translateText}
       />

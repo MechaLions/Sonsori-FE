@@ -27,7 +27,6 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isChecked, setIsChecked] = useState(false); // 카메라 Check 상태 관리
   const [showVideoAnswerSection, setShowVideoAnswerSection] = useState(false); // UserVideoAnswerSection을 VideoAnswerSection으로 변경
-  const [textQuestionChanged, setTextQuestionChanged] = useState(false); // 문구 변경 관리
 
   const [correctness, setCorrectness] = useState<boolean | undefined>(
     undefined,
@@ -78,7 +77,6 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const handleCheck = () => {
     setIsChecked(true);
     setShowVideoAnswerSection(true);
-    setTextQuestionChanged(true);
   };
 
   const buttonText = step === 10 ? "결과 확인" : "다음 문제";
@@ -115,7 +113,6 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               onAnswerSelect={handleAnswerSelect}
               setIsChecked={handleCheck} // VideoAnswerSection에서 상태 변경
               showVideoAnswerSection={showVideoAnswerSection}
-              textQuestionChanged={textQuestionChanged}
               handleCorrectness={handleCorrectness} // handleCorrectCount 전달
             />
           </ActivityMain>
