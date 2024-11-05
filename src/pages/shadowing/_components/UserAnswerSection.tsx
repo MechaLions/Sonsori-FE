@@ -1,13 +1,10 @@
 import io from "socket.io-client";
 import { useEffect, useState, useRef } from "react";
+import { Button } from "@ui/components/ui/button";
 
 // 서버 소켓 연결
 const URL = import.meta.env.VITE_SOKET_URL;
 const socket = io(URL, { transports: ["polling"] });
-
-import UndoIcon from "@/components/Icons/UndoIcon";
-import PlayIcon from "@/components/Icons/PlayIcon";
-import PauseIcon from "@/components/Icons/PauseIcon";
 
 interface UserAnswerSectionProps {
   onTranslate: (text: string) => void; // 번역된 텍스트를 전달하는 콜백
@@ -135,15 +132,30 @@ const UserAnswerSection = ({ onTranslate }: UserAnswerSectionProps) => {
 
       {/* 아이콘 버튼 */}
       <div className="mt-5 flex gap-[30px]">
-        <button onClick={startVideo}>
-          <PlayIcon />
-        </button>
-        <button onClick={deleteLastWord}>
-          <UndoIcon />
-        </button>
-        <button onClick={stopVideo}>
-          <PauseIcon />
-        </button>
+        <Button
+          variant="brand"
+          size="small"
+          onClick={startVideo}
+          className="py-[8px] text-[13px]"
+        >
+          시작하기
+        </Button>
+        <Button
+          variant="brand"
+          size="small"
+          onClick={deleteLastWord}
+          className="bg-white py-[8px] text-[13px] text-black"
+        >
+          단어 삭제
+        </Button>
+        <Button
+          variant="quiz"
+          size="small"
+          onClick={stopVideo}
+          className="border-[2px] py-[8px] text-[13px]"
+        >
+          제출하기
+        </Button>
       </div>
 
       {/* 텍스트 박스 */}
