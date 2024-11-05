@@ -110,21 +110,21 @@ const PromptSection = ({
     );
 
   return (
-    <div className="relative flex w-[1032px] items-center justify-between rounded-2xl bg-white p-1 pb-5 pt-7 shadow-lg">
+    <div className="flex w-[1032px] flex-col items-center gap-8 rounded-2xl bg-white pb-10 shadow-lg">
       {/* Dots */}
-      <div className="absolute left-1/2 top-3 flex -translate-x-1/2 transform space-x-1">
+      <div className="flex gap-1 pt-3">
         <div className="h-2 w-2 rounded-full bg-gray-400"></div>
         <div className="h-2 w-2 rounded-full bg-gray-400"></div>
         <div className="h-2 w-2 rounded-full bg-gray-400"></div>
       </div>
 
-      <div className="flex h-full w-full items-center">
+      <div className="flex w-full items-center">
         <div className="flex flex-1 items-center justify-center">
           {leftSection}
         </div>
         {/* Divider */}
-        <div className="h-[350px] w-[1px] bg-gray-500"></div>
-        <div className="flex h-[450px] flex-1 items-center justify-center">
+        <div className="h-[340px] w-[1px] bg-gray-500"></div>
+        <div className="flex flex-1 items-center justify-center">
           {rightSection}
         </div>
       </div>
