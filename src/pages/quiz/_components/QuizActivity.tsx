@@ -1,16 +1,12 @@
 import { useState, startTransition } from "react";
+import { cn } from "@ui/lib/utils";
 import { Button } from "@ui/components/ui/button";
 import { useStack } from "@stackflow/react";
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
-import ProgressBar from "@/components/ProgressBar";
-import {
-  Activity,
-  ActivityHeader,
-  ActivityMain,
-  ActivityContent,
-} from "@/components/Activity";
+import StepNumber from "@/components/StepNumber";
+import { Activity, ActivityMain, ActivityContent } from "@/components/Activity";
 
 import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
 
@@ -86,28 +82,14 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     <AppScreen>
       <Activity>
         <ActivityContent container="quiz">
-          <ActivityHeader step={step} className="relative">
-            <ProgressBar percent={step / 10} />
-            <Button
-              variant="brand"
-              onClick={handleClick}
-              disabled={isDisabled}
-              className={`${
-                isDisabled ? "bg-buttonGray text-white" : "bg-brand text-white"
-              } absolute bottom-[50px] right-[20%]`}
-              style={{
-                opacity: isDisabled ? 1 : undefined,
-              }}
-            >
-              {buttonText}
-            </Button>
-          </ActivityHeader>
-          <ActivityMain className="gap-5">
+          <StepNumber step={step}>
             <h1 className="text-center text-2xl font-semibold">
               {step > 5
                 ? "주어진 단어에 부합하는 수어 영상을 촬영해주세요."
                 : "왼쪽의 수어 영상을 확인하고, 이에 부합하는 단어를 골라주세요."}
             </h1>
+          </StepNumber>
+          <ActivityMain>
             <PromptSection
               step={step}
               onAnswerSelect={handleAnswerSelect}
@@ -115,6 +97,18 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               showVideoAnswerSection={showVideoAnswerSection}
               handleCorrectness={handleCorrectness} // handleCorrectCount 전달
             />
+            <Button
+              variant="brand"
+              onClick={handleClick}
+              disabled={isDisabled}
+              className={cn(
+                isDisabled ? "bg-buttonGray" : "bg-brand",
+                "text-white",
+              )}
+              style={isDisabled ? { opacity: 1 } : undefined}
+            >
+              {buttonText}
+            </Button>
           </ActivityMain>
         </ActivityContent>
       </Activity>

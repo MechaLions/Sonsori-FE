@@ -68,14 +68,9 @@ const ResultActivity: ActivityComponentType<ResultParams> = ({ params }) => {
   return (
     <AppScreen>
       <Activity>
-        <ActivityContent
-          container="quiz"
-          className="flex items-center justify-center pb-10"
-        >
-          <div className="relative flex h-[630px] w-[1032px] flex-col items-center justify-center rounded-2xl bg-white shadow-lg">
-            <p className="absolute right-[80px] top-[50px] text-[80px] font-semibold">
-              🎉
-            </p>
+        <ActivityContent container="quiz" className="pb-10">
+          <div className="relative flex w-[1032px] flex-col items-center justify-center gap-7 rounded-2xl bg-white pb-16 pt-24 shadow-lg">
+            <p className="absolute right-[80px] top-[50px] text-[80px]">🎉</p>
             <div className="flex h-[260px] w-[800px] items-center justify-center rounded-2xl bg-brandLightBlue">
               <p className="text-center text-[30px] font-bold">
                 10문제 중&nbsp;
@@ -86,10 +81,10 @@ const ResultActivity: ActivityComponentType<ResultParams> = ({ params }) => {
               </p>
               <p className="text-center text-[30px] font-bold">맞았어요.</p>
             </div>
-            <p className="mb-5 mt-7 text-center text-[20px] font-semibold">
+            <p className="text-center text-[20px] font-semibold">
               수고하셨습니다 😊
             </p>
-            <div className="flex h-[100px] items-center justify-between gap-[60px]">
+            <div className="mt-4 flex items-center justify-between gap-[60px]">
               <Button
                 variant="brand"
                 className="bg-brandGray text-black"
