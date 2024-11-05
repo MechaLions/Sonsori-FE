@@ -96,7 +96,7 @@ module.exports = {
         "quiz-image": "url('@/assets/QuizBackground.png')",
       },
       boxShadow: {
-        shadowBrand: "0 4px 4px 0 rgba(0,0,0,0.25)",
+        shadowBrand: "4px 4px 10px 0 rgba(0,0,0,0.25)",
         categoryShadow: "5px 5px 10px 0 rgba(0,0,0,0.25)",
       },
     },

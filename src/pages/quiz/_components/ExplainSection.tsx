@@ -19,7 +19,7 @@ const ExplainSection = () => {
   };
 
   return (
-    <div className="flex h-[630px] w-[1032px] flex-col items-center justify-center rounded-2xl bg-white shadow-lg">
+    <div className="flex h-[630px] w-[1032px] flex-col items-center justify-center rounded-2xl bg-white shadow-shadowBrand">
       <QuizIcon />
       <h1 className="text-[40px] font-bold">수어 퀴즈를 시작합니다.</h1>
       <br />

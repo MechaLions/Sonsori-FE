@@ -1,5 +1,3 @@
-import React from "react";
-
 import ButtonSection from "./ButtonSection";
 
 interface VideoSectionProps {
@@ -25,7 +23,7 @@ const VideoSection = (props: VideoSectionProps) => {
     deleteLastWord,
   } = props;
   return (
-    <div className="flex w-[766px] flex-col items-center gap-4 rounded-2xl bg-white pb-6 shadow-lg">
+    <div className="flex w-[766px] flex-col items-center gap-4 rounded-2xl bg-white pb-6 shadow-shadowBrand">
       <div className="flex gap-1 pt-3">
         <span className="h-2 w-2 rounded-full bg-buttonGray"></span>
         <span className="h-2 w-2 rounded-full bg-buttonGray"></span>
