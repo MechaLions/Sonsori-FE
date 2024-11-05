@@ -48,7 +48,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const [accuracyData, setAccuracyData] = useState<Response | null>(null);
   useEffect(() => {
     // 첫 번째 문제일 때만 API 호출
-    if (step === 1 && questions.length === 0 && category_id !== null) {
+    if (step === 1 && category_id !== null) {
       const fetchQuestions = async () => {
         try {
           const response = await instance.get(
