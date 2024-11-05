@@ -48,7 +48,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const [accuracyData, setAccuracyData] = useState<Response | null>(null);
   useEffect(() => {
     // 첫 번째 문제일 때만 API 호출
-    if (step === 1 && questions.length === 0 && category_id !== null) {
+    if (step === 1 && category_id !== null) {
       const fetchQuestions = async () => {
         try {
           const response = await instance.get(
@@ -116,6 +116,10 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
             </Button>
           </ActivityHeader>
           <ActivityMain>
+            <h1 className="text-center text-2xl font-medium text-brandDarkGray">
+              왼쪽의 학습할 영상과 단어를 확인하고, 수어 동작을 따라해
+              촬영해주세요.
+            </h1>
             <PromptSection
               questions={questions}
               step={step}
