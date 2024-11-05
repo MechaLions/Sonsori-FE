@@ -116,6 +116,10 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
             </Button>
           </ActivityHeader>
           <ActivityMain>
+            <h1 className="text-center text-2xl font-medium text-brandDarkGray">
+              왼쪽의 학습할 영상과 단어를 확인하고, 수어 동작을 따라해
+              촬영해주세요.
+            </h1>
             <PromptSection
               questions={questions}
               step={step}
