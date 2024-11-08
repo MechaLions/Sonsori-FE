@@ -1,6 +1,6 @@
 interface StepNumberProps {
   step: number;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const StepNumber = (props: StepNumberProps) => {

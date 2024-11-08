@@ -38,7 +38,7 @@ const ActivityContent: React.FC<ActivityContentProps> = ({
     <main className={cn(`${container}-container`, "h-full w-full pt-[88px]")}>
       <section
         className={cn(
-          "flex h-full w-full flex-col items-center justify-center gap-2 bg-white/[.42] pt-4",
+          "flex h-full w-full flex-col items-center justify-center gap-2 bg-white/[.42] pt-3",
           className,
         )}
         {...props}

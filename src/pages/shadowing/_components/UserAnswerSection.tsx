@@ -107,7 +107,7 @@ const UserAnswerSection = ({ onTranslate }: UserAnswerSectionProps) => {
   };
 
   return (
-    <div className="flex w-[450px] flex-col items-center">
+    <div className="flex h-full w-[450px] flex-col items-center justify-between">
       {/* 카메라 화면 */}
       <div className="bg-gray h-[280px] w-[450px] rounded-lg">
         {isCameraOn ? (
@@ -124,14 +124,15 @@ const UserAnswerSection = ({ onTranslate }: UserAnswerSectionProps) => {
         ) : (
           <div className="flex h-[280px] w-[450px] items-center justify-center rounded-lg bg-[#434242]">
             <h1 className="text-center text-[20px] font-semibold text-[#D9D9D9]">
-              시작하기를 누르면 번역을 위한 촬영이 시작됩니다.
+              시작하기를 누르면
+              <br /> 번역을 위한 촬영이 시작됩니다.
             </h1>
           </div>
         )}
       </div>
 
       {/* 아이콘 버튼 */}
-      <div className="mt-5 flex gap-[30px]">
+      <div className="flex gap-[20px]">
         <Button
           variant="brand"
           size="small"
@@ -154,15 +155,13 @@ const UserAnswerSection = ({ onTranslate }: UserAnswerSectionProps) => {
           onClick={stopVideo}
           className="border-[2px] py-[8px] text-[13px]"
         >
-          제출하기
+          촬영 중지
         </Button>
       </div>
 
       {/* 텍스트 박스 */}
-      <div className="mt-4 flex h-[160px] w-[450px] items-center justify-center rounded-lg bg-textboxGray">
-        <p className="text-center text-[15px] font-semibold text-brandDarkGray">
-          {translateText}
-        </p>
+      <div className="flex h-24 w-[450px] items-center justify-center rounded-lg bg-textboxGray">
+        <p className="text-center text-xl font-medium">{translateText}</p>
       </div>
     </div>
   );

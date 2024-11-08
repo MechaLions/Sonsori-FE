@@ -19,7 +19,7 @@ const AnswerActivity: ActivityComponentType<AnswerParams> = ({ params }) => {
     <AppScreen>
       <Activity>
         <ActivityContent container="pronunciation">
-          <StepNumber step={step} />
+          <StepNumber step={step}></StepNumber>
           <ActivityMain>
             <AnswerSection step={step} response={response} />
           </ActivityMain>

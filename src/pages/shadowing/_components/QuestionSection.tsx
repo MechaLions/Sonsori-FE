@@ -10,7 +10,7 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
   question,
 }) => {
   return (
-    <div className="flex w-[450px] flex-col items-center">
+    <div className="flex h-full w-[450px] flex-col items-center justify-between">
       {/* 이미지 placeholder */}
       <div className="flex h-[280px] w-[450px] items-center justify-center rounded-lg bg-textboxGray">
         <video
@@ -21,8 +21,8 @@ const QuestionSection: React.FC<QuestionSectionProps> = ({
       </div>
 
       {/* 텍스트 박스 placeholder */}
-      <div className="mt-4 flex h-[160px] w-[450px] items-center justify-center rounded-lg bg-textboxGray">
-        <p className="text-center text-[30px] font-semibold text-brand">
+      <div className="flex h-24 w-[450px] items-center justify-center rounded-lg bg-textboxGray">
+        <p className="text-center text-2xl font-semibold text-brand">
           {question}
         </p>
       </div>
