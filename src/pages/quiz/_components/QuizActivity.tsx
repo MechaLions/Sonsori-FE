@@ -15,10 +15,13 @@ type QuizParams = {
   // 이게 지정 되어있어야 parameter로 받을수 있다.
   step: number;
   correctCount: number;
+  signUrls: string[];
+  correctTexts: string[];
+  optionsList: string[][];
 };
 
 const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
-  const { step, correctCount } = params;
+  const { step, correctCount, signUrls, correctTexts, optionsList } = params;
   const { pop, replace } = useQuizFlow();
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isChecked, setIsChecked] = useState(false); // 카메라 Check 상태 관리
@@ -44,6 +47,9 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
       {
         step: step + 1,
         correctCount: correctness === true ? correctCount + 1 : correctCount,
+        signUrls,
+        correctTexts,
+        optionsList,
       },
       { animate: false },
     );
@@ -96,6 +102,9 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               setIsChecked={handleCheck} // VideoAnswerSection에서 상태 변경
               showVideoAnswerSection={showVideoAnswerSection}
               handleCorrectness={handleCorrectness} // handleCorrectCount 전달
+              correctText={correctTexts[step - 1]}
+              signUrl={signUrls[step - 1]}
+              optionList={optionsList[step - 1]}
             />
             <Button
               variant="brand"

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import useVideoStream from "@/hooks/useVideoStream";
 
@@ -7,31 +7,27 @@ import UserVideoAnswerSection from "./UserVideoAnswerSection";
 import TextQuestionSection from "./TextQuestionSection";
 import TextAnswerSection from "./TextAnswerSection";
 
-import { instance } from "@/api/instance";
-
 interface PromptSectionProps {
   step: number;
   onAnswerSelect: (answer: string) => void;
   setIsChecked: (value: boolean) => void;
   showVideoAnswerSection: boolean;
   handleCorrectness: (value: boolean) => void;
+  correctText: string;
+  signUrl: string;
+  optionList: string[];
 }
-
-interface QuizItem {
-  type: string;
-  word_id: number;
-  correct_text: string;
-  sign_url: string;
-  options?: string[];
-}
-
-const PromptSection = ({
-  step,
-  onAnswerSelect,
-  setIsChecked,
-  showVideoAnswerSection,
-  handleCorrectness,
-}: PromptSectionProps) => {
+const PromptSection = (props: PromptSectionProps) => {
+  const {
+    step,
+    onAnswerSelect,
+    setIsChecked,
+    showVideoAnswerSection,
+    handleCorrectness,
+    correctText,
+    signUrl,
+    optionList,
+  } = props;
   const {
     videoRef,
     canvasRef,
@@ -42,64 +38,9 @@ const PromptSection = ({
     deleteLastWord,
   } = useVideoStream();
 
-  // 10개 전체 문제 데이터
-  const [quizData, setQuizData] = useState<string[]>([]);
-  const [correctTexts, setCorrectTexts] = useState<string[]>([]);
-  const [signUrls, setSignUrls] = useState<string[]>([]);
-  const [optionsList, setOptionsList] = useState<string[][]>([]);
-
-  // 하나의 문제 데이터
-  const [currentCorrectText, setCurrentCorrectText] = useState("");
-  const [currentSignUrl, setCurrentSignUrl] = useState("");
-  const [currentOptions, setCurrentOptions] = useState<string[]>([]);
-
-  // API 호출: quiz 데이터 가져오기 (step === 1일 때만)
-  useEffect(() => {
-    if (step === 1) {
-      const fetchQuizData = async () => {
-        try {
-          const response = await instance.get("/quiz");
-          if (response.status === 200) {
-            const quizData = response.data.quiz;
-            setQuizData(quizData);
-            console.log("quizData:", quizData);
-
-            // 각 데이터 속성 배열을 따로 만들어 한 번에 상태 업데이트
-            const newSignUrls = quizData.map((d: QuizItem) => d.sign_url);
-            const newCorrectTexts = quizData.map(
-              (d: QuizItem) => d.correct_text,
-            );
-            const newOptionsList = quizData.map(
-              (d: QuizItem) => d.options || [],
-            );
-
-            setSignUrls(newSignUrls);
-            setCorrectTexts(newCorrectTexts);
-            setOptionsList(newOptionsList);
-
-            console.log("signUrls:", newSignUrls);
-            console.log("correctTexts:", newCorrectTexts);
-            console.log("optionsList:", newOptionsList);
-          } else {
-            throw new Error("API 요청 실패");
-          }
-        } catch (error) {
-          console.error("Error fetching quiz data:", error);
-        }
-      };
-
-      fetchQuizData();
-    }
-  }, [step]);
-
-  // step 변경 시 해당 step의 데이터를 설정
-  useEffect(() => {
-    if (quizData.length > 0 && step <= quizData.length) {
-      setCurrentSignUrl(signUrls[step - 1] || "");
-      setCurrentCorrectText(correctTexts[step - 1] || "");
-      setCurrentOptions(optionsList[step - 1] || []);
-    }
-  }, [step, quizData, signUrls, correctTexts, optionsList]);
+  console.log("correctText: ", correctText);
+  console.log("signUrl: ", signUrl);
+  console.log("optionList: ", optionList);
 
   // translateText localStorage에 저장
   useEffect(() => {
@@ -112,18 +53,18 @@ const PromptSection = ({
   const leftSection =
     step > 5 ? (
       <TextQuestionSection
-        correctText={currentCorrectText}
+        correctText={correctText}
         translateText={translateText}
       />
     ) : (
-      <VideoQuestionSection signUrl={currentSignUrl} />
+      <VideoQuestionSection signUrl={signUrl} />
     );
 
   // 오른쪽 섹션: step에 따른 로직 적용
   const rightSection =
     step > 5 ? (
       showVideoAnswerSection ? (
-        <VideoQuestionSection signUrl={currentSignUrl} />
+        <VideoQuestionSection signUrl={signUrl} />
       ) : (
         <UserVideoAnswerSection
           videoRef={videoRef}
@@ -134,16 +75,14 @@ const PromptSection = ({
           deleteLastWord={deleteLastWord}
           setIsChecked={setIsChecked}
           translateText={translateText}
-          correctText={currentCorrectText} // correctText 전달
+          correctText={correctText} // correctText 전달
           handleCorrectness={handleCorrectness} // handleCorrectness 전달
         />
       )
     ) : (
       <TextAnswerSection
-        options={
-          currentOptions.length > 0 ? currentOptions : ["옵션이 없습니다."]
-        }
-        correctAnswer={currentCorrectText}
+        options={optionList.length > 0 ? optionList : ["옵션이 없습니다."]}
+        correctAnswer={correctText}
         onAnswerSelect={onAnswerSelect}
         handleCorrectness={handleCorrectness} // handleCorrectness 전달
       />
