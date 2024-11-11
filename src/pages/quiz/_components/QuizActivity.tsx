@@ -67,6 +67,9 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
       "ResultActivity",
       {
         correctCount: correctCount, // 정답개수 변수를 넘겨라
+        signUrls,
+        correctTexts,
+        optionsList,
       },
       { animate: false },
     );

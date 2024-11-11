@@ -14,11 +14,14 @@ import { instance } from "@/api/instance";
 // ResultParams 타입 추가
 type ResultParams = {
   correctCount: number;
+  signUrls: string[];
+  correctTexts: string[];
+  optionsList: string[][];
 };
 
 const ResultActivity: ActivityComponentType<ResultParams> = ({ params }) => {
   // correctCount 받아오기
-  const { correctCount } = params;
+  const { correctCount, signUrls, correctTexts, optionsList } = params;
   const { pop, replace } = useQuizFlow();
 
   const stack = useStack();
@@ -43,6 +46,9 @@ const ResultActivity: ActivityComponentType<ResultParams> = ({ params }) => {
       {
         step: 1,
         correctCount: 0,
+        signUrls,
+        correctTexts,
+        optionsList,
       },
       { animate: false },
     );
