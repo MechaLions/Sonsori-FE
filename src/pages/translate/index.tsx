@@ -19,7 +19,7 @@ const TranslatePage = () => {
 
   return (
     <main
-      className="translate-background flex w-full flex-col items-center justify-evenly"
+      className="translate-background flex w-full flex-col items-center justify-center gap-12"
       style={{ height: "calc(100vh - 78px)" }}
     >
       <VideoSection

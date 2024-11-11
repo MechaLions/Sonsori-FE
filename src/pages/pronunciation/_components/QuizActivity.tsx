@@ -73,7 +73,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               voice_text={quiz.answer_voice}
               origin_text={quiz.word_text}
             />
-            <div className="relative flex h-20 w-[70%] items-center">
+            <div className="relative mt-8 flex h-20 w-[70%] items-center">
               <div className="absolute left-1/2 -translate-x-1/2 transform">
                 <MicDialog setAudioFile={setAudioFile} />
               </div>

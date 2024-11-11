@@ -38,7 +38,7 @@ const ActivityContent: React.FC<ActivityContentProps> = ({
     <main className={cn(`${container}-container`, "h-full w-full pt-[88px]")}>
       <section
         className={cn(
-          "flex h-full w-full flex-col items-center justify-center gap-2 bg-white/[.42] pt-3",
+          "flex h-full w-full flex-col items-center justify-center gap-2 bg-white/[.42] pt-5",
           className,
         )}
         {...props}
@@ -58,7 +58,7 @@ const ActivityMain = ({
   return (
     <section
       className={cn(
-        "flex w-full flex-1 flex-col items-center justify-around pb-7",
+        "flex w-full flex-1 flex-col items-center justify-center gap-8",
         className,
       )}
       {...props}
