@@ -29,19 +29,22 @@ const AnswerCompareSection = ({
     const correctChars = correct.split(""); // 올바른 텍스트를 문자 배열로 변환
     const userChars = user.split(""); // 사용자 입력 텍스트를 문자 배열로 변환
 
-    // 두 문자열의 길이가 다를 때 대비하여 처리
-    return correctChars.map((char: string, index: number) => {
-      const userChar = userChars[index] || ""; // 사용자가 입력하지 않은 부분은 빈 값 처리
-      if (char === userChar) {
+    const maxLength = Math.max(correctChars.length, userChars.length);
+
+    return Array.from({ length: maxLength }, (_, index) => {
+      const correctChar = correctChars[index] || ""; // 올바른 텍스트가 없을 경우 빈 값 처리
+      const userChar = userChars[index] || ""; // 사용자 입력이 없을 경우 빈 값 처리
+
+      if (correctChar === userChar) {
         return (
           <span key={index} className="text-brandGreen">
-            {char}
+            {userChar}
           </span>
         );
       } else {
         return (
           <span key={index} className="text-brandRed">
-            {userChar}
+            {userChar || correctChar}
           </span>
         );
       }

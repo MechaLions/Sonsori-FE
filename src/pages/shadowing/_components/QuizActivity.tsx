@@ -3,13 +3,8 @@ import { Button } from "@ui/components/ui/button";
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
-import ProgressBar from "@/components/ProgressBar";
-import {
-  Activity,
-  ActivityHeader,
-  ActivityMain,
-  ActivityContent,
-} from "@/components/Activity";
+import StepNumber from "@/components/StepNumber";
+import { Activity, ActivityMain, ActivityContent } from "@/components/Activity";
 
 import { useShadowingFlow } from "@/utils/shadowing/useShadowingFlow";
 import { getID } from "@/utils/handleID";
@@ -48,7 +43,7 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const [accuracyData, setAccuracyData] = useState<Response | null>(null);
   useEffect(() => {
     // 첫 번째 문제일 때만 API 호출
-    if (step === 1 && questions.length === 0 && category_id !== null) {
+    if (step === 1 && category_id !== null) {
       const fetchQuestions = async () => {
         try {
           const response = await instance.get(
@@ -105,28 +100,25 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     <AppScreen>
       <Activity>
         <ActivityContent container="shadowing">
-          <ActivityHeader step={step} className="relative">
-            <ProgressBar percent={step / 10} />
-            <Button
-              variant="brand"
-              className="absolute bottom-[50px] right-[20%]"
-              onClick={handleClick}
-            >
-              결과 확인
-            </Button>
-          </ActivityHeader>
+          <StepNumber step={step}>
+            <h1 className="text-center text-2xl font-semibold">
+              왼쪽의 학습할 영상과 단어를 확인하고, 수어 동작을 따라해
+              촬영해주세요.
+            </h1>
+          </StepNumber>
           <ActivityMain>
             <PromptSection
               questions={questions}
               step={step}
               calculateAccuracy={calculateAccuracy}
             />
-            {/* {accuracyData && (
-              <AnswerCompareSection
-                correctText={accuracyData.correct_text}
-                userText={accuracyData.translated_text}
-              />
-            )} */}
+            <Button
+              variant="brand"
+              onClick={handleClick}
+              disabled={accuracyData === null}
+            >
+              결과 확인
+            </Button>
           </ActivityMain>
         </ActivityContent>
       </Activity>

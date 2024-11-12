@@ -1,15 +1,10 @@
 import { useState } from "react";
-import { Button } from "@ui/components/ui/button";
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
-import ProgressBar from "@/components/ProgressBar";
-import {
-  Activity,
-  ActivityHeader,
-  ActivityMain,
-  ActivityContent,
-} from "@/components/Activity";
+import StepNumber from "@/components/StepNumber";
+import NextStepButton from "@/components/NextStepButton";
+import { Activity, ActivityMain, ActivityContent } from "@/components/Activity";
 
 import { useMutationPronunAccuracy } from "@/hooks/mutations/useMutationPronunAccuracy";
 
@@ -67,9 +62,12 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     <AppScreen>
       <Activity>
         <ActivityContent container="pronunciation">
-          <ActivityHeader step={step}>
-            <ProgressBar percent={step / 10} />
-          </ActivityHeader>
+          <StepNumber step={step}>
+            <h1 className="text-center text-2xl font-semibold">
+              학습할 문장과 발음 텍스트를 확인하고, 녹음 버튼을 누르고 녹음을
+              완료해주세요.
+            </h1>
+          </StepNumber>
           <ActivityMain>
             <PropmptSection
               voice_text={quiz.answer_voice}
@@ -79,14 +77,12 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
               <div className="absolute left-1/2 -translate-x-1/2 transform">
                 <MicDialog setAudioFile={setAudioFile} />
               </div>
-              <Button
-                variant="brand"
+              <NextStepButton
                 className="absolute right-0"
-                onClick={handleClick}
+                handleClick={handleClick}
                 disabled={!audioFile}
-              >
-                결과 확인
-              </Button>
+                isLoading={mutation.isPending}
+              />
             </div>
           </ActivityMain>
         </ActivityContent>

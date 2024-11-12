@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import useVideoStream from "@/hooks/useVideoStream";
 
@@ -7,25 +7,27 @@ import UserVideoAnswerSection from "./UserVideoAnswerSection";
 import TextQuestionSection from "./TextQuestionSection";
 import TextAnswerSection from "./TextAnswerSection";
 
-import { instance } from "@/api/instance";
-
 interface PromptSectionProps {
   step: number;
   onAnswerSelect: (answer: string) => void;
   setIsChecked: (value: boolean) => void;
   showVideoAnswerSection: boolean;
-  textQuestionChanged: boolean;
   handleCorrectness: (value: boolean) => void;
+  correctText: string;
+  signUrl: string;
+  optionList: string[];
 }
-
-const PromptSection = ({
-  step,
-  onAnswerSelect,
-  setIsChecked,
-  showVideoAnswerSection,
-  textQuestionChanged,
-  handleCorrectness,
-}: PromptSectionProps) => {
+const PromptSection = (props: PromptSectionProps) => {
+  const {
+    step,
+    onAnswerSelect,
+    setIsChecked,
+    showVideoAnswerSection,
+    handleCorrectness,
+    correctText,
+    signUrl,
+    optionList,
+  } = props;
   const {
     videoRef,
     canvasRef,
@@ -36,34 +38,9 @@ const PromptSection = ({
     deleteLastWord,
   } = useVideoStream();
 
-  const [correctText, setCorrectText] = useState("");
-  const [signUrl, setSignUrl] = useState("");
-  const [options, setOptions] = useState<string[]>([]);
-  const [correctAnswer, setCorrectAnswer] = useState("");
-
-  // API 호출: quiz 데이터 가져오기
-  useEffect(() => {
-    const fetchQuizData = async () => {
-      try {
-        const response = await instance.get("/quiz");
-        if (response.status === 200) {
-          const data = response.data.quiz[step - 1]; // step에 맞는 데이터 선택
-
-          // API 응답에 따라 상태 업데이트
-          setCorrectText(data.correct_text);
-          setSignUrl(data.sign_url);
-          setOptions(data.options || []);
-          setCorrectAnswer(data.correct_text);
-        } else {
-          throw new Error("API 요청 실패");
-        }
-      } catch (error) {
-        console.error("Error fetching quiz data:", error);
-      }
-    };
-
-    fetchQuizData();
-  }, [step]);
+  console.log("correctText: ", correctText);
+  console.log("signUrl: ", signUrl);
+  console.log("optionList: ", optionList);
 
   // translateText localStorage에 저장
   useEffect(() => {
@@ -76,8 +53,8 @@ const PromptSection = ({
   const leftSection =
     step > 5 ? (
       <TextQuestionSection
-        textQuestionChanged={textQuestionChanged}
         correctText={correctText}
+        translateText={translateText}
       />
     ) : (
       <VideoQuestionSection signUrl={signUrl} />
@@ -104,29 +81,29 @@ const PromptSection = ({
       )
     ) : (
       <TextAnswerSection
-        options={options.length > 0 ? options : ["옵션이 없습니다."]}
-        correctAnswer={correctAnswer}
+        options={optionList.length > 0 ? optionList : ["옵션이 없습니다."]}
+        correctAnswer={correctText}
         onAnswerSelect={onAnswerSelect}
         handleCorrectness={handleCorrectness} // handleCorrectness 전달
       />
     );
 
   return (
-    <div className="relative flex w-[1032px] items-center justify-between rounded-2xl bg-white p-1 pb-5 pt-7 shadow-lg">
+    <div className="flex w-[1032px] flex-col items-center gap-8 rounded-2xl bg-white pb-10 shadow-shadowBrand">
       {/* Dots */}
-      <div className="absolute left-1/2 top-3 flex -translate-x-1/2 transform space-x-1">
+      <div className="flex gap-1 pt-3">
         <div className="h-2 w-2 rounded-full bg-gray-400"></div>
         <div className="h-2 w-2 rounded-full bg-gray-400"></div>
         <div className="h-2 w-2 rounded-full bg-gray-400"></div>
       </div>
 
-      <div className="flex h-full w-full items-center">
+      <div className="flex w-full items-center">
         <div className="flex flex-1 items-center justify-center">
           {leftSection}
         </div>
         {/* Divider */}
-        <div className="h-[350px] w-[1px] bg-gray-500"></div>
-        <div className="flex h-[450px] flex-1 items-center justify-center">
+        <div className="h-[340px] w-[1px] bg-gray-500"></div>
+        <div className="flex flex-1 items-center justify-center">
           {rightSection}
         </div>
       </div>

@@ -30,14 +30,14 @@ const QuizSection = forwardRef<HTMLDivElement>(
               alt="Pronun Section"
               className="min-h-[320px] w-1/3 min-w-[450px] rounded-[20px] object-cover shadow-shadowBrand"
             />
-            <div className="flex w-full flex-col gap-8 text-center text-[30px]">
+            <div className="flex w-full flex-col gap-6 text-center text-[30px]">
               <h1 className="font-semibold text-brand">
                 수어 영상보고 의미 맞추기
               </h1>
-              <div className="font-normal leading-tight">
-                수어 영상이 출력되면 부합하는
+              <div className="font-normal leading-snug">
+                왼쪽에 수어 영상이 출력되면
                 <br />
-                의미의 선지를 골라주세요.
+                의미에 부합하는 선지를 골라주세요.
               </div>
             </div>
           </div>
@@ -47,11 +47,11 @@ const QuizSection = forwardRef<HTMLDivElement>(
               alt="Pronun Section"
               className="min-h-[320px] w-1/3 min-w-[450px] rounded-[20px] object-cover shadow-shadowBrand"
             />
-            <div className="flex w-full flex-col gap-8 text-center text-[30px]">
+            <div className="flex w-full flex-col gap-6 text-center text-[30px]">
               <h1 className="font-semibold text-brand">
                 의미에 부합하는 수어 동작 맞추기
               </h1>
-              <div className="font-normal leading-tight">
+              <div className="font-normal leading-snug">
                 출력된 문장의 의미에 부합하는
                 <br />
                 수어 동작을 입력해주세요.

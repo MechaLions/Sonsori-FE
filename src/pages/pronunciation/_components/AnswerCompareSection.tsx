@@ -8,21 +8,23 @@ const getColoredPronunciation = (correct: string, user: string) => {
   const correctChars = correct.split("");
   const userChars = user.split("");
 
-  return userChars.map((char: string, index: number) => {
-    if (char === correctChars[index]) {
-      return (
-        <span key={index} className="text-brandGreen">
-          {char}
-        </span>
-      );
-    } else {
-      return (
-        <span key={index} className="text-brandRed">
-          {char}
-        </span>
-      );
-    }
-  });
+  return userChars
+    .slice(0, correctChars.length)
+    .map((char: string, index: number) => {
+      if (char === correctChars[index]) {
+        return (
+          <span key={index} className="text-brandGreen">
+            {char}
+          </span>
+        );
+      } else {
+        return (
+          <span key={index} className="text-brandRed">
+            {char}
+          </span>
+        );
+      }
+    });
 };
 
 const AnswerCompareSection = (props: AnswerCompareSectionProps) => {

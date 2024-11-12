@@ -1,5 +1,6 @@
 import { useRef } from "react";
 
+import WarningSection from "./_components/WarningSection";
 import TranslateSection from "./_components/TranslateSection";
 import ShadowingSection from "./_components/ShadowingSection";
 import QuizSection from "./_components/QuizSection";
@@ -8,15 +9,22 @@ import MainSection from "./_components/MainSection";
 import Footer from "./_components/Footer";
 import ExplainSection from "./_components/ExplainSection";
 
-export type SectionName = "Translate" | "Shadowing" | "Quiz" | "Pronunciation";
+export type SectionName =
+  | "Explain"
+  | "Translate"
+  | "Shadowing"
+  | "Quiz"
+  | "Pronunciation";
 
 const Home = () => {
+  const explainRef = useRef<HTMLDivElement>(null);
   const translateRef = useRef<HTMLDivElement>(null);
   const shadowingRef = useRef<HTMLDivElement>(null);
   const quizRef = useRef<HTMLDivElement>(null);
   const pronunciationRef = useRef<HTMLDivElement>(null);
 
   const sectionRefs = {
+    Explain: explainRef,
     Translate: translateRef,
     Shadowing: shadowingRef,
     Quiz: quizRef,
@@ -34,7 +42,8 @@ const Home = () => {
   return (
     <main className="flex w-full flex-col">
       <MainSection onScrollToSection={handleScrollToSection} />
-      <ExplainSection />
+      <ExplainSection ref={explainRef} />
+      <WarningSection />
       <TranslateSection ref={translateRef} />
       <ShadowingSection ref={shadowingRef} />
       <QuizSection ref={quizRef} />

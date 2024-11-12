@@ -1,16 +1,12 @@
 import { useState, startTransition } from "react";
+import { cn } from "@ui/lib/utils";
 import { Button } from "@ui/components/ui/button";
 import { useStack } from "@stackflow/react";
 import { ActivityComponentType } from "@stackflow/react";
 import { AppScreen } from "@stackflow/plugin-basic-ui";
 
-import ProgressBar from "@/components/ProgressBar";
-import {
-  Activity,
-  ActivityHeader,
-  ActivityMain,
-  ActivityContent,
-} from "@/components/Activity";
+import StepNumber from "@/components/StepNumber";
+import { Activity, ActivityMain, ActivityContent } from "@/components/Activity";
 
 import { useQuizFlow } from "@/utils/quiz/useQuizFlow";
 
@@ -19,15 +15,17 @@ type QuizParams = {
   // 이게 지정 되어있어야 parameter로 받을수 있다.
   step: number;
   correctCount: number;
+  signUrls: string[];
+  correctTexts: string[];
+  optionsList: string[][];
 };
 
 const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
-  const { step, correctCount } = params;
+  const { step, correctCount, signUrls, correctTexts, optionsList } = params;
   const { pop, replace } = useQuizFlow();
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isChecked, setIsChecked] = useState(false); // 카메라 Check 상태 관리
   const [showVideoAnswerSection, setShowVideoAnswerSection] = useState(false); // UserVideoAnswerSection을 VideoAnswerSection으로 변경
-  const [textQuestionChanged, setTextQuestionChanged] = useState(false); // 문구 변경 관리
 
   const [correctness, setCorrectness] = useState<boolean | undefined>(
     undefined,
@@ -49,6 +47,9 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
       {
         step: step + 1,
         correctCount: correctness === true ? correctCount + 1 : correctCount,
+        signUrls,
+        correctTexts,
+        optionsList,
       },
       { animate: false },
     );
@@ -66,6 +67,9 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
       "ResultActivity",
       {
         correctCount: correctCount, // 정답개수 변수를 넘겨라
+        signUrls,
+        correctTexts,
+        optionsList,
       },
       { animate: false },
     );
@@ -78,7 +82,6 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
   const handleCheck = () => {
     setIsChecked(true);
     setShowVideoAnswerSection(true);
-    setTextQuestionChanged(true);
   };
 
   const buttonText = step === 10 ? "결과 확인" : "다음 문제";
@@ -88,31 +91,36 @@ const QuizActivity: ActivityComponentType<QuizParams> = ({ params }) => {
     <AppScreen>
       <Activity>
         <ActivityContent container="quiz">
-          <ActivityHeader step={step} className="relative">
-            <ProgressBar percent={step / 10} />
-            <Button
-              variant="brand"
-              onClick={handleClick}
-              disabled={isDisabled}
-              className={`${
-                isDisabled ? "bg-buttonGray text-white" : "bg-brand text-white"
-              } absolute bottom-[50px] right-[20%]`}
-              style={{
-                opacity: isDisabled ? 1 : undefined,
-              }}
-            >
-              {buttonText}
-            </Button>
-          </ActivityHeader>
-          <ActivityMain className="gap-5">
+          <StepNumber step={step}>
+            <h1 className="text-center text-2xl font-semibold">
+              {step > 5
+                ? "주어진 단어에 부합하는 수어 영상을 촬영해주세요."
+                : "왼쪽의 수어 영상을 확인하고, 이에 부합하는 단어를 골라주세요."}
+            </h1>
+          </StepNumber>
+          <ActivityMain>
             <PromptSection
               step={step}
               onAnswerSelect={handleAnswerSelect}
               setIsChecked={handleCheck} // VideoAnswerSection에서 상태 변경
               showVideoAnswerSection={showVideoAnswerSection}
-              textQuestionChanged={textQuestionChanged}
               handleCorrectness={handleCorrectness} // handleCorrectCount 전달
+              correctText={correctTexts[step - 1]}
+              signUrl={signUrls[step - 1]}
+              optionList={optionsList[step - 1]}
             />
+            <Button
+              variant="brand"
+              onClick={handleClick}
+              disabled={isDisabled}
+              className={cn(
+                isDisabled ? "bg-buttonGray" : "bg-brand",
+                "text-white",
+              )}
+              style={isDisabled ? { opacity: 1 } : undefined}
+            >
+              {buttonText}
+            </Button>
           </ActivityMain>
         </ActivityContent>
       </Activity>
